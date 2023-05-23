@@ -27,6 +27,6 @@
 > The async and defer attributes both allow the browser to continue parsing the HTML document while JavaScript files are being downloaded, but they differ in when those files are executed.<br>
 Async downloads and executes JavaScript as soon as it’s available, while defer attribute waits until the HTML document has been parsed before downloading and executing any external scripts.
 
-### How to use React using CDN links ?
+### How to configure React using CDN links ?
 - Please refer the files App.js and index.html
 - [React CDN Links](https://legacy.reactjs.org/docs/cdn-links.html)
