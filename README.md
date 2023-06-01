@@ -2,7 +2,7 @@
 
 In this lesson, we are going to ignite our App using Parcel.
 
-#### Step 1:
+#### 🔸 Step 1:
 To our existing app, adding `parcel`. for that first we need to use any package manager, here we are using npm.
 
 - npm initializing:
@@ -14,7 +14,7 @@ To our existing app, adding `parcel`. for that first we need to use any package 
   npm i -D parcel
   ```
 
-#### Step 2:
+#### 🔸 Step 2:
 We are removing the CDN Links and adding react using npm.
 
 - Installing React and ReactDOM :
@@ -30,13 +30,13 @@ In `index.html` do the following:
     ```
 
 
-#### Step 3:
+#### 🔸 Step 3:
 Import React and ReactDOM in App.js.
 ```
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 ```
-#### Step 4:
+#### 🔸 Step 4:
 Let's run our application using Parcel.
   ```
   npx parcel index.html
