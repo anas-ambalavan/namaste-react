@@ -49,8 +49,8 @@ Let's run our application using Parcel.
 - Add scripts for `start` and `build` with parcel commands:
   ```
   "scripts": {
-      "start":"npx parcel index.html",
-      "build":"npx parcel build index.html",
+      "start":"parcel index.html",
+      "build":"parcel build index.html",
       "test": "jest"
     },
   ```
