@@ -1,0 +1,31 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "This is react application",
+  "scripts": {
+    "start":"npx parcel index.html",
+    "build":"npx parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anas-ambalavan/namaste-react.git"
+  },
+  "author": "anas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anas-ambalavan/namaste-react/issues"
+  },
+  "homepage": "https://github.com/anas-ambalavan/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.9.1",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
