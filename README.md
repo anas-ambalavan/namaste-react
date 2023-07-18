@@ -78,6 +78,27 @@ Create an App.js file.
   ```
   <script src="App.js"></script>
   ```
+- Creating nested structure:
+  ```
+  <div id="container" class="container">
+    <h1>heading 1</h1>
+    <h2>heading 2</h2>
+  </div>
+  ```
+  Code for the above structure :
+  ```
+  const heading1 = React.createElement("h1", { id: "title 1" }, "Heading 1");
+  const heading2 = React.createElement("h2", { id: "title 2" }, "Heading 2");
+  const container = React.createElement(
+    "div",
+    { id: "container", className: "container" }, // attributes, here you can see className, in React class=>className
+    [heading1, heading2] // If we have siblings we need to put all those elements in an array.
+  );
+  
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  
+  root.render(container);
+  ```
 
 Now React is added to the HTML 🔥
 
