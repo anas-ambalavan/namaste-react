@@ -1,5 +1,87 @@
-## Lesson 01 - Inception
+## Lesson 01 - Inception 🚀
 
+In this lesson, we will start from scratch. 
+### Sections:
+- How we worked before React.js came.
+- How to add React to HTML using React CDN Links.
+
+### 📋 How we worked before React.js came
+
+#### 🔸 Step 1:
+Create a HTML file with a div having an id="root".
+
+- index.html:
+  ```
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React</title>
+      </head>
+      <body>
+        <div id="root"></div>
+      </body>
+    </html>
+  ```
+
+
+#### 🔸 Step 2:
+Create a H1 tag and add it to the root using JavaScript.
+
+- Add this script inside the body tag:
+  ```
+  <script>
+  
+    const h1 = document.createElement('h1');
+    h1.innerHTML = "Hello world! from JavaScript"
+
+    const root = document.getElementById('root');
+    root.appendChild(h1);
+  
+  </script>
+  ```
+This is how we did before React came.
+
+### 📋 How to add React to HTML using React CDN Links
+
+#### 🔸 Step 1:
+Injecting React to our code using React CDN Links.
+
+- Remove the existing script from `index.html`.
+- Add these [CDN links](https://legacy.reactjs.org/docs/cdn-links.html) to index.html inside the body tag.
+  ```
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  ```
+#### 🔸 Step 2:
+Create an App.js file.
+- Add this script to App.js:
+  ```
+  const heading = React.createElement("h1", {}, "Heading 1");
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  
+  root.render(heading);
+  ```
+  
+  - createElements(arg1, agr2, arg3): to create an Element. it will return an Object. createElements takes three agruments,,
+    - arg1: the tag
+    - arg2: `{}` Object which needs to set the attribute (props, like id, class(in React it is className)).
+    - arg3: Whatever we need to put inside the tag.
+  - React.createElement() => returns an Object => render(converts the object into HTML) => HTML(Browser Understands)
+  - ReactDOM.createRoot(): Create a root to render the elements.
+  - root.render() : it will render the elements inside root.
+    
+    
+- Link the App.js file to the index.html after the CDN links in the body tag (order of the scripts is important).
+  ```
+  <script src="App.js"></script>
+  ```
+
+Now React is added to the HTML 🔥
+
+## Questions:
 ### what is Emmet ?
 
 > Emmet is a free add-on for your text editor. It allows you to type shortcuts that are then expanded into full pieces of code. By using Emmet, developers type less, they save both on keystrokes and time. Also relying on Emmet's auto completion means fewer typos and missing tags, leading to more robust and valid files.
