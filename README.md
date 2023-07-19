@@ -1,140 +1,219 @@
-## Lesson 02 - Ignite Our App 🚀
+## Lesson 03 - Laying the foundation 🚀
 
-In this lesson, we are going to ignite our App using Parcel.
+In this lesson, we will use JSX and create a header component.
 
 #### 🔸 Step 1:
-To our existing app, adding `parcel`. for that first we need to use any package manager, here we are using npm.
 
-- npm initializing:
-  ```
-  npm init -y
-  ```
-- Installing parcel as devDependency:
-  ```
-  npm i -D parcel
-  ```
+Install [Heroicons](https://heroicons.com/)
+
+```
+npm install @heroicons/react
+```
 
 #### 🔸 Step 2:
-We are removing the CDN Links and adding react using npm.
 
-- Installing React and ReactDOM :
-  ```
-  npm i react react-dom
-  ```
-
-In `index.html` do the following:
-1. Remove the cdn links (scripts).
-2. Add the type attribute as module to the script tag that imports App.js to enable imports and exports.
-    ```
-    <script type="module" src="App.js"></script>
-    ```
-
+- Remove the existing React.createElement code from App.js.
+- In the following steps, changes are made to App.js file.
 
 #### 🔸 Step 3:
-Import React and ReactDOM in App.js.
+
+Create a react element as SubTitle.
+
 ```
-import React from 'react';
-import ReactDOM from 'react-dom/client'
+const SubTitle = <h3>Namaste React - React Element</h3>;
 ```
+
 #### 🔸 Step 4:
-Let's run our application using Parcel.
+
+Create a react component as Title and include the SubTitle react element into it.
+
+```
+const Title = () => (
+  <div id="title" className="title" tabIndex={1}>
+    <h1>Welcome!</h1>
+    {SubTitle}
+  </div>
+);
+```
+
+#### 🔸 Step 5:
+
+Create a Header component with a logo on left, a search bar in the middle and a User icon on the right.
+
+- Import UserIcon from heroicons
+
   ```
-  npx parcel index.html
+  import { UserCircleIcon } from "@heroicons/react/24/solid";
   ```
 
-- For production build, use this command:
+- Download a logo and place it in an asset folder and import it into App.js:
+
   ```
-  npx parcel build index.html
-  ```
-- Add scripts for `start` and `build` with parcel commands:
-  ```
-  "scripts": {
-      "start":"parcel index.html",
-      "build":"parcel build index.html",
-      "test": "jest"
-    },
-  ```
-- Now we can use these commands:<br><br>
-  to run the application:
-  ```
-  npm start
-  ```
-  to build:
-  ```
-  npm run build
-  ```
-- If you are facing any issues while building, remove this line from package.json.
-  ```
-  "main": "App.js",
+  import Logo from "./assets/logo.png";
   ```
 
-- Create `.gitignore` file and add these lines:
+- Header component
+
   ```
-  node_modules
-  .parcel-cache
-  dist
+  const Header = () => (
+    <div className="header-container">
+      <div className="image-container">
+        <img
+          className="image"
+          width={"100%"}
+          height={"100%"}
+          src={Logo}
+          alt="logo"
+        />
+      </div>
+      <input className="search-bar" type="text" placeholder="Search..." />
+      <div className="section-right">
+        <UserCircleIcon width={30} />
+      </div>
+    </div>
+  );
   ```
 
-- Add Browserslists to package.json file:
+#### 🔸 Step 6:
+
+Add the Header and Title components to the Main component.
+
+```
+const Main = () => (
+  <> // Empty tag or React Fragment
+    <Header />
+    <Title />
+  </>
+);
+```
+
+#### 🔸 Step 7:
+
+Change the render.
+
+```
+root.render(<Main />);
+```
+
+#### 🔸 Step 8:
+
+Adding CSS for style
+
+- index.css:
+  It's a sample CSS you can modify according to your needs.
+
   ```
-  "browserslist": [
-      "last 2 versions"
-    ]
+  body {
+    margin: 0;
+  }
+
+  .header-container {
+    padding: 10;
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .image-container {
+    margin-right: 15;
+    margin-left: 15;
+    width: 30px;
+    height: 30px;
+  }
+
+  .search-bar {
+    padding-left: 15;
+    height: 30px;
+    width: 280px;
+    border-radius: 5;
+    border: 0.5px solid gray;
+    margin-left: 15px;
+  }
+
+  .section-right {
+    cursor: pointer;
+  }
   ```
 
+Please review the full source code.
 
 ## Questions:
-### 1. what is NPM ?
-> NPM is a Package manager and is primarily used for managing and sharing reusable code modules or packages.
 
-### 2. What is Parcel/Webpack ? Why do we need it ?
-> Parcel and Webpack are bundlers that simplify the process of building JavaScript applications by handling dependencies, optimizing code and assets, and providing useful developement features.
+### 1. What is JSX ?
 
-### 3. What is  `.parcel-cache` ?
-> It is a folder which parcel generates for caching.
+> JSX is an HTML-like syntax. It is JS syntax which creates React elements. JSX is not HTML. Meta develops it. JSX is not HTML inside JavaScript.
 
-### 4. What is  `npx` ?
-> Executing using npm. stands for `Node Package Execute`.
+### 2. Superpowers of JSX ?
 
-### 5. What is the difference between  `dependencies` vs `devDependencies` ?
->  Dependencies are necessary for the project's runtime and are installed both in development and production environments, while devDependencies are specific to the development process and are not included in the production environment.
+> - HTML-like syntax.
+> - Component Composition.
+> - Expressions within Curly Braces.
+> - Component Props.
+> - Support the use of Fragments.
 
-### 6. What is Tree Shaking ?
-> Tree Shaking is a optimization technique that helps reduce the bundle size by eliminating unused code(removal of dead code).
+### 3. Benefits of JSX ?
 
-### 7. What is Hot Module Replacement ?
-> Hot Module Replacement(HMR) is a feature that enables to see code changes in the browser without having to refresh it. HMR improves the development experience by updating modules in the browser at runtime without needing a whole page refresh. 
+> - inside Curly Braces `{}` we can write any piece of JS code and JSX will optimize and sanitise the code, it prevents from XSS attack.
+> - we can use `<></>` (Fragments) empty tags.
 
-### 8. List down 5 superpowers of Parcel ?
-> 1. Zero Configuration.
-> 2. Dev Server: Parcel provides dev server.
-> 3. Hot Reloading: By default, Parcel fully reloads the page, but in some cases it may perform HMR.
-> 4. Dev server supports https: Parcel’s dev server supports HTTPS out of the box. You can either use an automatically generated certificate, or provide your own.
-> 5. Image optimization: Parcel supports resizing, converting, and optimizing images by using query params.
+### 4. Behind the Scenes of JSX ?
 
-### 9. What is `gitignore`? What should we add and not add into it ?
-> gitignore is a text file, it contains the files and directories should be ignored and not tracked by Git. Anything we can generate on the server will be put inside gitignore.
+> Babel converts JSX behind the scenes into browser understandable code. JSX => React.createElement => JS Object => HTML
 
-### 10. What is the difference between `package.json` and `package-lock.json` ?
->  `package.json` is a manually created file that lists the dependencies required by the project, while `package-lock.json` is an automatically generated file that records the specific versions of the dependencies installed in the project to ensure consistent builds.
+### 5. Babel & parcel role in JSX ?
 
-### 11. Why should  I not modify `package-lock.json` ?
-> `package-lock.json` serves as a record of the exact versions and dependencies of the packages that were installed. Modifying it manually can lead to inconsistencies and compatibility issues.
+> Parcel will transpile the code using Babel. Babel converts JSX behind the scenes into browser understandable code.
 
-### 12. What is `node_modules` ? Is it good idea to push that on git ?
-> `node_modules` is a directory which contains the actual code of the dependencies, along with any additional files they may require, such as configuration files or documentation. It is created when installing dependencies for the project using any package manager. never push this node_modules to git, because we can re-generate node_modules by using `package-lock.json` file.
+### 6. React.createElement vs JSX ?
 
-### 13. What is the `dist` folder ? 
-> `dist` folder is production build of the application. It is the output directory where bundlers, bundles and builds the project files for production or deployment. It contains minified and concatenated versions of all files.
+> - React.createElement : used to create react elements, direct return an JS Object.
+> - JSX : used to create react elements, babel transpile into react elements, then converted into JS object.
 
-### 14. What is `browserslist` ? 
-> `browserslist` is a tool which will make code compatible for lot of browsers.
-- Configuring browserlist :-
-  add browserlist config in package.json file.
-  ```
-  "browserslist": [
-    "last 2 versions"
-  ]
-  ```
-  In browserslist we can add query composition. [For more details.](https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z) <br>
+### 7. Components ?
 
+> A React component is like a JavaScript function or class that returns JSX elements.
+
+### 8. Functions Components ?
+
+> Functions Components are normal Javascript functions. It will return JSX or react elements.
+
+### 9. Composing Components ?
+
+> Components inside a component.
+
+### 10. `{TitleComponent}` vs `{<TitleComponent />}` vs `{<TitleComponent></TitleComponent>}` in JSX ?
+
+- Rendering react element.
+
+```
+const TitleComponent = <h1>Hello World</h1> // React Element
+
+const Main = () => (
+  <div>
+    {TitleComponent}
+    <h2>Welcome</h2>
+  </div>
+)
+
+```
+
+- Rendering react component.
+
+```
+// React Component
+const TitleComponent = () =>
+(
+  <h1>Hello World</h1>
+)
+
+const Main = () => (
+  <div>
+    {<TitleComponent />}
+    {<TitleComponent></TitleComponent>}
+    <h2>Welcome</h2>
+  </div>
+)
+
+```

@@ -1,3 +1,32 @@
-.container {
-  background-color: #f5D5f5;
+body {
+  margin: 0;
+}
+
+.header-container {
+  padding: 10;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.image-container {
+  margin-right: 15;
+  margin-left: 15;
+  width: 30px;
+  height: 30px;
+}
+
+.search-bar {
+  padding-left: 15;
+  height: 30px;
+  width: 280px;
+  border-radius: 5;
+  border: 0.5px solid gray;
+  margin-left: 15px;
+}
+
+.section-right {
+  cursor: pointer;
 }

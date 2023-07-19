@@ -1,14 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
-const heading1 = React.createElement("h1", { id: "title 1" }, "Heading 1");
-const heading2 = React.createElement("h2", { id: "title 2" }, "Heading 2");
-const container = React.createElement(
-  "div",
-  { id: "container", className: "container" },
-  [heading1, heading2]
+import Logo from "./assets/logo.png";
+
+const SubTitle = <h3>Namaste React - React Element</h3>;
+
+const Title = () => (
+  <div id="title" className="title" tabIndex={1}>
+    <h1>Welcome!</h1>
+    {SubTitle}
+  </div>
+);
+
+const Header = () => (
+  <div className="header-container">
+    <div className="image-container">
+      <img
+        className="image"
+        width={"100%"}
+        height={"100%"}
+        src={Logo}
+        alt="logo"
+      />
+    </div>
+    <input className="search-bar" type="text" placeholder="Search..." />
+    <div className="section-right">
+      <UserCircleIcon width={30} />
+    </div>
+  </div>
+);
+
+const Main = () => (
+  <>
+    <Header />
+    <Title />
+  </>
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(container);
+root.render(<Main />);
