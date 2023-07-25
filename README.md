@@ -1,219 +1,73 @@
-## Lesson 03 - Laying the foundation 🚀
+## Lesson 04 - Talk is cheap, show me the code! 🚀
 
-In this lesson, we will use JSX and create a header component.
+In this lesson, we will build a Swiggy clone.
 
-#### 🔸 Step 1:
+#### 🔸 Follow the link to build the application step-by-step:
 
-Install [Heroicons](https://heroicons.com/)
-
-```
-npm install @heroicons/react
-```
-
-#### 🔸 Step 2:
-
-- Remove the existing React.createElement code from App.js.
-- In the following steps, changes are made to App.js file.
-
-#### 🔸 Step 3:
-
-Create a react element as SubTitle.
-
-```
-const SubTitle = <h3>Namaste React - React Element</h3>;
-```
-
-#### 🔸 Step 4:
-
-Create a react component as Title and include the SubTitle react element into it.
-
-```
-const Title = () => (
-  <div id="title" className="title" tabIndex={1}>
-    <h1>Welcome!</h1>
-    {SubTitle}
-  </div>
-);
-```
-
-#### 🔸 Step 5:
-
-Create a Header component with a logo on left, a search bar in the middle and a User icon on the right.
-
-- Import UserIcon from heroicons
-
-  ```
-  import { UserCircleIcon } from "@heroicons/react/24/solid";
-  ```
-
-- Download a logo and place it in an asset folder and import it into App.js:
-
-  ```
-  import Logo from "./assets/logo.png";
-  ```
-
-- Header component
-
-  ```
-  const Header = () => (
-    <div className="header-container">
-      <div className="image-container">
-        <img
-          className="image"
-          width={"100%"}
-          height={"100%"}
-          src={Logo}
-          alt="logo"
-        />
-      </div>
-      <input className="search-bar" type="text" placeholder="Search..." />
-      <div className="section-right">
-        <UserCircleIcon width={30} />
-      </div>
-    </div>
-  );
-  ```
-
-#### 🔸 Step 6:
-
-Add the Header and Title components to the Main component.
-
-```
-const Main = () => (
-  <> // Empty tag or React Fragment
-    <Header />
-    <Title />
-  </>
-);
-```
-
-#### 🔸 Step 7:
-
-Change the render.
-
-```
-root.render(<Main />);
-```
-
-#### 🔸 Step 8:
-
-Adding CSS for style
-
-- index.css:
-  It's a sample CSS you can modify according to your needs.
-
-  ```
-  body {
-    margin: 0;
-  }
-
-  .header-container {
-    padding: 10;
-    background-color: lightgray;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-
-  .image-container {
-    margin-right: 15;
-    margin-left: 15;
-    width: 30px;
-    height: 30px;
-  }
-
-  .search-bar {
-    padding-left: 15;
-    height: 30px;
-    width: 280px;
-    border-radius: 5;
-    border: 0.5px solid gray;
-    margin-left: 15px;
-  }
-
-  .section-right {
-    cursor: pointer;
-  }
-  ```
+- [Swiggy Clone - Part 1](https://swiggy-clone.notion.site/Swiggy-Clone-Part-1-a56612fbc0bc4621a607897256fa1295)
 
 Please review the full source code.
 
 ## Questions:
 
-### 1. What is JSX ?
+### 1. Is JSX mandatory for React ?
 
-> JSX is an HTML-like syntax. It is JS syntax which creates React elements. JSX is not HTML. Meta develops it. JSX is not HTML inside JavaScript.
+> No.
 
-### 2. Superpowers of JSX ?
+### 2. Is ES6 mandatory for React ?
 
-> - HTML-like syntax.
-> - Component Composition.
-> - Expressions within Curly Braces.
-> - Component Props.
-> - Support the use of Fragments.
+> No.
 
-### 3. Benefits of JSX ?
+### 3. How can I write comments in JSX ?
 
-> - inside Curly Braces `{}` we can write any piece of JS code and JSX will optimize and sanitise the code, it prevents from XSS attack.
-> - we can use `<></>` (Fragments) empty tags.
-
-### 4. Behind the Scenes of JSX ?
-
-> Babel converts JSX behind the scenes into browser understandable code. JSX => React.createElement => JS Object => HTML
-
-### 5. Babel & parcel role in JSX ?
-
-> Parcel will transpile the code using Babel. Babel converts JSX behind the scenes into browser understandable code.
-
-### 6. React.createElement vs JSX ?
-
-> - React.createElement : used to create react elements, direct return an JS Object.
-> - JSX : used to create react elements, babel transpile into react elements, then converted into JS object.
-
-### 7. Components ?
-
-> A React component is like a JavaScript function or class that returns JSX elements.
-
-### 8. Functions Components ?
-
-> Functions Components are normal Javascript functions. It will return JSX or react elements.
-
-### 9. Composing Components ?
-
-> Components inside a component.
-
-### 10. `{TitleComponent}` vs `{<TitleComponent />}` vs `{<TitleComponent></TitleComponent>}` in JSX ?
-
-- Rendering react element.
+> Only `/* */` is used inside the curly braces
 
 ```
-const TitleComponent = <h1>Hello World</h1> // React Element
-
-const Main = () => (
-  <div>
-    {TitleComponent}
-    <h2>Welcome</h2>
-  </div>
-)
-
+  {/* <h1>Hello! Welcome</h1> */}
 ```
 
-- Rendering react component.
+### 4. What is <React.Fragment></React.Fragment> and <></> ?
 
-```
-// React Component
-const TitleComponent = () =>
-(
-  <h1>Hello World</h1>
-)
+> React Fragment is a feature in React that allows you to return multiple elements from a React component by allowing you to group a list of children without adding extra nodes to the DOM.
 
-const Main = () => (
-  <div>
-    {<TitleComponent />}
-    {<TitleComponent></TitleComponent>}
-    <h2>Welcome</h2>
-  </div>
-)
+> <></> : Short Syntax for declaring fragments.
 
-```
+### 5. What is Virtual DOM?
+
+> It's a representation of Actual DOM. it's like a object represention.
+
+### 6. What is Reconciliation in React ?
+
+> It is the process of updating the UI in response to changes in the component state.
+
+> Reconciliation occurs whenever something changes on the UI.
+
+### 7. What is React Fiber ?
+
+> After React v16, Reconciliation is known as React Fiber.
+
+> React Fiber is new way of finding the difference and updating the DOM. (reimplementation of React's core algorithm)
+
+### 8. Why we need keys in React ? When do we need keys in React ?
+
+> Whenever we render lists, we need keys because if there is no key, react will clean all the list items and render, which will affect performance.
+
+> If keys are mentioned in the list items, then react will only update the specific element rather than the entire list.
+
+> Keys play a crucial role in the reconciliation process
+
+### 9. Can we use index as keys in React ?
+
+> Never use index as key. it's a bad practice.
+
+### 10. What is props in React ?
+
+> Props => Properties
+
+> Props in React are inputs into components.
+
+> Passing a prop into a component is just like passing arguments into a function.
+
+### 11. What is Config Driven UI ?
+
+> Controlling the UI using configs, configs come from the backend, it is known as Config Driven UI.
