@@ -20,7 +20,7 @@ Please review the full source code.
 
 ### 3. How can I write comments in JSX ?
 
-> Only `/* */` is used inside the curly braces
+> `/* */` is used inside curly braces to write comments in JSX.
 
 ```
   {/* <h1>Hello! Welcome</h1> */}
