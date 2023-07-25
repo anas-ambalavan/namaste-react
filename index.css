@@ -179,14 +179,22 @@ html {
 }
 
 .body-container {
-  margin: 5rem 15% 3rem 15%;
+  margin: 5rem 12% 3rem 12%;
 }
 
 .res-heading {
   margin: 20px 0px 20px 0px;
 }
 
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .res-card {
+  /* position: relative; */
+  margin: 5px;
   padding-top: 10px;
   padding-bottom: 20px;
   width: 260px;
@@ -195,6 +203,7 @@ html {
   flex-direction: column;
   align-items: center;
   transition: all .2s ease-in-out;
+  cursor: pointer;
 }
 
 .res-card:hover {
@@ -241,4 +250,15 @@ html {
   margin-top: 5px;
   font-size: medium;
   color: #686B78;
+  width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.res-card-details h3 {
+  width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
