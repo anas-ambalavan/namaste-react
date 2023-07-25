@@ -22,7 +22,7 @@ const RestaurantCard = ({ resData }) => {
           <h4 style={{ marginLeft: 5 }}>{avgRating}</h4>
         </div>
         <div className="bottom-details">
-          <p className="res-card-cuisine">{cuisines.join(",")}</p>
+          <p className="res-card-cuisine">{cuisines.join(", ")}</p>
           <p className="res-card-location">{areaName}</p>
         </div>
       </div>
