@@ -1,5 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
@@ -8,10 +6,8 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
 
-import Logo from "./assets/logo.png";
-import { restaurants } from "./dummy-data";
+import Logo from "../../assets/logo.png";
 
 const Header = () => (
   <div className="header fonts-loaded">
@@ -67,56 +63,4 @@ const Header = () => (
   </div>
 );
 
-const ResCard = ({ resData }) => {
-  const { name, cloudinaryImageId, avgRating, cuisines, areaName } = resData;
-  return (
-    <div className="res-card">
-      <div className="res-card-image-container">
-        <img
-          src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
-          alt="restaurant logo"
-          className="res-card-image"
-        />
-      </div>
-      <div className="res-card-details">
-        <h3>{name}</h3>
-        <div className="res-card-rating-container">
-          <div className="res-card-star-rating">
-            <StarIcon color="#fff" width={13} />
-          </div>
-          <h4 style={{ marginLeft: 5 }}>{avgRating}</h4>
-        </div>
-        <div className="bottom-details">
-          <p className="res-card-cuisine">{cuisines.join(",")}</p>
-          <p className="res-card-location">{areaName}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="body-container">
-      <div className="restaurants">
-        <h1 className="res-heading">Restaurants</h1>
-        <div className="restaurant-list">
-          {restaurants.map((item) => (
-            <ResCard key={item.info.id} resData={item.info} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => (
-  <>
-    <Header />
-    <Body />
-  </>
-);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
+export default Header;
