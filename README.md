@@ -1,73 +1,78 @@
-## Lesson 04 - Talk is cheap, show me the code! 🚀
+## Lesson 05 - Let's get Hooked 🚀
 
-In this lesson, we will build a Swiggy clone.
+#### 🔸 Topics
+
+1. File structure.
+2. Introdution to Hooks.
+3. useState Hook.
+4. Filter the restaurant data.
 
 #### 🔸 Follow the link to build the application step-by-step:
 
-- [Swiggy Clone - Part 1](https://swiggy-clone.notion.site/Swiggy-Clone-Part-1-a56612fbc0bc4621a607897256fa1295)
+- [Swiggy Clone - Part 2](https://swiggy-clone.notion.site/Swiggy-Clone-Part-2-e6cb5b3d1fc5459f93db352b60247928)
 
 Please review the full source code.
 
 ## Questions:
 
-### 1. Is JSX mandatory for React ?
+### 1. What is the difference between Named Export, Default export and \* as export ?
 
-> No.
+- Named Import and Exports:
 
-### 2. Is ES6 mandatory for React ?
+  For example, if we export like this in `constants.js`:
 
-> No.
+  ```
+    export const CDN_URL = '....';
+  ```
 
-### 3. How can I write comments in JSX ?
+  We can import CDN_URL by the following syntax:
 
-> `/* */` is used inside curly braces to write comments in JSX.
+  ```
+    import {CDN_URL} from './src/utils/constants.js'
+  ```
 
-```
-  {/* <h1>Hello! Welcome</h1> */}
-```
+- Default Import and Exports:
 
-### 4. What is <React.Fragment></React.Fragment> and <></> ?
+  For example, if we have a `card component`:
 
-> React Fragment is a feature in React that allows you to return multiple elements from a React component by allowing you to group a list of children without adding extra nodes to the DOM.
+  ```
+    const Card = () => {
+      return (
+        <div>...</div>
+      )
+    }
 
-> <></> : Short Syntax for declaring fragments.
+    export default Card;
+  ```
 
-### 5. What is Virtual DOM?
+  We can import the Card Component by the following syntax:
 
-> It's a representation of Actual DOM. it's like a object represention.
+  ```
+    import Card from './src/components/Card.js'
+  ```
 
-### 6. What is Reconciliation in React ?
+- `*` as Import and Exports:
 
-> It is the process of updating the UI in response to changes in the component state.
+  For example, if we have multiple constants in `constants.js`:
 
-> Reconciliation occurs whenever something changes on the UI.
+  ```
+    export const CDN_URL = '....';
+    export const LOGO_URL = '....';
+  ```
 
-### 7. What is React Fiber ?
+  We can import the Constants by the following syntax:
 
-> After React v16, Reconciliation is known as React Fiber.
+  ```
+    import * as Constants from './src/utils/constants.js'
 
-> React Fiber is new way of finding the difference and updating the DOM. (reimplementation of React's core algorithm)
+    Constants.CDN_URL // it prints the CDN_URL
+    Constants.LOGO_URL // it prints the LOGO_URL
+  ```
 
-### 8. Why we need keys in React ? When do we need keys in React ?
+### 2. What are React Hooks ?
 
-> Whenever we render lists, we need keys because if there is no key, react will clean all the list items and render, which will affect performance.
+> React Hooks are simple JavaScript functions that we can use to isolate the reusable part from a functional component. Hooks can be stateful and can manage side-effects.
 
-> If keys are mentioned in the list items, then react will only update the specific element rather than the entire list.
+### 3. Why do we need a useState Hook ?
 
-> Keys play a crucial role in the reconciliation process
-
-### 9. Can we use index as keys in React ?
-
-> Never use index as key. it's a bad practice.
-
-### 10. What is props in React ?
-
-> Props => Properties
-
-> Props in React are inputs into components.
-
-> Passing a prop into a component is just like passing arguments into a function.
-
-### 11. What is Config Driven UI ?
-
-> Controlling the UI using configs, configs come from the backend, it is known as Config Driven UI.
+> To manage states. Returns a stateful value and an updater function to update it.
