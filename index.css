@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
@@ -164,10 +169,76 @@ html {
 .header-list-item {
   display: flex;
   flex-direction: row;
+  align-items: center;
   cursor: pointer;
 }
 
 .header-list-item>p {
   margin-left: 5px;
   font-weight: 500;
+}
+
+.body-container {
+  margin: 5rem 15% 3rem 15%;
+}
+
+.res-heading {
+  margin: 20px 0px 20px 0px;
+}
+
+.res-card {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 260px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all .2s ease-in-out;
+}
+
+.res-card:hover {
+  transform: scale(0.95);
+}
+
+.res-card-image-container {
+  width: 260px;
+  height: 170px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.res-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.res-card-details {
+  margin: 1rem 1rem 0px 1rem;
+  align-self: start;
+}
+
+.res-card-rating-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.res-card-star-rating {
+  width: 20px;
+  height: 20px;
+  background-color: #1A8D3E;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.res-card-cuisine,
+.res-card-location {
+  margin-top: 5px;
+  font-size: medium;
+  color: #686B78;
 }

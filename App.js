@@ -8,6 +8,7 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import { StarIcon } from "@heroicons/react/24/solid";
 
 import Logo from "./assets/logo.png";
 
@@ -65,9 +66,44 @@ const Header = () => (
   </div>
 );
 
+const ResCard = () => (
+  <div className="res-card">
+    <div className="res-card-image-container">
+      <img
+        src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/vldpinypn5ra0unkqga3"
+        alt=""
+        className="res-card-image"
+      />
+    </div>
+    <div className="res-card-details">
+      <h3>Chai Point</h3>
+      <div className="res-card-rating-container">
+        <div className="res-card-star-rating">
+          <StarIcon color="#fff" width={13} />
+        </div>
+        <h4 style={{ marginLeft: 5 }}>4.4</h4>
+      </div>
+      <p className="res-card-cuisine">Bakery, Beverages</p>
+      <p className="res-card-location">BTM Layout</p>
+    </div>
+  </div>
+);
+
+const Body = () => {
+  return (
+    <div className="body-container">
+      <div className="restaurant-list">
+        <h1 className="res-heading">Restaurants</h1>
+        <ResCard />
+      </div>
+    </div>
+  );
+};
+
 const AppLayout = () => (
   <>
     <Header />
+    <Body />
   </>
 );
 
