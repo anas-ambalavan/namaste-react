@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AdjustmentsHorizontalIcon,
   XMarkIcon,
@@ -6,10 +6,24 @@ import {
 
 import RestaurantCard from "./RestaurantCard";
 import { restaurants } from "../utils/dummy-data";
+import { API_URL } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(restaurants);
   const [currentFilters, setCurrentFilters] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(API_URL);
+    const json = await data.json();
+
+    setListOfRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   return (
     <div className="body-container">
