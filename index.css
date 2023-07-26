@@ -192,7 +192,7 @@ html {
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .res-card {
@@ -290,4 +290,42 @@ html {
   background-color: #D9DADB;
   color: black;
   border-color: #36393E;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.shimmer-card {
+  margin: 20px 5px 0px 5px;
+}
+
+.shimmer-card>.shimmer-img {
+  width: 260px;
+  height: 170px;
+  background: #ddd;
+  border-radius: 20px;
+}
+
+.shimmer-card>.shimmer-bottom-details {
+  width: 250px;
+  margin: 10px 5px 0px 5px;
+}
+
+.shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line {
+  background: #ddd;
+  border-radius: 20px;
+  width: 100%;
+  height: 12px;
+  margin-bottom: 5px;
+}
+
+.shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line.small {
+  width: 20%;
+}
+
+.shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line.medium {
+  width: 40%;
 }

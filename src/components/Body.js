@@ -7,9 +7,10 @@ import {
 import RestaurantCard from "./RestaurantCard";
 import { restaurants } from "../utils/dummy-data";
 import { API_URL } from "../utils/constants";
+import RestaurantListShimmer from "./RestaurantListShimmer";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(restaurants);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [currentFilters, setCurrentFilters] = useState([]);
 
   useEffect(() => {
@@ -60,11 +61,15 @@ const Body = () => {
             )}
           </button>
         </div>
-        <div className="restaurant-list">
-          {listOfRestaurants.map((item) => (
-            <RestaurantCard key={item.info.id} resData={item.info} />
-          ))}
-        </div>
+        {listOfRestaurants?.length === 0 ? (
+          <RestaurantListShimmer />
+        ) : (
+          <div className="restaurant-list">
+            {listOfRestaurants?.map((item) => (
+              <RestaurantCard key={item.info.id} resData={item.info} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
