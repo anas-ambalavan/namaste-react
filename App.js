@@ -14,7 +14,7 @@ import Logo from "./assets/logo.png";
 import { restaurants } from "./dummy-data";
 
 const Header = () => (
-  <div className="header fonts-loaded">
+  <nav className="header fonts-loaded">
     <div className="header-container">
       <div className="section-left">
         <div className="logo-container">
@@ -41,30 +41,32 @@ const Header = () => (
           />
         </div>
       </div>
-      <div className="section-right">
-        <div className="header-list-item">
-          <MagnifyingGlassIcon width={20} />
-          <p>Search</p>
-        </div>
-        <div className="header-list-item">
-          <MegaphoneIcon width={20} />
-          <p>Offers</p>
-        </div>
-        <div className="header-list-item">
-          <InformationCircleIcon width={20} />
-          <p>Help</p>
-        </div>
-        <div className="header-list-item">
-          <UserCircleIcon width={20} />
-          <p>Sign In</p>
-        </div>
-        <div className="header-list-item">
-          <ShoppingBagIcon width={20} />
-          <p>Cart</p>
-        </div>
+      <div className="nav-items">
+        <ul>
+          <li>
+            <MagnifyingGlassIcon width={20} />
+            <p>Search</p>
+          </li>
+          <li>
+            <MegaphoneIcon width={20} />
+            <p>Offers</p>
+          </li>
+          <li>
+            <InformationCircleIcon width={20} />
+            <p>Help</p>
+          </li>
+          <li>
+            <UserCircleIcon width={20} />
+            <p>Sign In</p>
+          </li>
+          <li>
+            <ShoppingBagIcon width={20} />
+            <p>Cart</p>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 );
 
 const ResCard = ({ resData }) => {

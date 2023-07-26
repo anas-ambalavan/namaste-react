@@ -159,21 +159,24 @@ html {
   cursor: pointer;
 }
 
-.section-right {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.nav-items {
   width: 45%;
 }
 
-.header-list-item {
+.nav-items>ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-items>ul>li {
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
 }
 
-.header-list-item>p {
+.nav-items>ul>li>p {
   margin-left: 5px;
   font-weight: 500;
 }
