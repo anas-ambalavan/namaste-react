@@ -329,3 +329,39 @@ html {
 .shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line.medium {
   width: 40%;
 }
+
+.search-container {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  height: 30px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.search-input {
+  border: none;
+  flex-grow: 1;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-icon {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.search-icon:hover {
+  color: #FC8018;
+}
+
+.res-header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
