@@ -17,7 +17,7 @@ Please review the full source code.
 
 ### 1. What is a Microservices ?
 
-- Microservices is an architectural style that structures an application as a collection of loosely coupled services. Each service has its own job. Communication between services is done through APIs.
+- <p style="color:#A6A39E">Microservices is an architectural style that structures an application as a collection of loosely coupled services. Each service has its own job. Communication between services is done through APIs.</p>
 
 ### 2. What is Monolith architecture ?
 
