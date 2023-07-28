@@ -8,19 +8,22 @@ import {
 } from "@heroicons/react/24/outline";
 
 import Logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <nav className="header fonts-loaded">
     <div className="header-container">
       <div className="section-left">
         <div className="logo-container">
-          <img
-            className="logo"
-            width={"100%"}
-            height={"100%"}
-            src={Logo}
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              className="logo"
+              width={"100%"}
+              height={"100%"}
+              src={Logo}
+              alt="logo"
+            />
+          </Link>
         </div>
         <div className="current-location">
           <p>

@@ -8,8 +8,9 @@ import {
 import RestaurantCard from "./RestaurantCard";
 import { API_URL } from "../utils/constants";
 import RestaurantListShimmer from "./RestaurantListShimmer";
+import { Link } from "react-router-dom";
 
-const Body = () => {
+const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [currentFilters, setCurrentFilters] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -96,7 +97,13 @@ const Body = () => {
         ) : (
           <div className="restaurant-list">
             {filteredList?.map((item) => (
-              <RestaurantCard key={item.info.id} resData={item.info} />
+              <Link
+                to={"/restaurants/" + item.info.id}
+                key={item.info.id}
+                className="reset-link"
+              >
+                <RestaurantCard resData={item.info} />
+              </Link>
             ))}
           </div>
         )}
@@ -105,4 +112,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Home;
