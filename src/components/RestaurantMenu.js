@@ -5,6 +5,7 @@ import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
 import { MENU_API } from "../utils/constants";
 import Offer from "./Offer";
+import Accordion from "./Accordion";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState([]);
@@ -35,6 +36,8 @@ const RestaurantMenu = () => {
 
   const offerDetails =
     resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+
+  const menuItems = resInfo?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
 
   return (
     <div className="body-container menu">
@@ -77,10 +80,44 @@ const RestaurantMenu = () => {
           </div>
         </div>
         <div className="menu-offers-list">
-          {offerDetails?.map((offer) => (
-            <Offer key={offer.restId} offer={offer.info} />
-          ))}
+          {offerDetails?.map((offer) => {
+            return <Offer key={offer.info.offerIds[0]} offer={offer.info} />;
+          })}
         </div>
+      </div>
+      <div className="menu-list">
+        {menuItems.map((menuItem) => {
+          if (menuItem.card.card.itemCards) {
+            const itemCards = menuItem.card.card.itemCards;
+            return (
+              <div className="accordion-container">
+                <Accordion
+                  key={menuItem.card.card.title}
+                  title={menuItem.card.card.title}
+                  itemCards={itemCards}
+                />
+              </div>
+            );
+          } else if (menuItem?.card?.card?.categories) {
+            const categories = menuItem.card.card.categories;
+            return (
+              <div>
+                <h4>{menuItem.card.card.title}</h4>
+                <div className="accordion-container">
+                  {categories.map((category) => (
+                    <Accordion
+                      key={category.title}
+                      title={category.title}
+                      itemCards={category.itemCards}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     </div>
   );

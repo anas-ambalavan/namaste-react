@@ -48,6 +48,7 @@ const Home = () => {
             <div
               className="search-icon"
               onClick={() => {
+                if (listOfRestaurants.length === 0) return;
                 const filteredData = listOfRestaurants.filter((restaurant) =>
                   restaurant.info.name
                     .toLowerCase()
@@ -70,6 +71,7 @@ const Home = () => {
                 currentFilters.includes("top-rating") ? "active" : ""
               }`}
               onClick={() => {
+                if (listOfRestaurants.length === 0) return;
                 if (currentFilters.includes("top-rating")) {
                   setFilteredList(listOfRestaurants);
                   const filteredData = currentFilters.filter(

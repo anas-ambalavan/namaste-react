@@ -372,8 +372,8 @@ html {
 }
 
 .menu {
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .menu-header {
@@ -517,4 +517,28 @@ html {
   font-weight: 600;
   margin-right: 5px;
   color: #92959F;
+}
+
+.accordion-container {
+  margin: 20px 0px 20px 0px;
+  border-bottom: 20px solid #F1F1F6;
+}
+
+.accordion-item {
+  margin: 20px 0px 0px 0px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 0.5px solid #ccc;
+}
+
+.menu-list>.accordion-container>.accordion-item>.accordion-title {
+  font-weight: 600;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
 }
