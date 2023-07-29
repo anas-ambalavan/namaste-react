@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { MENU_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
+import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
+
+import { MENU_API } from "../utils/constants";
+import Offer from "./Offer";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState([]);
@@ -20,8 +23,18 @@ const RestaurantMenu = () => {
 
   if (resInfo.length === 0) return <h1>Loading....</h1>;
 
-  const { name, cuisines, areaName, avgRatingString, totalRatingsString, sla } =
-    resInfo?.cards[0]?.card?.card?.info;
+  const {
+    name,
+    cuisines,
+    areaName,
+    avgRatingString,
+    totalRatingsString,
+    sla,
+    costForTwoMessage,
+  } = resInfo?.cards[0]?.card?.card?.info;
+
+  const offerDetails =
+    resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
   return (
     <div className="body-container menu">
@@ -50,6 +63,23 @@ const RestaurantMenu = () => {
           <div className="menu-total-rating">
             <p>{totalRatingsString}</p>
           </div>
+        </div>
+      </div>
+      <div className="menu-offers">
+        <div className="menu-offers-header">
+          <div className="menu-offers-header-item">
+            <ClockIcon width={18} style={{ marginRight: 5 }} />
+            <h4>{sla?.slaString}</h4>
+          </div>
+          <div className="menu-offers-header-item">
+            <CurrencyRupeeIcon width={18} style={{ marginRight: 5 }} />
+            <h4>{costForTwoMessage}</h4>
+          </div>
+        </div>
+        <div className="menu-offers-list">
+          {offerDetails?.map((offer) => (
+            <Offer key={offer.restId} offer={offer.info} />
+          ))}
         </div>
       </div>
     </div>
