@@ -616,3 +616,42 @@ html {
   height: 15px;
   margin: 10px 10px 10px 0px
 }
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-container>p {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgb(168, 166, 166);
+  margin: 10px 0px 10px 0px
+}
+
+.error-img-container {
+  margin: 20px 0px 20px 0px;
+}
+
+.error-img {
+  width: 300px;
+}
+
+.btn-error {
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 15px 25px 15px 25px;
+  color: #fff;
+  background-color: #FC8018;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-error:hover {
+  -webkit-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
+}
