@@ -305,7 +305,6 @@ html {
 .shimmer-card>.shimmer-img {
   width: 260px;
   height: 170px;
-  background: #ddd;
   border-radius: 20px;
 }
 
@@ -315,7 +314,6 @@ html {
 }
 
 .shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line {
-  background: #ddd;
   border-radius: 20px;
   width: 100%;
   height: 12px;
@@ -654,4 +652,79 @@ html {
   -webkit-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-res-detail-container {
+  margin: 5rem 20% 3rem 20%;
+}
+
+.shimmer-res-detail-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shimmer-res-details {
+  width: 60%;
+  height: 100px;
+  background: #ddd;
+}
+
+.shimmer-rating {
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+}
+
+.shimmer-offers-container {
+  margin: 30px 0px 30px 0px;
+  display: flex;
+}
+
+.shimmer-offer-card {
+  margin-right: 10px;
+  width: 250px;
+  height: 80px;
+  background: #ddd;
+}
+
+.shimmer-res-detail-items-container {
+  margin: 10px 0px 10px 0px;
+}
+
+.shimmer-res-detail-item {
+  background: #ddd;
+  width: 100%;
+  height: 50px;
+  margin: 10px 0px 10px 0px;
+}
+
+.shimmerBG {
+  animation-duration: 2.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: #ddd;
+  background: linear-gradient(to right, #F6F6F6 18%, #F0F0F0 28%, #F6F6F6 43%);
+  background-size: 1200px 100%;
+}
+
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+
+  100% {
+    background-position: 1200px 0;
+  }
 }

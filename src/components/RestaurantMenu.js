@@ -6,6 +6,7 @@ import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 import { MENU_API } from "../utils/constants";
 import Offer from "./Offer";
 import Accordion from "./Accordion";
+import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState([]);
@@ -22,7 +23,7 @@ const RestaurantMenu = () => {
     fetchMenu();
   }, []);
 
-  if (resInfo.length === 0) return <h1>Loading....</h1>;
+  if (resInfo.length === 0) return <RestaurantDetailShimmer />;
 
   const {
     name,
