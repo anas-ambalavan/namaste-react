@@ -11,7 +11,7 @@ import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
 
 const Accordion = ({ title, itemCards }) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   return (
     <div className="accordion-item">
