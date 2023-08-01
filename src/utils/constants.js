@@ -6,3 +6,23 @@ export const API_URL =
 
 export const MENU_API =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9165757&lng=77.6101163&restaurantId=";
+
+export const SUPPORT_PARTNER_API =
+  "https://www.swiggy.com/dapi/support/issues/partner-onboarding?";
+
+export const SUPPORT_LEGAL_API =
+  "https://www.swiggy.com/dapi/support/issues/legal?";
+
+export const SUPPORT_FAQ_API =
+  "https://www.swiggy.com/dapi/support/issues/faq?";
+
+export const SupportURLType = Object.freeze({
+  partner: "partner-onboarding",
+  legal: "legal",
+  faq: "faq",
+});
+
+export const AccordionType = Object.freeze({
+  normal: "normal",
+  menu: "menu",
+});

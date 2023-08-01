@@ -6,18 +6,21 @@ import {
   StarIcon,
 } from "@heroicons/react/24/solid";
 
-import { CDN_URL } from "../utils/constants";
+import { AccordionType, CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
 
-const Accordion = ({ title, itemCards }) => {
-  const [isActive, setIsActive] = useState(true);
+const Accordion = ({ title, itemDescriptions, type }) => {
+  const [isActive, setIsActive] = useState(
+    type === AccordionType.menu ? true : false
+  );
 
   return (
     <div className="accordion-item">
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <div>
-          {title} - ({itemCards.length})
+          {title}
+          {type === AccordionType.menu && ` - (${itemDescriptions.length})`}
         </div>
         <div>
           {isActive ? (
@@ -27,9 +30,14 @@ const Accordion = ({ title, itemCards }) => {
           )}
         </div>
       </div>
-      {isActive && (
+      {isActive && type === AccordionType.normal && (
         <div className="accordion-content">
-          {itemCards.map((item) => {
+          <p className="accordion-desc">{itemDescriptions}</p>
+        </div>
+      )}
+      {isActive && type === AccordionType.menu && (
+        <div className="accordion-content">
+          {itemDescriptions.map((item) => {
             const { id, name, ribbon, price, description, imageId, isVeg } =
               item.card.info;
             return (

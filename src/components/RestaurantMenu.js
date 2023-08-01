@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
-import { MENU_API } from "../utils/constants";
+import { AccordionType, MENU_API } from "../utils/constants";
 import Offer from "./Offer";
 import Accordion from "./Accordion";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
@@ -95,7 +95,8 @@ const RestaurantMenu = () => {
                 <Accordion
                   key={menuItem.card.card.title}
                   title={menuItem.card.card.title}
-                  itemCards={itemCards}
+                  itemDescriptions={itemCards}
+                  type={AccordionType.menu}
                 />
               </div>
             );
@@ -109,7 +110,8 @@ const RestaurantMenu = () => {
                     <Accordion
                       key={category.title}
                       title={category.title}
-                      itemCards={category.itemCards}
+                      itemDescriptions={category.itemCards}
+                      type={AccordionType.menu}
                     />
                   ))}
                 </div>

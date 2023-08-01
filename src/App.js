@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
+import Support from "./components/Support";
 
 const AppLayout = () => (
   <>
@@ -23,6 +24,10 @@ const appRoutes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/support/issues/:id",
+        element: <Support />,
       },
       {
         path: "/restaurants/:resId",

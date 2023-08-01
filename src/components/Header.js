@@ -43,24 +43,37 @@ const Header = () => (
       <div className="nav-items">
         <ul>
           <li>
-            <MagnifyingGlassIcon width={20} />
-            <p>Search</p>
+            <Link to={"/"} className="reset-link">
+              <MagnifyingGlassIcon width={20} />
+              <p>Search</p>
+            </Link>
           </li>
           <li>
-            <MegaphoneIcon width={20} />
-            <p>Offers</p>
+            <Link to={"/"} className="reset-link">
+              <MegaphoneIcon width={20} />
+              <p>Offers</p>
+            </Link>
           </li>
           <li>
-            <InformationCircleIcon width={20} />
-            <p>Help</p>
+            <Link
+              to={"/support/issues/partner-onboarding"}
+              className="reset-link"
+            >
+              <InformationCircleIcon width={20} />
+              <p>Help</p>
+            </Link>
           </li>
           <li>
-            <UserCircleIcon width={20} />
-            <p>Sign In</p>
+            <Link to={"/"} className="reset-link">
+              <UserCircleIcon width={20} />
+              <p>Sign In</p>
+            </Link>
           </li>
           <li>
-            <ShoppingBagIcon width={20} />
-            <p>Cart</p>
+            <Link to={"/"} className="reset-link">
+              <ShoppingBagIcon width={20} />
+              <p>Cart</p>
+            </Link>
           </li>
         </ul>
       </div>
