@@ -45,7 +45,7 @@ class Support extends Component {
     const json = await data.json();
 
     this.setState({
-      supportInfo: json?.data?.issues?.data,
+      supportInfo: json?.data?.issues,
     });
   }
 
@@ -68,7 +68,6 @@ class Support extends Component {
                       this.setState({ currentId: SupportURLType.partner })
                     }
                   >
-                    {" "}
                     Partner Onboarding
                   </NavLink>
                 </li>
@@ -97,8 +96,13 @@ class Support extends Component {
               </ul>
             </nav>
             <div className="support-contents">
-              <h2>Partner Onboarding</h2>
-              {this.state.supportInfo?.map((info) => {
+              <h2>
+                {this.state.supportInfo?.meta?.type
+                  .split("-")
+                  .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+                  .join(" ")}
+              </h2>
+              {this.state.supportInfo?.data?.map((info) => {
                 if (info.description)
                   return (
                     <Accordion

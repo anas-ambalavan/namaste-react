@@ -180,6 +180,10 @@ html {
   cursor: pointer;
 }
 
+.nav-items>ul>li>a.active {
+  color: #E46D47;
+}
+
 .nav-items>ul>li>a>p {
   margin-left: 5px;
   font-weight: 500;

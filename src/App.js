@@ -26,8 +26,14 @@ const appRoutes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/support/issues/:id",
+        path: "/support/issues",
         element: <Support />,
+        children: [
+          {
+            path: "/support/issues/:id",
+            element: <Support />,
+          },
+        ],
       },
       {
         path: "/restaurants/:resId",
