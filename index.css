@@ -812,7 +812,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  background-color: #fff;
 }
 
 .search-input-wfull-container>.search-input {
@@ -840,4 +840,44 @@ html {
 .cuisine-image {
   width: 85px;
   cursor: pointer;
+}
+
+.search-item-container {
+  display: flex;
+  margin: 1rem;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.search-item-container:hover {
+  background-color: #F2F6FB;
+}
+
+.search-item-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 5px;
+}
+
+.search-item-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.search-item-details>h4 {
+  font-size: 15px;
+  font-weight: lighter;
+  color: black;
+}
+
+.search-item-details>p {
+  font-size: 14px;
+  font-weight: lighter;
+  color: grey;
+}
+
+.search-suggestions-container {
+  margin-top: 2rem;
 }
