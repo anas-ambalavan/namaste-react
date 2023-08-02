@@ -13,8 +13,6 @@ const Search = () => {
     const data = await fetch(PRE_SEARCH_API);
     const json = await data.json();
 
-    console.log(json);
-
     setCuisines(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
   };
 

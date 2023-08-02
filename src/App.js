@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -7,7 +7,8 @@ import Home from "./components/Home";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import Support from "./components/Support";
-import Search from "./components/Search";
+
+const Search = lazy(() => import("./components/Search"));
 
 const AppLayout = () => (
   <>
@@ -28,7 +29,11 @@ const appRoutes = createBrowserRouter([
       },
       {
         path: "/search",
-        element: <Search />,
+        element: (
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Search />
+          </Suspense>
+        ),
       },
       {
         path: "/support/issues",
