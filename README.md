@@ -1,83 +1,54 @@
-## Lesson 08 - Let's get Classy 🚀
+## Lesson 09 - Optimizing our App 🚀
 
 #### 🔸 Topics
 
-- Class based components.
-- React lifecycle methods.
+- Custom Hooks.
+- Code Splitting (Also known as Chunking, Lazy Loading, On Demand Loading, Dynamic Bundling, Dynamic import ).
 
 #### 🔸 Follow the link to build the application step-by-step:
 
-- [Swiggy Clone - Part 5](https://swiggy-clone.notion.site/Swiggy-Clone-Part-5-fdb9e8da429e4d7085888e7bd19cd4b4?pvs=4)
+- [Swiggy Clone - Part 6](https://swiggy-clone.notion.site/Swiggy-Clone-Part-6-271a4b8cae3e4cf0a70c66365179af5b?pvs=4)
 
 Please review the full source code.
 
 ## Questions:
 
-### 1. How do you create Nested Routes react-router-dom configuration ?
+### 1. When and why do we need lazy() ?
 
-- ```
-  import {createBrowserRouter} from 'react-router-dom';
+- Our application may be a large-scale app, in which case we will need to optimize it, for which we will create separate bundles for each of the large functionality of the application. This allows us to break down our application code into smaller chunks (or "bundles") and load them on-demand. This can help reduce the initial bundle size of your application, improve performance, and only load the required components when needed.
 
-  const appRoutes = createBrowerRouter([
-    {
-      path:'/',
-      element: <AppLayout>,
-      children:[
-        {
-          path: 'dashboard',
-          element: <Dashboard />
-        },
-        {
-          element: <AuthLayout />
-          children:[
-            {
-              path:'login',
-              element: <Login />,
-            },
-            {
-              path:'register',
-              element: <Register />,
-            }
-          ]
-        }
-      ]
-    }
-  ])
+  ```
+    import {lazy} from 'react';
+
+    const MyLazyComponent = lazy(() => import('./MyLazyComponent'));
   ```
 
-### 2. What is the order of lifecycle method calls in Class Based Components ?
+### 2. What is suspense ?
 
-1. constructor()
-2. render()
-3. componentDidMount()
-4. componentDidUpdate()
-5. componentWillUnmount()
-
-- ref: [React lifecycle method diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
-
-### 3. Why do we use componentDidMount ?
-
-- This method is used to do side effects that need to be performed only once, like fetching data from an API or subscribing to events.
-
-### 4. Why do we use componentWillUnmount ? Show with example.
-
-- `componentWillUnmount` is used to handle cleanup operations when a component is about to be removed from the DOM. In order to prevent memory leaks and potential issues, it provides a way to release resources, cancel network requests, and unsubscribe from event listeners.
-- ```
-    componentDidMount(){
-      this.timer = setInterval(()=>{
-        console.log("set Interval");
-      }, 1000)
-    }
-
-    componentWillUnmount(){
-      clearInterval(this.timer);
-    }
+- To handle the asynchronous loading and possible errors when using lazy(), you should wrap it with a Suspense component, which displays a fallback while the component is being loaded.
+  ```
+    <Suspense fallback={<div>Loading...</div>}>
+      <MyLazyComponent />
+    </Suspense>
   ```
 
-### 5. Why do we use super(props) in constructor?
+### 3. Why we got this error: A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition? How does suspense fix this error ?
 
-- By calling super(props), it ensures that the base class (React.Component) is correctly initialized with the props, allowing you to access and use this.props throughout your component's methods and lifecycle. Without this call, this.props would be undefined, leading to potential errors when accessing the component's props.
+- When we use lazy loading, all the code doesn't come at once, only comes when it is required. This error occurs because the component has been called without the component code being loaded. To fix this issue, we should wrap it with a suspense component, which displays a fallback while the component is being loaded.
 
-### 6. Why can't we have the callback function of useEffect async?
+### 4. Advantages and disadvantages of using code splitting pattern?
 
-- When using useEffect, React expects the callback function to either return nothing or return a clean-up function (for handling the cleanup of effects). If the callback function were allowed to be marked as async, it would return a Promise implicitly. This could lead to unexpected behavior or complications in managing side effects.
+- Advantages:
+
+  - Faster initial load time.
+  - Reduced bundle size.
+  - Better resource allocation.
+  - Improved developer experience.
+  - Better caching.
+
+- Disadvantages:
+  - Increased complexity.
+  - Debugging challenges.
+  - Network requests overhead.
+  - Not ideal for small applications.
+  - Browser compatibility.
