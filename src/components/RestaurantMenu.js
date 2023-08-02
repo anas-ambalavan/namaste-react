@@ -1,27 +1,17 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
-import { AccordionType, MENU_API } from "../utils/constants";
+import { AccordionType } from "../utils/constants";
 import Offer from "./Offer";
 import Accordion from "./Accordion";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState([]);
   const { resId } = useParams();
 
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-
-    setResInfo(json?.data);
-  };
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const resInfo = useRestaurantMenu(resId);
 
   if (resInfo.length === 0) return <RestaurantDetailShimmer />;
 
@@ -87,13 +77,15 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="menu-list">
-        {menuItems.map((menuItem) => {
+        {menuItems?.map((menuItem, index) => {
           if (menuItem.card.card.itemCards) {
             const itemCards = menuItem.card.card.itemCards;
             return (
-              <div className="accordion-container">
+              <div
+                key={menuItem.card.card.title + index}
+                className="accordion-container"
+              >
                 <Accordion
-                  key={menuItem.card.card.title}
                   title={menuItem.card.card.title}
                   itemDescriptions={itemCards}
                   type={AccordionType.menu}
@@ -103,17 +95,19 @@ const RestaurantMenu = () => {
           } else if (menuItem?.card?.card?.categories) {
             const categories = menuItem.card.card.categories;
             return (
-              <div>
+              <div key={menuItem.card.card.title + index}>
                 <h4>{menuItem.card.card.title}</h4>
                 <div className="accordion-container">
-                  {categories.map((category) => (
-                    <Accordion
-                      key={category.title}
-                      title={category.title}
-                      itemDescriptions={category.itemCards}
-                      type={AccordionType.menu}
-                    />
-                  ))}
+                  {categories.map((category, index) => {
+                    return (
+                      <Accordion
+                        key={menuItem.card.card.title + category.title + index}
+                        title={category.title}
+                        itemDescriptions={category.itemCards}
+                        type={AccordionType.menu}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             );
