@@ -16,6 +16,9 @@ export const SUPPORT_LEGAL_API =
 export const SUPPORT_FAQ_API =
   "https://www.swiggy.com/dapi/support/issues/faq?";
 
+export const PRE_SEARCH_API =
+  "https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=12.9165757&lng=77.6101163";
+
 export const SupportURLType = Object.freeze({
   partner: "partner-onboarding",
   legal: "legal",

@@ -447,7 +447,8 @@ html {
   align-items: center;
 }
 
-.menu-offers-list {
+.menu-offers-list,
+.popular-cuisines {
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
@@ -458,6 +459,10 @@ html {
 }
 
 .menu-offers-list::-webkit-scrollbar {
+  display: none;
+}
+
+.popular-cuisines::-webkit-scrollbar {
   display: none;
 }
 
@@ -789,4 +794,50 @@ html {
 .support-contents {
   margin: 2rem;
   width: 100%;
+}
+
+.search-wfull-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.search-input-wfull-container {
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.search-input-wfull-container>.search-input {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.popular-cuisines-container {
+  margin-top: 4rem;
+}
+
+.popular-cuisines-container>h2 {
+  margin: 20px 0px 20px 0px;
+}
+
+.cuisine-container {
+  margin: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.cuisine-container:hover {
+  transform: scale(1.15);
+}
+
+.cuisine-image {
+  width: 85px;
+  cursor: pointer;
 }
