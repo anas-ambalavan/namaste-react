@@ -1,9 +1,16 @@
+import { useContext } from "react";
+
 import { CDN_URL } from "../utils/constants";
+import ThemeContext from "../utils/ThemeContext";
 
 const SearchItem = ({ suggestion }) => {
   const { cloudinaryId, text, type } = suggestion;
+
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
-    <div className="search-item-container">
+    <div className={`search-item-container ${darkMode && "dark"}`}>
       <div className="search-item-image-container">
         <img
           className="search-item-image"

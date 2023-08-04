@@ -1,0 +1,284 @@
+.app-container.dark {
+    color: #dcdce6;
+    background-color: #282c3f;
+    min-height: 100vh;
+}
+
+.fonts-loaded.dark {
+    color: #dcdce6;
+}
+
+.header.dark {
+    background-color: #1d1f2c;
+    -webkit-box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+}
+
+.current-location.dark>p {
+    color: #dcdce6;
+}
+
+.nav-items.dark>ul>li>a.active,
+.nav-items.dark>ul>li>a:hover {
+    color: #E46D47;
+}
+
+.res-card.dark {
+    background-color: #1d1f2c;
+    padding-top: 0px;
+    margin-top: 15px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
+}
+
+.res-card-details.dark {
+    color: #dcdce6;
+}
+
+.filters-container.dark {
+    background-color: #1d1f2c;
+}
+
+.btn-filter.dark {
+    background-color: #1d1f2c;
+    color: #dcdce6;
+    border-color: #dcdce6;
+}
+
+.btn-filter.active.dark {
+    background-color: #36393E;
+    color: #dcdce6;
+    border-color: #dcdce6;
+}
+
+.shimmer-container.dark {
+    background-color: #1d1f2c;
+}
+
+.shimmer-card.dark {
+    background-color: #1d1f2c;
+}
+
+.shimmer-card.dark>.shimmer-img {
+    background-color: #282c3f;
+}
+
+.shimmer-card.dark>.shimmer-bottom-details {
+    background-color: #282c3f;
+}
+
+.shimmer-card.dark>.shimmer-bottom-details>.shimmer-bottom-line {
+    background-color: #282c3f;
+}
+
+.shimmerBG.dark {
+    background: #3a3a3a;
+    background-image: linear-gradient(to right, #3a3a3a 0%, #3f3f3f 10%, #4a4a4a 20%, #3f3f3f 30%, #3a3a3a 50%, #3a3a3a 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 200px;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: shimmer;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+@-webkit-keyframes shimmer {
+    0% {
+        background-position: -400px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+.search-container.dark {
+    border: 1px solid #dcdce6;
+    background-color: #1d1f2c;
+}
+
+.search-input.dark {
+    color: #dcdce6;
+    background-color: #1d1f2c;
+}
+
+.search-icon.dark {
+    color: #dcdce6;
+}
+
+.search-icon.dark:hover {
+    color: #FC8018;
+}
+
+.menu-header.dark {
+    border-bottom: 0.5px solid #dcdce6;
+}
+
+.menu-res-details.dark>div>p,
+.menu-res-details.dark>div>div>p {
+    color: #dcdce6;
+}
+
+.menu-rating-container.dark {
+    border: 0.5px solid #dcdce6;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+}
+
+.menu-rating.dark {
+    border-bottom: 0.5px solid #dcdce6;
+}
+
+.menu-rating-container.dark>div>h4,
+.menu-rating-container.dark>div>svg {
+    color: #1fbb50;
+}
+
+.menu-rating-container.dark>div>p {
+    color: #dcdce6;
+}
+
+.menu-offers.dark>div>div>h4 {
+    color: #dcdce6;
+}
+
+.menu-offers-list.dark,
+.popular-cuisines.dark {
+    border-color: #dcdce6;
+}
+
+.offer-container.dark {
+    border: 0.5px solid #dcdce6;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+}
+
+.offer-header.dark>p {
+    color: #dcdce6;
+}
+
+.offer-description.dark>p {
+    color: #92959F;
+}
+
+
+.accordion-item.dark {
+    border-bottom-color: #dcdce6;
+}
+
+.menu-list.dark>.accordion-container>.accordion-item>.accordion-title {
+    color: #dcdce6;
+}
+
+.accordion-item-card.dark {
+    border-bottom-color: #dcdce6;
+}
+
+.btn-accordion.dark {
+    border-color: black;
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+    box-shadow: 0px 1px 5px 0px rgba(255, 255, 255, 0.09);
+}
+
+.accordion-customisable.dark {
+    color: #dcdce6;
+}
+
+.accordion-items-type.dark {
+    color: #dcdce6;
+}
+
+.food-item-type-image.dark {
+    filter: invert(1);
+}
+
+.error-container.dark {
+    color: rgb(168, 166, 166);
+}
+
+.error-img-container.dark {
+    border-bottom-color: #282c3f;
+}
+
+.btn-error.dark:hover {
+    -webkit-box-shadow: 0px 1px 25px 0px rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 0px 1px 25px 0px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 1px 25px 0px rgba(255, 255, 255, 0.1);
+}
+
+.support-container.dark {
+    background: #1d1f2c;
+}
+
+.support-main.dark {
+    color: #dcdce6;
+}
+
+.support-body.dark {
+    color: #dcdce6;
+    background-color: #282c3f;
+}
+
+.support-sidenav.dark {
+    background-color: #1d1f2c;
+}
+
+.support-sidenav.dark>ul>li {
+    color: #dcdce6;
+}
+
+.support-sidenav.dark>ul>li>a {
+    background-color: #1d1f2c;
+}
+
+.support-sidenav.dark>ul>li>a.active {
+    background-color: #282c3f;
+}
+
+.search-input-wfull-container.dark {
+    border: 1px solid #dcdce6;
+    background-color: #1d1f2c;
+}
+
+.search-input-wfull-container.dark>.search-input {
+    color: #dcdce6;
+    background-color: #1d1f2c;
+}
+
+.search-item-container.dark:hover {
+    background-color: #1d1f2c;
+}
+
+.search-item-container.dark>div>h4 {
+    color: #dcdce6;
+}
+
+.cuisine-image.dark {
+    width: 85px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20%;
+}

@@ -8,15 +8,24 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import Support from "./components/Support";
 import Offers from "./components/Offers";
+import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
 
 const Search = lazy(() => import("./components/Search"));
 
-const AppLayout = () => (
-  <>
-    <Header />
-    <Outlet />
-  </>
-);
+const AppLayout = () => {
+  return (
+    <ThemeProvider>
+      <ThemeContext.Consumer>
+        {(data) => (
+          <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
+            <Header />
+            <Outlet />
+          </div>
+        )}
+      </ThemeContext.Consumer>
+    </ThemeProvider>
+  );
+};
 
 const appRoutes = createBrowserRouter([
   {

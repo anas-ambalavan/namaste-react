@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -8,6 +9,7 @@ import {
 import { AccordionType, CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
+import ThemeContext from "../utils/ThemeContext";
 
 const AccordionItem = ({
   title,
@@ -17,8 +19,11 @@ const AccordionItem = ({
   showItems,
   setShowIndex,
 }) => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
-    <div className="accordion-item">
+    <div className={`accordion-item ${darkMode && "dark"}`}>
       <div
         className="accordion-title"
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
@@ -46,7 +51,10 @@ const AccordionItem = ({
             const { id, name, ribbon, price, description, imageId, isVeg } =
               item.card.info;
             return (
-              <div key={id} className="accordion-item-card">
+              <div
+                key={id}
+                className={`accordion-item-card ${darkMode && "dark"}`}
+              >
                 <div className="accordion-card-details">
                   <div className="accordion-items-type">
                     {isVeg ? (
@@ -80,14 +88,16 @@ const AccordionItem = ({
                     src={CDN_URL + imageId}
                     alt="item image"
                   />
-                  <button className="btn-accordion">
+                  <button className={`btn-accordion ${darkMode && "dark"}`}>
                     Add
                     <PlusIcon
                       width={10}
                       style={{ position: "absolute", top: 1, right: 1 }}
                     />
                   </button>
-                  <p className="accordion-customisable">Customisable</p>
+                  <p className={`accordion-customisable ${darkMode && "dark"}`}>
+                    Customisable
+                  </p>
                 </div>
               </div>
             );

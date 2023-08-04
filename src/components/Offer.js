@@ -1,10 +1,16 @@
+import { useContext } from "react";
+
+import ThemeContext from "../utils/ThemeContext";
 import { CDN_URL } from "../utils/constants";
 
 const Offer = ({ offer }) => {
   const { offerTag, offerLogo, header, couponCode, description } = offer;
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
-    <div className="offer-container">
+    <div className={`offer-container ${darkMode && "dark"}`}>
       {offerTag ? (
         <div className="offer-tag">
           <p>{offerTag}</p>
@@ -12,7 +18,7 @@ const Offer = ({ offer }) => {
       ) : null}
       <div className="offer-details">
         <div>
-          <div className="offer-header">
+          <div className={`offer-header ${darkMode && "dark"}`}>
             <img
               className="offer-logo"
               src={CDN_URL + offerLogo}
@@ -20,7 +26,7 @@ const Offer = ({ offer }) => {
             />
             <p>{header}</p>
           </div>
-          <div className="offer-description">
+          <div className={`offer-description ${darkMode && "dark"}`}>
             <p>{couponCode}</p>
             <p>{description}</p>
           </div>

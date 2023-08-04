@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 import { CDN_URL, PRE_SEARCH_API, SEARCH_API } from "../utils/constants";
 import SearchItem from "./SearchItem";
+import ThemeContext from "../utils/ThemeContext";
 
 const Search = () => {
   const [cuisines, setCuisines] = useState([]);
@@ -41,9 +42,12 @@ const Search = () => {
     };
   }, [searchText.length]);
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
     <div className="body-container search-wfull-container">
-      <div className="search-input-wfull-container">
+      <div className={`search-input-wfull-container ${darkMode && "dark"}`}>
         <input
           className="search-input"
           value={searchText}
@@ -72,7 +76,7 @@ const Search = () => {
               return (
                 <div key={cuisine.id} className="cuisine-container">
                   <img
-                    className="cuisine-image"
+                    className={`cuisine-image ${darkMode && "dark"}`}
                     src={CDN_URL + cuisine.imageId}
                     alt="cuisine image"
                   />

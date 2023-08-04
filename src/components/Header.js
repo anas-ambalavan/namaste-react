@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
@@ -6,11 +6,14 @@ import {
   MegaphoneIcon,
   ShoppingBagIcon,
   UserCircleIcon,
+  SunIcon,
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
-import { SupportURLType } from "../utils/constants";
+import { SupportURLType, THEME_MODES } from "../utils/constants";
+import ThemeContext from "../utils/ThemeContext";
+import { MoonIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -25,8 +28,11 @@ const Header = () => {
     setIsActive(status);
   }, [location.pathname]);
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
-    <nav className="header fonts-loaded">
+    <nav className={`header fonts-loaded ${darkMode && "dark"}`}>
       <div className="header-container">
         <div className="section-left">
           <div className="logo-container">
@@ -89,6 +95,23 @@ const Header = () => {
                 <ShoppingBagIcon width={20} />
                 <p>Cart</p>
               </NavLink>
+            </li>
+            <li
+              className="theme-modes"
+              onClick={() =>
+                darkMode
+                  ? theme.dispatch({ type: THEME_MODES.white })
+                  : theme.dispatch({ type: THEME_MODES.dark })
+              }
+            >
+              <div>
+                <p>{darkMode ? "White Mode" : "Dark Mode"}</p>
+                {darkMode ? (
+                  <SunIcon width={20} style={{ marginLeft: 5 }} />
+                ) : (
+                  <MoonIcon width={20} style={{ marginLeft: 5 }} />
+                )}
+              </div>
             </li>
           </ul>
         </div>

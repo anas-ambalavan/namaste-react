@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   AdjustmentsHorizontalIcon,
   MagnifyingGlassIcon,
@@ -10,6 +10,7 @@ import { API_URL } from "../utils/constants";
 import RestaurantListShimmer from "./RestaurantListShimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import ThemeContext from "../utils/ThemeContext";
 
 const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -39,21 +40,24 @@ const Home = () => {
     return <h1>Looks like you're offline!</h1>;
   }
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
     <div className="body-container">
       <div className="restaurants">
         <h1 className="res-heading">Restaurants</h1>
         <div className="res-header-section">
-          <div className="search-container">
+          <div className={`search-container ${darkMode && "dark"}`}>
             <input
-              className="search-input"
+              className={`search-input ${darkMode && "dark"}`}
               type="text"
               placeholder="Search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
             <div
-              className="search-icon"
+              className={`search-icon ${darkMode && "dark"}`}
               onClick={() => {
                 if (listOfRestaurants.length === 0) return;
                 const filteredData = listOfRestaurants.filter((restaurant) =>
@@ -69,12 +73,12 @@ const Home = () => {
           </div>
 
           <div className="filters-container">
-            <button className="btn-filter">
+            <button className={`btn-filter ${darkMode && "dark"}`}>
               Filters
               <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
             </button>
             <button
-              className={`btn-filter ${
+              className={`btn-filter ${darkMode && "dark"} ${
                 currentFilters.includes("top-rating") ? "active" : ""
               }`}
               onClick={() => {

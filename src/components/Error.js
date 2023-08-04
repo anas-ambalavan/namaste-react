@@ -1,9 +1,13 @@
-import React from "react";
+import { useContext } from "react";
+
 import { CDN_URL } from "../utils/constants";
+import ThemeContext from "../utils/ThemeContext";
 
 const Error = () => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
   return (
-    <div className="error-container">
+    <div className="body-container error-container">
       <div className="error-img-container">
         <img
           className="error-img"
@@ -15,7 +19,7 @@ const Error = () => {
       <p className="error-desc">
         Sorry! This should not have happened. Please retry
       </p>
-      <button className="btn-error">Retry</button>
+      <button className={`btn-error ${darkMode && "dark"}`}>Retry</button>
     </div>
   );
 };

@@ -163,12 +163,13 @@ html {
 }
 
 .nav-items {
-  width: 45%;
+  width: 55%;
 }
 
 .nav-items>ul {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -265,14 +266,14 @@ html {
   margin-top: 5px;
   font-size: medium;
   color: #686B78;
-  width: 260px;
+  width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .res-card-details h3 {
-  width: 260px;
+  width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -884,4 +885,20 @@ html {
 
 .search-suggestions-container {
   margin-top: 2rem;
+}
+
+.theme-modes {
+  cursor: pointer;
+  border: 0.5px solid grey;
+  border-radius: 10px;
+}
+
+.theme-modes:hover {
+  color: #E46D47
+}
+
+.theme-modes>div {
+  padding: 6px 8px 6px 8px;
+  display: flex;
+  align-items: center;
 }

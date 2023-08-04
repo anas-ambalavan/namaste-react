@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
@@ -8,6 +8,7 @@ import Offer from "./Offer";
 import AccordionItem from "./AccordionItem";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import ThemeContext from "../utils/ThemeContext";
 
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
@@ -33,10 +34,13 @@ const RestaurantMenu = () => {
 
   const menuItems = resInfo?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   return (
     <div className="body-container menu">
       <div className="menu-header">
-        <div className="menu-res-details">
+        <div className={`menu-res-details ${darkMode && "dark"}`}>
           <h2>{name}</h2>
           <div>
             <p>{cuisines.join(", ")}</p>
@@ -52,7 +56,7 @@ const RestaurantMenu = () => {
             </div>
           </div>
         </div>
-        <div className="menu-rating-container">
+        <div className={`menu-rating-container ${darkMode && "dark"}`}>
           <div className="menu-rating">
             <StarIcon width={16} color={"#1A8D3E"} style={{ marginRight: 2 }} />
             <h4>{avgRatingString}</h4>
@@ -62,7 +66,7 @@ const RestaurantMenu = () => {
           </div>
         </div>
       </div>
-      <div className="menu-offers">
+      <div className={`menu-offers ${darkMode && "dark"}`}>
         <div className="menu-offers-header">
           <div className="menu-offers-header-item">
             <ClockIcon width={18} style={{ marginRight: 5 }} />
@@ -79,7 +83,7 @@ const RestaurantMenu = () => {
           })}
         </div>
       </div>
-      <div className="menu-list">
+      <div className={`menu-list ${darkMode && "dark"}`}>
         {menuItems?.map((menuItem, index) => {
           if (menuItem.card.card.itemCards) {
             const itemCards = menuItem.card.card.itemCards;

@@ -9,6 +9,7 @@ import {
   SupportURLType,
 } from "../utils/constants";
 import AccordionItem from "./AccordionItem";
+import ThemeContext from "../utils/ThemeContext";
 
 class Support extends Component {
   constructor(props) {
@@ -59,77 +60,93 @@ class Support extends Component {
 
   render() {
     return (
-      <div className="support-container">
-        <div className="support-main">
-          <div className="support-header">
-            <h1>Help & Support</h1>
-            <p>Let's take a step ahead and support you better.</p>
-          </div>
-          <div className="support-body">
-            <nav className="support-sidenav">
-              <ul>
-                <li>
-                  <NavLink
-                    to={"/support/issues/partner-onboarding"}
-                    className={"reset-link"}
-                    onClick={() =>
-                      this.setState({ currentId: SupportURLType.partner })
-                    }
-                  >
-                    Partner Onboarding
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={"/support/issues/legal"}
-                    className={"reset-link"}
-                    onClick={() =>
-                      this.setState({ currentId: SupportURLType.legal })
-                    }
-                  >
-                    Legal
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={"/support/issues/faq"}
-                    className={"reset-link"}
-                    onClick={() =>
-                      this.setState({ currentId: SupportURLType.faq })
-                    }
-                  >
-                    FAQs
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-            <div className="support-contents">
-              <h2>
-                {this.state.supportInfo?.meta?.type
-                  .split("-")
-                  .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
-                  .join(" ")}
-              </h2>
-              {this.state.supportInfo?.data?.map((info, index) => {
-                if (info.description) {
-                  const key = info.id;
-                  return (
-                    <AccordionItem
-                      key={key}
-                      title={info.title}
-                      type={AccordionType.normal}
-                      itemDescriptions={info.description}
-                      showItems={key === this.state.showIndex ? true : false}
-                      setShowIndex={this.setShowIndex}
-                      index={key}
-                    />
-                  );
-                } else return null;
-              })}
+      <ThemeContext.Consumer>
+        {(data) => (
+          <div
+            className={`support-container ${data?.state?.darkMode && "dark"}`}
+          >
+            <div className={`support-main ${data?.state?.darkMode && "dark"}`}>
+              <div className="support-header">
+                <h1>Help & Support</h1>
+                <p>Let's take a step ahead and support you better.</p>
+              </div>
+              <div
+                className={`support-body ${data?.state?.darkMode && "dark"}`}
+              >
+                <nav
+                  className={`support-sidenav ${
+                    data?.state?.darkMode && "dark"
+                  }`}
+                >
+                  <ul>
+                    <li>
+                      <NavLink
+                        to={"/support/issues/partner-onboarding"}
+                        className={"reset-link"}
+                        onClick={() =>
+                          this.setState({ currentId: SupportURLType.partner })
+                        }
+                      >
+                        Partner Onboarding
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to={"/support/issues/legal"}
+                        className={"reset-link"}
+                        onClick={() =>
+                          this.setState({ currentId: SupportURLType.legal })
+                        }
+                      >
+                        Legal
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to={"/support/issues/faq"}
+                        className={"reset-link"}
+                        onClick={() =>
+                          this.setState({ currentId: SupportURLType.faq })
+                        }
+                      >
+                        FAQs
+                      </NavLink>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="support-contents">
+                  <h2>
+                    {this.state.supportInfo?.meta?.type
+                      .split("-")
+                      .map(
+                        (item) => item.charAt(0).toUpperCase() + item.slice(1)
+                      )
+                      .join(" ")}
+                  </h2>
+                  {this.state.supportInfo?.data?.map((info, index) => {
+                    if (info.description) {
+                      const key = info.id;
+                      return (
+                        <AccordionItem
+                          key={key}
+                          title={info.title}
+                          type={AccordionType.normal}
+                          itemDescriptions={info.description}
+                          showItems={
+                            key === this.state.showIndex ? true : false
+                          }
+                          setShowIndex={this.setShowIndex}
+                          index={key}
+                        />
+                      );
+                    } else return null;
+                  })}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

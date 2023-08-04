@@ -32,3 +32,8 @@ export const AccordionType = Object.freeze({
   normal: "normal",
   menu: "menu",
 });
+
+export const THEME_MODES = Object.freeze({
+  white: "white",
+  dark: "dark",
+});
