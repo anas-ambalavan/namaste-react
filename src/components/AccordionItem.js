@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -10,32 +9,38 @@ import { AccordionType, CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
 
-const Accordion = ({ title, itemDescriptions, type }) => {
-  const [isActive, setIsActive] = useState(
-    type === AccordionType.menu ? true : false
-  );
-
+const AccordionItem = ({
+  title,
+  itemDescriptions,
+  type,
+  index,
+  showItems,
+  setShowIndex,
+}) => {
   return (
     <div className="accordion-item">
-      <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+      <div
+        className="accordion-title"
+        onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
+      >
         <div>
           {title}
           {type === AccordionType.menu && ` - (${itemDescriptions.length})`}
         </div>
         <div>
-          {isActive ? (
+          {showItems ? (
             <ChevronUpIcon width={20} />
           ) : (
             <ChevronDownIcon width={20} />
           )}
         </div>
       </div>
-      {isActive && type === AccordionType.normal && (
+      {showItems && type === AccordionType.normal && (
         <div className="accordion-content">
           <p className="accordion-desc">{itemDescriptions}</p>
         </div>
       )}
-      {isActive && type === AccordionType.menu && (
+      {showItems && type === AccordionType.menu && (
         <div className="accordion-content">
           {itemDescriptions.map((item) => {
             const { id, name, ribbon, price, description, imageId, isVeg } =
@@ -93,4 +98,4 @@ const Accordion = ({ title, itemDescriptions, type }) => {
   );
 };
 
-export default Accordion;
+export default AccordionItem;

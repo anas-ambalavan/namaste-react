@@ -8,7 +8,7 @@ import {
   SUPPORT_PARTNER_API,
   SupportURLType,
 } from "../utils/constants";
-import Accordion from "./Accordion";
+import AccordionItem from "./AccordionItem";
 
 class Support extends Component {
   constructor(props) {
@@ -19,8 +19,10 @@ class Support extends Component {
         window.location.pathname.lastIndexOf("/") + 1
       ),
       supportInfo: [],
+      showIndex: null,
     };
     this.fetchDetails = this.fetchDetails.bind(this);
+    this.setShowIndex = this.setShowIndex.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +48,12 @@ class Support extends Component {
 
     this.setState({
       supportInfo: json?.data?.issues,
+    });
+  }
+
+  setShowIndex(index) {
+    this.setState({
+      showIndex: index,
     });
   }
 
@@ -102,17 +110,21 @@ class Support extends Component {
                   .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
                   .join(" ")}
               </h2>
-              {this.state.supportInfo?.data?.map((info) => {
-                if (info.description)
+              {this.state.supportInfo?.data?.map((info, index) => {
+                if (info.description) {
+                  const key = info.id;
                   return (
-                    <Accordion
-                      key={info.id}
+                    <AccordionItem
+                      key={key}
                       title={info.title}
                       type={AccordionType.normal}
                       itemDescriptions={info.description}
+                      showItems={key === this.state.showIndex ? true : false}
+                      setShowIndex={this.setShowIndex}
+                      index={key}
                     />
                   );
-                else return null;
+                } else return null;
               })}
             </div>
           </div>

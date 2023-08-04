@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
 import { AccordionType } from "../utils/constants";
 import Offer from "./Offer";
-import Accordion from "./Accordion";
+import AccordionItem from "./AccordionItem";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
+  const [showIndex, setShowIndex] = useState(null);
+
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
@@ -80,15 +83,16 @@ const RestaurantMenu = () => {
         {menuItems?.map((menuItem, index) => {
           if (menuItem.card.card.itemCards) {
             const itemCards = menuItem.card.card.itemCards;
+            const key = menuItem.card.card.title + index;
             return (
-              <div
-                key={menuItem.card.card.title + index}
-                className="accordion-container"
-              >
-                <Accordion
+              <div key={key} className="accordion-container">
+                <AccordionItem
                   title={menuItem.card.card.title}
                   itemDescriptions={itemCards}
                   type={AccordionType.menu}
+                  showItems={key === showIndex ? true : false}
+                  setShowIndex={setShowIndex}
+                  index={key}
                 />
               </div>
             );
@@ -98,13 +102,18 @@ const RestaurantMenu = () => {
               <div key={menuItem.card.card.title + index}>
                 <h4>{menuItem.card.card.title}</h4>
                 <div className="accordion-container">
-                  {categories.map((category, index) => {
+                  {categories.map((category, categoryIndex) => {
+                    const key =
+                      menuItem.card.card.title + category.title + categoryIndex;
                     return (
-                      <Accordion
-                        key={menuItem.card.card.title + category.title + index}
+                      <AccordionItem
+                        key={key}
                         title={category.title}
                         itemDescriptions={category.itemCards}
                         type={AccordionType.menu}
+                        showItems={key === showIndex ? true : false}
+                        setShowIndex={setShowIndex}
+                        index={key}
                       />
                     );
                   })}
