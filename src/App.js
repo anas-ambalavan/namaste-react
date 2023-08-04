@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import Support from "./components/Support";
+import Offers from "./components/Offers";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -34,6 +35,10 @@ const appRoutes = createBrowserRouter([
             <Search />
           </Suspense>
         ),
+      },
+      {
+        path: "/offers",
+        element: <Offers />,
       },
       {
         path: "/support/issues",
