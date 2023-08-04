@@ -33,6 +33,8 @@ const Search = () => {
       timer = setTimeout(() => {
         searchItems();
       }, 500);
+    } else {
+      setSuggestions([]);
     }
     return () => {
       clearTimeout(timer);
