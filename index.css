@@ -183,7 +183,8 @@ html {
   cursor: pointer;
 }
 
-.nav-items>ul>li>a.active {
+.nav-items>ul>li>a.active,
+.nav-items>ul>li>a:hover {
   color: #E46D47;
 }
 
