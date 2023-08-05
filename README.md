@@ -25,7 +25,7 @@ Please review the full source code.
 
 - In React, the Context API consists of two main components: the `Context Provider` and the `Context Consumer`. The Context Provider is a component that holds the data or state you want to share with its child components. It acts as the source of truth for the data and uses the React.createContext() method to create a new context. The data is passed down to child components through the value prop.
 
-The `Context Consumer`, or the useContext Hook (for functional components), allows components to access the data provided by the Context Provider without prop drilling. It enables components to consume the context data directly and use it in their rendering or logic.
+- The `Context Consumer`, or the useContext Hook (for functional components), allows components to access the data provided by the Context Provider without prop drilling. It enables components to consume the context data directly and use it in their rendering or logic.
 
 ### 4. If you don't pass a value to the provider does it take the default value?
 
