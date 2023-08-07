@@ -282,3 +282,7 @@
     background-position: center;
     border-radius: 20%;
 }
+
+.cart-items-length.dark {
+    color: #1fbb50;
+}

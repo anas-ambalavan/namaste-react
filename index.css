@@ -902,3 +902,17 @@ html {
   display: flex;
   align-items: center;
 }
+
+.cart-items-container {
+  position: relative;
+}
+
+.cart-items-length {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  font-size: 12px;
+  font-weight: 700;
+  color: #E46D47;
+}

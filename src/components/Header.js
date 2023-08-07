@@ -10,6 +10,7 @@ import {
   MoonIcon,
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Logo from "../../assets/logo.png";
 import { SupportURLType, THEME_MODES } from "../utils/constants";
@@ -30,6 +31,8 @@ const Header = () => {
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <nav className={`header fonts-loaded ${darkMode && "dark"}`}>
@@ -92,7 +95,12 @@ const Header = () => {
             </li>
             <li>
               <NavLink to={"/cart"} className="reset-link">
-                <ShoppingBagIcon width={20} />
+                <div className="cart-items-container">
+                  <ShoppingBagIcon width={26} />
+                  <p className={`cart-items-length ${darkMode && "dark"}`}>
+                    {cartItems.length}
+                  </p>
+                </div>
                 <p>Cart</p>
               </NavLink>
             </li>
