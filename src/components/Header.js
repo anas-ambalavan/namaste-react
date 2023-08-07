@@ -7,13 +7,13 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
   SunIcon,
+  MoonIcon,
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
 import { SupportURLType, THEME_MODES } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
-import { MoonIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
@@ -105,12 +105,7 @@ const Header = () => {
               }
             >
               <div>
-                <p>{darkMode ? "White Mode" : "Dark Mode"}</p>
-                {darkMode ? (
-                  <SunIcon width={20} style={{ marginLeft: 5 }} />
-                ) : (
-                  <MoonIcon width={20} style={{ marginLeft: 5 }} />
-                )}
+                {darkMode ? <SunIcon width={20} /> : <MoonIcon width={20} />}
               </div>
             </li>
           </ul>

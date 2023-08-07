@@ -890,7 +890,7 @@ html {
 .theme-modes {
   cursor: pointer;
   border: 0.5px solid grey;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .theme-modes:hover {
@@ -898,7 +898,7 @@ html {
 }
 
 .theme-modes>div {
-  padding: 6px 8px 6px 8px;
+  padding: 6px;
   display: flex;
   align-items: center;
 }
