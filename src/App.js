@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -9,21 +10,24 @@ import Error from "./components/Error";
 import Support from "./components/Support";
 import Offers from "./components/Offers";
 import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
+import store from "./utils/store";
 
 const Search = lazy(() => import("./components/Search"));
 
 const AppLayout = () => {
   return (
-    <ThemeProvider>
-      <ThemeContext.Consumer>
-        {(data) => (
-          <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
-            <Header />
-            <Outlet />
-          </div>
-        )}
-      </ThemeContext.Consumer>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <ThemeContext.Consumer>
+          {(data) => (
+            <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
+              <Header />
+              <Outlet />
+            </div>
+          )}
+        </ThemeContext.Consumer>
+      </ThemeProvider>
+    </Provider>
   );
 };
 
