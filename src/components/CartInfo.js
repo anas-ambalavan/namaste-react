@@ -22,17 +22,17 @@ const CartInfo = ({ cart }) => {
 
   return (
     <div className="cart-info-container">
-      <div className="cart-info">
-        <div className="cart-header">
-          <div className="cart-res-info">
+      <div className={`cart-info ${darkMode && "dark"}`}>
+        <div className={`cart-header ${darkMode && "dark"}`}>
+          <div className={`cart-res-info ${darkMode && "dark"}`}>
             <div>
               <img
-                className="cart-res-image"
+                className={`cart-res-image`}
                 src={CDN_URL + imageId}
                 alt="res image"
               />
             </div>
-            <div className="cart-res-details">
+            <div className={`cart-res-details ${darkMode && "dark"}`}>
               <h3>{name}</h3>
               <p>{areaName}</p>
             </div>
@@ -46,26 +46,26 @@ const CartInfo = ({ cart }) => {
             </button>
           </div>
         </div>
-        <div className="cart-list-items">
+        <div className={`cart-list-items ${darkMode && "dark"}`}>
           {cart?.items?.map((item) => (
             <CartItem key={item.id} data={item} />
           ))}
         </div>
-        <div className="input-cart-item-container">
+        <div className={`input-cart-item-container ${darkMode && "dark"}`}>
           <input
-            className="input-cart-item"
+            className={`input-cart-item ${darkMode && "dark"}`}
             type="text"
             placeholder="Any suggestions? We will pass it on..."
           />
         </div>
         <div className="cart-no-contact-container">
-          <div className="cart-no-contact">
+          <div className={`cart-no-contact ${darkMode && "dark"}`}>
             <input type="checkbox" />
-            <div className="cart-no-contact-details">
+            <div className={`cart-no-contact-details ${darkMode && "dark"}`}>
               <p className="cart-no-contact-heading">
                 Opt in for No-contact Delivery
               </p>
-              <p className="cart-no-contact-desc">
+              <p className={`cart-no-contact-desc ${darkMode && "dark"}`}>
                 Unwell, or avoiding contact? Please select no-contact delivery.
                 Partner will safely place the order outside your door (not for
                 COD)
@@ -74,44 +74,46 @@ const CartInfo = ({ cart }) => {
           </div>
         </div>
         <div className="cart-bill-details-container">
-          <div className="cart-bill-details">
+          <div className={`cart-bill-details ${darkMode && "dark"}`}>
             <h4>Bill Details</h4>
-            <div className="cart-bill-item">
+            <div className={`cart-bill-item ${darkMode && "dark"}`}>
               <p>Item Total</p>
               <p>₹{itemTotalCost.toFixed(2)}</p>
             </div>
-            <div className="cart-bill-item">
-              <div className="cart-bill-item">
+            <div className={`cart-bill-item ${darkMode && "dark"}`}>
+              <div className={`cart-bill-item ${darkMode && "dark"}`}>
                 <p>Delivery fee | 3.0 kms</p>
                 <InformationCircleIcon width={14} />
               </div>
               <p>₹40</p>
             </div>
           </div>
-          <div className="cart-bill-details other-charge">
-            <div className="cart-bill-item">
-              <div className="cart-bill-item">
+          <div
+            className={`cart-bill-details other-charge ${darkMode && "dark"}`}
+          >
+            <div className={`cart-bill-item ${darkMode && "dark"}`}>
+              <div className={`cart-bill-item ${darkMode && "dark"}`}>
                 <p>Platform fee</p>
                 <InformationCircleIcon width={14} />
               </div>
               <p>₹2</p>
             </div>
-            <div className="cart-bill-item">
-              <div className="cart-bill-item">
+            <div className={`cart-bill-item ${darkMode && "dark"}`}>
+              <div className={`cart-bill-item ${darkMode && "dark"}`}>
                 <p>GST and Restaurant Charges</p>
                 <InformationCircleIcon width={14} />
               </div>
               <p>₹{restaurantCharge.toFixed(2)}</p>
             </div>
           </div>
-          <div className="cart-bill-item total">
+          <div className={`cart-bill-item total ${darkMode && "dark"} `}>
             <h4>TO PAY</h4>
             <h4>₹{cartTotal.toFixed(2)}</h4>
           </div>
         </div>
       </div>
-      <div className="cart-info review">
-        <div className="cart-review">
+      <div className={`cart-info review ${darkMode && "dark"}`}>
+        <div className={`cart-review ${darkMode && "dark"}`}>
           <h4>Review your order and address details to avoid cancellations</h4>
           <p>
             <span>Note: </span> If you cancel within 60 seconds of placing your

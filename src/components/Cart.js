@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import {
   CreditCardIcon,
@@ -8,21 +9,22 @@ import {
 import CartEmpty from "./CartEmpty";
 import CartInfo from "./CartInfo";
 import { CDN_URL } from "../utils/constants";
+import ThemeContext from "../utils/ThemeContext";
 
 const Cart = () => {
   const cart = useSelector((store) => store.cart.cartDetails);
-
-  console.log(cart);
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
 
   return (
-    <div className="cart">
+    <div className={`cart ${darkMode && "dark"}`}>
       <div>
         {cart.items?.length === 0 ? (
           <CartEmpty />
         ) : (
-          <div className="cart-container">
+          <div className={`cart-container ${darkMode && "dark"}`}>
             <div className="cart-left-container">
-              <div className="cart-account-section">
+              <div className={`cart-account-section ${darkMode && "dark"}`}>
                 <div className="cart-dashed-vertical-line"></div>
                 <div className="cart-left-container-icon">
                   <UserIcon width={28} />
@@ -33,8 +35,8 @@ const Cart = () => {
                     To place your order now, log in to your existing account or
                     sign up.
                   </p>
-                  <div className="cart-account-actions">
-                    <button className="btn-accent">
+                  <div className={`cart-account-actions ${darkMode && "dark"}`}>
+                    <button className={`btn-accent ${darkMode && "dark"}`}>
                       Have an account?
                       <br />{" "}
                       <span
@@ -46,7 +48,7 @@ const Cart = () => {
                         Login
                       </span>
                     </button>
-                    <button className="btn-secondary">
+                    <button className={`btn-secondary ${darkMode && "dark"}`}>
                       New to Swiggy?
                       <br />{" "}
                       <span
@@ -60,7 +62,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-                <div className="cart-account-details-img-container">
+                <div className={"cart-account-details-img-container"}>
                   <img
                     className="cart-account-details-img"
                     src={CDN_URL + "Image-login_btpq7r"}
@@ -68,7 +70,7 @@ const Cart = () => {
                   />
                 </div>
               </div>
-              <div className="cart-delivery-section">
+              <div className={`cart-delivery-section ${darkMode && "dark"}`}>
                 <div className="cart-dashed-vertical-line"></div>
                 <div className="cart-left-container-icon">
                   <MapPinIcon width={28} />
@@ -78,7 +80,7 @@ const Cart = () => {
                   <h3>Delivery address</h3>
                 </div>
               </div>
-              <div className="cart-payment-section">
+              <div className={`cart-payment-section ${darkMode && "dark"}`}>
                 <div className="cart-left-container-icon">
                   <CreditCardIcon width={28} />
                 </div>
