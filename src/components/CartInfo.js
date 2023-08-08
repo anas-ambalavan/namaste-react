@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 import { CDN_URL } from "../utils/constants";
@@ -14,6 +14,12 @@ const CartInfo = ({ cart }) => {
   const darkMode = theme?.state?.darkMode;
 
   const dispatch = useDispatch();
+
+  const itemTotal = useSelector((store) => store.cart.cartDetails.totalCost);
+  const itemTotalCost = itemTotal / 100;
+  const restaurantCharge = 33 + itemTotalCost * 0.05;
+  const cartTotal = itemTotalCost + restaurantCharge + 2 + 40;
+
   return (
     <div className="cart-info-container">
       <div className="cart-info">
@@ -72,14 +78,14 @@ const CartInfo = ({ cart }) => {
             <h4>Bill Details</h4>
             <div className="cart-bill-item">
               <p>Item Total</p>
-              <p>₹678</p>
+              <p>₹{itemTotalCost.toFixed(2)}</p>
             </div>
             <div className="cart-bill-item">
               <div className="cart-bill-item">
                 <p>Delivery fee | 3.0 kms</p>
                 <InformationCircleIcon width={14} />
               </div>
-              <p>₹678</p>
+              <p>₹40</p>
             </div>
           </div>
           <div className="cart-bill-details other-charge">
@@ -88,19 +94,19 @@ const CartInfo = ({ cart }) => {
                 <p>Platform fee</p>
                 <InformationCircleIcon width={14} />
               </div>
-              <p>₹678</p>
+              <p>₹2</p>
             </div>
             <div className="cart-bill-item">
               <div className="cart-bill-item">
                 <p>GST and Restaurant Charges</p>
                 <InformationCircleIcon width={14} />
               </div>
-              <p>₹678</p>
+              <p>₹{restaurantCharge.toFixed(2)}</p>
             </div>
           </div>
           <div className="cart-bill-item total">
             <h4>TO PAY</h4>
-            <h4>₹810</h4>
+            <h4>₹{cartTotal.toFixed(2)}</h4>
           </div>
         </div>
       </div>
