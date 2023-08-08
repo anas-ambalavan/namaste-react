@@ -18,6 +18,9 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -39,9 +42,6 @@ const Home = () => {
   if (onlineStatus === false) {
     return <h1>Looks like you're offline!</h1>;
   }
-
-  const theme = useContext(ThemeContext);
-  const darkMode = theme?.state?.darkMode;
 
   return (
     <div className="body-container">

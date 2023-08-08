@@ -10,6 +10,9 @@ const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   const fetchCuisines = async () => {
     const data = await fetch(PRE_SEARCH_API);
     const json = await data.json();
@@ -41,9 +44,6 @@ const Search = () => {
       clearTimeout(timer);
     };
   }, [searchText.length]);
-
-  const theme = useContext(ThemeContext);
-  const darkMode = theme?.state?.darkMode;
 
   return (
     <div className="body-container search-wfull-container">

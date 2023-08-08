@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import { AccordionType } from "../utils/constants";
-
 import ThemeContext from "../utils/ThemeContext";
 import AccordionListItem from "./AccordionListItem";
 
@@ -13,6 +12,7 @@ const AccordionItem = ({
   index,
   showItems,
   setShowIndex,
+  resInfo,
 }) => {
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -47,7 +47,7 @@ const AccordionItem = ({
               <AccordionListItem
                 key={item?.card?.info?.id}
                 data={item?.card?.info}
-                darkMode={darkMode}
+                resInfo={resInfo}
               />
             );
           })}

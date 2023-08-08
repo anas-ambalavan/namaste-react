@@ -32,7 +32,7 @@ const Header = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
-  const cartItems = useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store.cart.cartDetails.items);
 
   return (
     <nav className={`header fonts-loaded ${darkMode && "dark"}`}>

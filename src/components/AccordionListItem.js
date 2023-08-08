@@ -1,11 +1,32 @@
+import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { PlusIcon, StarIcon } from "@heroicons/react/24/solid";
 
 import { CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
+import { addItem } from "../utils/store/cartSlice";
+import ThemeContext from "../utils/ThemeContext";
 
-const AccordionListItem = ({ data, darkMode }) => {
+const AccordionListItem = ({ data, resInfo }) => {
   const { name, ribbon, price, description, imageId, isVeg } = data;
+
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
+  const dispatch = useDispatch();
+
+  const cartResDetails = useSelector(
+    (store) => store.cart.cartDetails.resInfo.id
+  );
+
+  const addToCart = () => {
+    const cartData = {};
+    cartData.items = data;
+    if (cartResDetails.length === 0) cartData.resInfo = resInfo;
+    dispatch(addItem(cartData));
+  };
+
   return (
     <div className={`accordion-item-card ${darkMode && "dark"}`}>
       <div className="accordion-card-details">
@@ -41,7 +62,10 @@ const AccordionListItem = ({ data, darkMode }) => {
           src={CDN_URL + imageId}
           alt="item image"
         />
-        <button className={`btn-accordion ${darkMode && "dark"}`}>
+        <button
+          className={`btn-accordion ${darkMode && "dark"}`}
+          onClick={addToCart}
+        >
           Add
           <PlusIcon
             width={10}

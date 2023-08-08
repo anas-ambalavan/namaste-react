@@ -13,6 +13,9 @@ import ThemeContext from "../utils/ThemeContext";
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
 
+  const theme = useContext(ThemeContext);
+  const darkMode = theme?.state?.darkMode;
+
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
@@ -33,9 +36,6 @@ const RestaurantMenu = () => {
     resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
   const menuItems = resInfo?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
-
-  const theme = useContext(ThemeContext);
-  const darkMode = theme?.state?.darkMode;
 
   return (
     <div className="body-container menu">
@@ -97,6 +97,7 @@ const RestaurantMenu = () => {
                   showItems={key === showIndex ? true : false}
                   setShowIndex={setShowIndex}
                   index={key}
+                  resInfo={resInfo?.cards[0]?.card?.card?.info}
                 />
               </div>
             );
@@ -118,6 +119,7 @@ const RestaurantMenu = () => {
                         showItems={key === showIndex ? true : false}
                         setShowIndex={setShowIndex}
                         index={key}
+                        resInfo={resInfo?.cards[0]?.card?.card?.info}
                       />
                     );
                   })}

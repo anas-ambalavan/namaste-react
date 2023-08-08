@@ -214,14 +214,18 @@
     filter: invert(1);
 }
 
+.cart-empty-container.dark,
 .error-container.dark {
     color: rgb(168, 166, 166);
 }
 
+.cart-empty-img-container.dark,
 .error-img-container.dark {
     border-bottom-color: #282c3f;
 }
 
+.btn-primary.dark:hover,
+.btn-cart-empty.dark:hover,
 .btn-error.dark:hover {
     -webkit-box-shadow: 0px 1px 25px 0px rgba(255, 255, 255, 0.1);
     -moz-box-shadow: 0px 1px 25px 0px rgba(255, 255, 255, 0.1);

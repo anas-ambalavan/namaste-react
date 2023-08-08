@@ -11,6 +11,7 @@ import Support from "./components/Support";
 import Offers from "./components/Offers";
 import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
 import store from "./utils/store";
+import Cart from "./components/Cart";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -62,6 +63,10 @@ const appRoutes = createBrowserRouter([
             element: <Support />,
           },
         ],
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/restaurants/:resId",
