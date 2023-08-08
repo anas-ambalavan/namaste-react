@@ -5,7 +5,7 @@ import { PlusIcon, StarIcon } from "@heroicons/react/24/solid";
 import { CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
-import { addItem } from "../utils/store/cartSlice";
+import { addItem, clearCart } from "../utils/store/cartSlice";
 import ThemeContext from "../utils/ThemeContext";
 
 const AccordionListItem = ({ data, resInfo }) => {
@@ -17,14 +17,24 @@ const AccordionListItem = ({ data, resInfo }) => {
 
   const dispatch = useDispatch();
 
-  const cartResDetails = useSelector(
+  const cartResDetailsID = useSelector(
     (store) => store.cart.cartDetails.resInfo.id
   );
 
   const addToCart = () => {
+    if (cartResDetailsID && cartResDetailsID !== resInfo.id) {
+      if (
+        window.confirm(
+          "Items already in cart! Your cart contains items from other restaurant. Would you like to reset your cart for adding items from this restaurant?"
+        )
+      ) {
+        dispatch(clearCart());
+      }
+      return;
+    }
     const cartData = {};
     cartData.item = data;
-    if (cartResDetails.length === 0) cartData.resInfo = resInfo;
+    if (cartResDetailsID.length === 0) cartData.resInfo = resInfo;
     dispatch(addItem(cartData));
   };
 

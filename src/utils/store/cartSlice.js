@@ -65,8 +65,17 @@ const cartSlice = createSlice({
       const item = state.cartDetails.items.find(
         (item) => item.id === action.payload
       );
-      item.quantity -= 1;
-      item.totalItemCost -= item.price || item.defaultPrice;
+      if (state.cartDetails.itemsLength === 1) {
+        return initialState;
+      } else if (item.quantity === 1) {
+        const filteredData = state.cartDetails.items.filter(
+          (cartItem) => cartItem.id !== action.payload
+        );
+        state.cartDetails.items = filteredData;
+      } else {
+        item.quantity -= 1;
+        item.totalItemCost -= item.price || item.defaultPrice;
+      }
       state.cartDetails.itemsLength -= 1;
       state.cartDetails.totalCost -= item.price || item.defaultPrice;
     },
