@@ -23,7 +23,7 @@ const AccordionListItem = ({ data, resInfo }) => {
 
   const addToCart = () => {
     const cartData = {};
-    cartData.items = data;
+    cartData.item = data;
     if (cartResDetails.length === 0) cartData.resInfo = resInfo;
     dispatch(addItem(cartData));
   };

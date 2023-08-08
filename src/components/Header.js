@@ -32,7 +32,9 @@ const Header = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
-  const cartItems = useSelector((store) => store.cart.cartDetails.items);
+  const cartItemsLength = useSelector(
+    (store) => store.cart.cartDetails.itemsLength
+  );
 
   return (
     <nav className={`header fonts-loaded ${darkMode && "dark"}`}>
@@ -98,7 +100,7 @@ const Header = () => {
                 <div className="cart-items-container">
                   <ShoppingBagIcon width={26} />
                   <p className={`cart-items-length ${darkMode && "dark"}`}>
-                    {cartItems.length}
+                    {cartItemsLength}
                   </p>
                 </div>
                 <p>Cart</p>

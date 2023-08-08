@@ -6,9 +6,15 @@ import {
 
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
+import { useSelector } from "react-redux";
 
 const CartItem = ({ data }) => {
-  const { isVeg, name, price } = data;
+  const { id, isVeg, name } = data;
+
+  const cartItems = useSelector((store) => store.cart.cartDetails.items);
+
+  const currentCartItem = cartItems.find((item) => item.id === id);
+
   return (
     <div className="cart-item">
       <div className="cart-left">
@@ -42,7 +48,7 @@ const CartItem = ({ data }) => {
               <MinusIcon width={15} />
             </div>
             <div className="cart-items-action">
-              <p>1</p>
+              <p>{currentCartItem.quantity}</p>
             </div>
             <div className="cart-items-action">
               <PlusIcon width={15} />
@@ -50,7 +56,9 @@ const CartItem = ({ data }) => {
           </div>
         </div>
         <div>
-          <p className="cart-item-price">₹{(price / 100).toFixed(2)}</p>
+          <p className="cart-item-price">
+            ₹{(currentCartItem.totalItemCost / 100).toFixed(2)}
+          </p>
         </div>
       </div>
     </div>
