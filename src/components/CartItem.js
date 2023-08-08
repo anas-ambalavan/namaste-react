@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import {
   ChevronRightIcon,
   MinusIcon,
@@ -6,12 +7,17 @@ import {
 
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
-import { useSelector } from "react-redux";
+import {
+  decrementCartItemQuantity,
+  incrementCartItemQuantity,
+} from "../utils/store/cartSlice";
 
 const CartItem = ({ data }) => {
   const { id, isVeg, name } = data;
 
   const cartItems = useSelector((store) => store.cart.cartDetails.items);
+
+  const dispatch = useDispatch();
 
   const currentCartItem = cartItems.find((item) => item.id === id);
 
@@ -44,13 +50,19 @@ const CartItem = ({ data }) => {
       <div className="cart-right">
         <div>
           <div className="cart-items-action-container">
-            <div className="cart-items-action">
+            <div
+              className="cart-items-action"
+              onClick={() => dispatch(decrementCartItemQuantity(id))}
+            >
               <MinusIcon width={15} />
             </div>
             <div className="cart-items-action">
               <p>{currentCartItem.quantity}</p>
             </div>
-            <div className="cart-items-action">
+            <div
+              className="cart-items-action"
+              onClick={() => dispatch(incrementCartItemQuantity(id))}
+            >
               <PlusIcon width={15} />
             </div>
           </div>

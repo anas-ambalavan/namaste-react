@@ -26,14 +26,18 @@ const cartSlice = createSlice({
       );
       if (existingCartItem) {
         existingCartItem.quantity += 1;
-        existingCartItem.totalItemCost += action.payload.item.defaultPrice;
+        existingCartItem.totalItemCost +=
+          action.payload.item.defaultPrice || action.payload.item.price;
         state.cartDetails.itemsLength += 1;
-        state.cartDetails.totalCost += action.payload.item.defaultPrice;
+        state.cartDetails.totalCost +=
+          action.payload.item.defaultPrice || action.payload.item.price;
       } else {
         cartItem.quantity = 1;
-        cartItem.totalItemCost = action.payload.item.defaultPrice;
+        cartItem.totalItemCost =
+          action.payload.item.defaultPrice || action.payload.item.price;
         state.cartDetails.itemsLength += 1;
-        state.cartDetails.totalCost += action.payload.item.defaultPrice;
+        state.cartDetails.totalCost +=
+          action.payload.item.defaultPrice || action.payload.item.price;
         state.cartDetails.items.push(cartItem);
       }
       if (action?.payload?.resInfo) {
@@ -48,9 +52,33 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       return initialState; //state.items.length = 0;
     },
+    incrementCartItemQuantity: (state, action) => {
+      const item = state.cartDetails.items.find(
+        (item) => item.id === action.payload
+      );
+      item.quantity += 1;
+      item.totalItemCost += item.price || item.defaultPrice;
+      state.cartDetails.itemsLength += 1;
+      state.cartDetails.totalCost += item.price || item.defaultPrice;
+    },
+    decrementCartItemQuantity: (state, action) => {
+      const item = state.cartDetails.items.find(
+        (item) => item.id === action.payload
+      );
+      item.quantity -= 1;
+      item.totalItemCost -= item.price || item.defaultPrice;
+      state.cartDetails.itemsLength -= 1;
+      state.cartDetails.totalCost -= item.price || item.defaultPrice;
+    },
   },
 });
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  clearCart,
+  incrementCartItemQuantity,
+  decrementCartItemQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
