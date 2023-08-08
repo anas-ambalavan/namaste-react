@@ -284,6 +284,14 @@ html {
   margin: 10px 0px 10px 0px;
 }
 
+.filter-count {
+  color: #fff;
+  background-color: #E46D47;
+  padding: 1px 5px;
+  margin-right: 3px;
+  border-radius: 20px;
+}
+
 .btn-filter {
   padding: 12px;
   border: 0.5px solid #ccc;

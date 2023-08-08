@@ -74,6 +74,7 @@ const Home = () => {
 
           <div className="filters-container">
             <button className={`btn-filter ${darkMode && "dark"}`}>
+              <span className="filter-count">{currentFilters.length}</span>{" "}
               Filters
               <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
             </button>

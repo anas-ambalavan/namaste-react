@@ -1,6 +1,11 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  ScrollRestoration,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 
 import Header from "./components/Header";
@@ -24,6 +29,7 @@ const AppLayout = () => {
             <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
               <Header />
               <Outlet />
+              <ScrollRestoration />
             </div>
           )}
         </ThemeContext.Consumer>
