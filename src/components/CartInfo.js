@@ -31,14 +31,14 @@ const CartInfo = ({ cart }) => {
               <p>{areaName}</p>
             </div>
           </div>
-          {/* <div>
-          <button
-            className={`btn-primary ${darkMode && "dark"}`}
-            onClick={() => dispatch(clearCart())}
-          >
-            Clear Cart
-          </button>
-        </div> */}
+          <div>
+            <button
+              className={`btn-primary clear-cart ${darkMode && "dark"}`}
+              onClick={() => dispatch(clearCart())}
+            >
+              Clear Cart
+            </button>
+          </div>
         </div>
         <div className="cart-list-items">
           {cart?.items?.map((item) => (

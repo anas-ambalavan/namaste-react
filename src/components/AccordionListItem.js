@@ -9,7 +9,8 @@ import { addItem } from "../utils/store/cartSlice";
 import ThemeContext from "../utils/ThemeContext";
 
 const AccordionListItem = ({ data, resInfo }) => {
-  const { name, ribbon, price, description, imageId, isVeg } = data;
+  const { name, ribbon, price, defaultPrice, description, imageId, isVeg } =
+    data;
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -53,7 +54,7 @@ const AccordionListItem = ({ data, resInfo }) => {
           ) : null}
         </div>
         <h3 className="accordion-title">{name}</h3>
-        <p>₹ {price / 100}</p>
+        <p>₹ {price / 100 || defaultPrice / 100}</p>
         <p className="accordion-desc">{description}</p>
       </div>
       <div className="accordion-action">

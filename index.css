@@ -1264,3 +1264,8 @@ html {
 .cart-review>p>span {
   color: #E46D47;
 }
+
+.btn-primary.clear-cart {
+  padding: 10px;
+  font-size: 12px;
+}
