@@ -1053,6 +1053,10 @@ html {
   height: 150px;
 }
 
+/* .cart-info-container {
+  /* display: flex; */
+/* }  */
+
 .cart-info {
   background-color: #fff;
   max-width: 480px;
@@ -1170,7 +1174,7 @@ html {
 }
 
 .cart-no-contact {
-  border: 1px solid grey;
+  border: 1px solid #ccc;
   display: flex;
   align-items: start;
   padding: 10px;
@@ -1191,4 +1195,71 @@ html {
 
 .cart-no-contact-desc {
   color: grey
+}
+
+.cart-bill-details-container {
+  margin: 5px 15px 5px 15px;
+}
+
+.cart-bill-details {
+  color: grey;
+  margin-top: 5px;
+  padding: 15px 10px 15px 10px;
+  border-bottom: 0.5px solid grey;
+  font-size: 13px;
+}
+
+.cart-bill-details.other-charge {
+  border-bottom: 2px solid #000;
+}
+
+.cart-bill-details>h4 {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.cart-bill-details>div>div>svg {
+  margin-left: 5px;
+}
+
+.cart-bill-item {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-bill-item.total {
+  margin: 5px;
+  padding: 5px;
+}
+
+.cart-info.review {
+  margin: 20px 0px 30px 0px;
+
+}
+
+.cart-review {
+  border: 0.5px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+
+.cart-review>h4,
+.cart-review>p {
+  margin: 20px 10px 20px 10px;
+}
+
+.cart-review>p {
+  font-size: 13px;
+  color: grey;
+}
+
+.cart-review>p:last-child {
+  color: #E46D47;
+  border-bottom: 1px dotted #E46D47;
+  width: fit-content;
+}
+
+.cart-review>p>span {
+  color: #E46D47;
 }
