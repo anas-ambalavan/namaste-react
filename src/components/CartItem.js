@@ -67,11 +67,11 @@ const CartItem = ({ data }) => {
             </div>
           </div>
         </div>
-        <div>
-          <p className="cart-item-price">
-            ₹{(currentCartItem.totalItemCost / 100).toFixed(2)}
-          </p>
-        </div>
+      </div>
+      <div>
+        <p className="cart-item-price">
+          ₹{(currentCartItem.totalItemCost / 100).toFixed(2)}
+        </p>
       </div>
     </div>
   );
