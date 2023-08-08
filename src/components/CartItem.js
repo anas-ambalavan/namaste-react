@@ -31,7 +31,7 @@ const CartItem = ({ data }) => {
           <p>{name}</p>
           <div className="cart-item-customize">
             <p>Customize</p>
-            <ChevronRightIcon width={12} />
+            <ChevronRightIcon width={10} />
           </div>
         </div>
       </div>

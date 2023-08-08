@@ -1108,7 +1108,8 @@ html {
 
 .cart-item-customize>p {
   color: grey;
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 500;
 }
 
 .cart-item-customize>svg {
