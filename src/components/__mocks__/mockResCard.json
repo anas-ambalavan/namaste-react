@@ -1,0 +1,78 @@
+{
+  "id": "42579",
+  "name": "Burger King",
+  "cloudinaryImageId": "e33e1d3ba7d6b2bb0d45e1001b731fcf",
+  "locality": "Vega City Mall",
+  "areaName": "Btm Layout",
+  "costForTwo": "₹350 for two",
+  "cuisines": ["Burgers", "American"],
+  "avgRating": 4,
+  "feeDetails": {
+    "restaurantId": "42579",
+    "fees": [
+      {
+        "name": "BASE_DISTANCE",
+        "fee": 3100
+      },
+      {
+        "name": "BASE_TIME"
+      },
+      {
+        "name": "ANCILLARY_SURGE_FEE"
+      }
+    ],
+    "totalFee": 3100
+  },
+  "parentId": "166",
+  "avgRatingString": "4.0",
+  "totalRatingsString": "10K+",
+  "sla": {
+    "deliveryTime": 22,
+    "lastMileTravel": 1.9,
+    "serviceability": "SERVICEABLE",
+    "slaString": "22 mins",
+    "lastMileTravelString": "1.9 km",
+    "iconType": "ICON_TYPE_EMPTY"
+  },
+  "availability": {
+    "nextCloseTime": "2023-08-28 03:00:00",
+    "opened": true
+  },
+  "badges": {},
+  "isOpen": true,
+  "type": "F",
+  "badgesV2": {
+    "entityBadges": {
+      "imageBased": {},
+      "textBased": {},
+      "textExtendedBadges": {}
+    }
+  },
+  "aggregatedDiscountInfoV3": {
+    "header": "60% OFF",
+    "subHeader": "UPTO ₹120",
+    "discountCalloutInfo": {
+      "message": "Free Delivery",
+      "logoCtx": {
+        "logo": "v1655895371/free_delivery_logo_hqipbo.png"
+      }
+    }
+  },
+  "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+  },
+  "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+      "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+      "lottie": {},
+      "video": {}
+    }
+  },
+  "reviewsSummary": {},
+  "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+  "restaurantOfferPresentationInfo": {}
+}
