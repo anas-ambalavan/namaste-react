@@ -1,0 +1,273 @@
+{
+  "id": "62373798",
+  "name": "Veg Whopper",
+  "category": "Whopper",
+  "description": "Our Signature Whopper With 7 Layers Between The Buns. Extra Crunchy Veg Patty, Fresh Onion, Crispy Lettuce, Juicy Tomatoes(seasonal), Tangy Gherkins, Creamy And Smoky Sauces With Xxl Buns. It’S Not A Burger, It’S A Whopper",
+  "imageId": "sgnlylsa7gqijo2qydq3",
+  "inStock": 1,
+  "isVeg": 1,
+  "price": 17900,
+  "variants": {},
+  "variantsV2": {},
+  "addons": [
+    {
+      "groupId": "106582606",
+      "groupName": "SAY CHEESE!",
+      "choices": [
+        {
+          "id": "98180150",
+          "name": "Double Cheese Slice",
+          "price": 5000,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180151",
+          "name": "Single Cheese Slice",
+          "price": 2500,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    },
+    {
+      "groupId": "106582607",
+      "groupName": "Make it a combo!!",
+      "choices": [
+        {
+          "id": "98180152",
+          "name": "King Fries + Medium Pepsi (23% off)",
+          "price": 15900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180153",
+          "name": "Medium Fries + Medium Pepsi Black (23% OFF)",
+          "price": 14900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180154",
+          "name": "Medium Fries + Medium Fountain Pepsi(23% Off)",
+          "price": 14900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180155",
+          "name": "Medium Fries + Chocolate Thick Shake (34% off)",
+          "price": 19500,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180156",
+          "name": "Med Fries + Med Pepsi + Choco Lava (25% Off)",
+          "price": 21900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    },
+    {
+      "groupId": "106582608",
+      "groupName": "Choose your Sides",
+      "choices": [
+        {
+          "id": "98180157",
+          "name": "King Fries",
+          "price": 13000,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180158",
+          "name": "King Peri Peri Fries",
+          "price": 15900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180159",
+          "name": "Medium Fries",
+          "price": 11500,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180160",
+          "name": "Medium Peri Peri Fries",
+          "price": 14400,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180161",
+          "name": "Cheesy Fries",
+          "price": 13900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180162",
+          "name": "Boneless Wings (4 Pcs)",
+          "price": 14900,
+          "inStock": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    },
+    {
+      "groupId": "106582609",
+      "groupName": "Choose Your Beverages!!",
+      "choices": [
+        {
+          "id": "98180163",
+          "name": "Chocolate Thick Shake",
+          "price": 18900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180164",
+          "name": "Berry Blast Thick Shake",
+          "price": 18900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180165",
+          "name": "Medium Pepsi",
+          "price": 9500,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180166",
+          "name": "Medium Pepsi Black",
+          "price": 9500,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180167",
+          "name": "Mango Thick Shake",
+          "price": 18900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    },
+    {
+      "groupId": "106582610",
+      "groupName": "Add Dessert",
+      "choices": [
+        {
+          "id": "98180168",
+          "name": "Choco Lava Cake",
+          "price": 10900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "98180169",
+          "name": "Chocolate Mousse Cup",
+          "price": 10900,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    },
+    {
+      "groupId": "87100595",
+      "groupName": "Choose your Dips",
+      "choices": [
+        {
+          "id": "96085314",
+          "name": "Fiery Hell Dip",
+          "price": 2381,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "95478500",
+          "name": "Easy Cheesy Dip",
+          "price": 2381,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        },
+        {
+          "id": "96085315",
+          "name": "Herby Garlic",
+          "price": 2381,
+          "inStock": 1,
+          "isVeg": 1,
+          "isEnabled": 1
+        }
+      ],
+      "maxAddons": 1,
+      "maxFreeAddons": -1
+    }
+  ],
+  "itemAttribute": {
+    "vegClassifier": "VEG"
+  },
+  "ribbon": {
+    "text": "Bestseller",
+    "textColor": "#ffffff",
+    "topBackgroundColor": "#d53d4c",
+    "bottomBackgroundColor": "#b02331"
+  },
+  "showImage": true,
+  "offerTags": [
+    {
+      "title": "60% OFF",
+      "subTitle": "USE STEALDEAL",
+      "textColor": "#DB6742",
+      "backgroundColor": "#FAE8E3"
+    }
+  ],
+  "itemBadge": {},
+  "badgesV2": {},
+  "isBestseller": true,
+  "ratings": {
+    "aggregatedRating": {
+      "rating": "4.3",
+      "ratingCount": "1100 ratings",
+      "ratingCountV2": "1100"
+    }
+  }
+}
