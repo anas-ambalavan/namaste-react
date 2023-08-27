@@ -107,6 +107,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li
+              data-testid="theme-icon"
               className="theme-modes"
               onClick={() =>
                 darkMode
