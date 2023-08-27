@@ -51,15 +51,17 @@ const CartItem = ({ data }) => {
         <div>
           <div className="cart-items-action-container">
             <div
+              data-testid="cartItemQuantityDecrement"
               className="cart-items-action"
               onClick={() => dispatch(decrementCartItemQuantity(id))}
             >
               <MinusIcon width={15} />
             </div>
             <div className="cart-items-action">
-              <p>{currentCartItem.quantity}</p>
+              <p data-testid="cartItemQuantity">{currentCartItem.quantity}</p>
             </div>
             <div
+              data-testid="cartItemQuantityIncrement"
               className="cart-items-action"
               onClick={() => dispatch(incrementCartItemQuantity(id))}
             >

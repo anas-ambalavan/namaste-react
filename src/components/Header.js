@@ -99,7 +99,10 @@ const Header = () => {
               <NavLink to={"/cart"} className="reset-link">
                 <div className="cart-items-container">
                   <ShoppingBagIcon width={26} />
-                  <p className={`cart-items-length ${darkMode && "dark"}`}>
+                  <p
+                    data-testid="cartItemLength"
+                    className={`cart-items-length ${darkMode && "dark"}`}
+                  >
                     {cartItemsLength}
                   </p>
                 </div>

@@ -39,7 +39,10 @@ const AccordionListItem = ({ data, resInfo }) => {
   };
 
   return (
-    <div className={`accordion-item-card ${darkMode && "dark"}`}>
+    <div
+      data-testid="foodItem"
+      className={`accordion-item-card ${darkMode && "dark"}`}
+    >
       <div className="accordion-card-details">
         <div className="accordion-items-type">
           {isVeg ? (
@@ -74,6 +77,7 @@ const AccordionListItem = ({ data, resInfo }) => {
           alt="item image"
         />
         <button
+          data-testid="addBtn"
           className={`btn-accordion ${darkMode && "dark"}`}
           onClick={addToCart}
         >
