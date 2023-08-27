@@ -57,6 +57,7 @@ const Home = () => {
               onChange={(e) => setSearchText(e.target.value)}
             />
             <div
+              data-testid="search-icon"
               className={`search-icon ${darkMode && "dark"}`}
               onClick={() => {
                 if (listOfRestaurants.length === 0) return;

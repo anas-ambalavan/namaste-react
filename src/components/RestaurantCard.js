@@ -11,7 +11,7 @@ const RestaurantCard = ({ resData }) => {
   const darkMode = theme?.state?.darkMode;
 
   return (
-    <div className={`res-card ${darkMode && "dark"}`}>
+    <div data-testid="resCard" className={`res-card ${darkMode && "dark"}`}>
       <div className="res-card-image-container">
         <img
           src={CDN_URL + cloudinaryImageId}
