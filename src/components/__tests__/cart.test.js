@@ -142,5 +142,6 @@ it("Should clear cart items", async () => {
   const clearCartBtn = screen.getByRole("button", { name: "Clear Cart" });
   fireEvent.click(clearCartBtn);
 
+  expect(screen.getByText("Your cart is empty")).toBeInTheDocument();
   expect(screen.getByTestId("cartItemLength").innerHTML).toBe("0");
 });
