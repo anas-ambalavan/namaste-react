@@ -1,33 +1,32 @@
-## Lesson 13 - Time for the test 🚀
+## Namaste React 🙏
 
-#### 🔸 Topics
+- This repo is based on Namaste React Web Series Course by [Akshay Saini](https://www.linkedin.com/in/akshaymarch7/) founder of [NamasteDev](https://courses.namastedev.com/learn/Namaste-React).
+- In this repository, there are 13 lessons grouped into 13 branches. The lesson details and the corresponding code changes can be viewed by switching branches.
 
-- React Testing Library.
-- Jest.
+## Lesson Topics
 
-#### 🔸 Follow the link to build the application step-by-step:
+### 📒 Lesson 1
 
-- [Swiggy Clone - Part 10](https://swiggy-clone.notion.site/Swiggy-Clone-Part-10-Testing-82d6e82fdd444c408432f003f7d323b8?pvs=4)
+### 📒 Lesson 2
 
-Please review the full source code.
+### 📒 Lesson 3
 
-## Questions:
+### 📒 Lesson 4
 
-### 1. What are the different types of testing ?
+### 📒 Lesson 5
 
-- Unit testing.
-- Integration testing.
-- End to End testing.
+### 📒 Lesson 6
 
-### 2. What is Enzyme ?
+### 📒 Lesson 7
 
-- Enzyme is a JavaScript testing utility that is primarily used for testing React components.
+### 📒 Lesson 8
 
-### 3. Enzyme vs React Testing Library ?
+### 📒 Lesson 9
 
-- Enzyme works best with class-based components. It has a lot of functionalities that make it easy to test class components and their typical functions, such as componentDidMount(),componentWillUnmount(), etc
-- React Testing Library will perform better in functional-based components.
+### 📒 Lesson 10
 
-### 4. What is Jest and why do we use it ?
+### 📒 Lesson 11
 
-- Jest is a popular JavaScript testing framework. It is widely used for testing JavaScript code, including React applications. Jest is designed to provide an all-in-one solution for writing and executing tests, from running test suites to mocking dependencies and generating test coverage reports.
+### 📒 Lesson 12
+
+### 📒 Lesson 13
