@@ -198,6 +198,17 @@ html {
   margin: 5rem 12% 3rem 12%;
 }
 
+.heading-setion {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scroll-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .cuisine-heading,
 .offers-heading,
 .res-heading {

@@ -39,3 +39,8 @@ export const THEME_MODES = Object.freeze({
   white: "white",
   dark: "dark",
 });
+
+export const Directions = Object.freeze({
+  left: "left",
+  right: "right",
+});

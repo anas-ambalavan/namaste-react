@@ -6,11 +6,13 @@ import {
 } from "@heroicons/react/24/solid";
 
 import RestaurantCard from "./RestaurantCard";
-import { API_URL, CDN_OFFERS_MEDIA_URL } from "../utils/constants";
+import { API_URL, CDN_OFFERS_MEDIA_URL, Directions } from "../utils/constants";
 import RestaurantListShimmer from "./RestaurantListShimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeContext from "../utils/ThemeContext";
+import ArrowIcon from "./ArrowIcon";
+import useScroll from "../utils/useScroll";
 
 const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -27,6 +29,14 @@ const Home = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const {
+    containerRef,
+    showLeftArrow,
+    showRightArrow,
+    scrollLeft,
+    scrollRight,
+  } = useScroll();
 
   const fetchData = async () => {
     const data = await fetch(API_URL);
@@ -54,8 +64,23 @@ const Home = () => {
   return (
     <div className={`body-container ${darkMode && "dark"}`}>
       <div className="offers-home-container">
-        <h1 className="offers-heading">Best offers for you</h1>
-        <div className="offers-home">
+        <div className="heading-setion">
+          <h1 className="offers-heading">Best offers for you</h1>
+          <div className="scroll-icons">
+            <ArrowIcon
+              direction={Directions.left}
+              handleOnClick={scrollLeft}
+              disable={!showLeftArrow}
+            />
+
+            <ArrowIcon
+              direction={Directions.right}
+              handleOnClick={scrollRight}
+              disable={!showRightArrow}
+            />
+          </div>
+        </div>
+        <div ref={containerRef} className="offers-home">
           {offers?.map((offer) => (
             <div key={offer.id}>
               <img src={CDN_OFFERS_MEDIA_URL + offer.imageId} height="250px" />
