@@ -120,6 +120,18 @@ html {
   letter-spacing: 0
 }
 
+.btn {
+  min-width: 25%;
+  padding: 15px 25px 15px 25px;
+  border: 1 solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -209,6 +221,7 @@ html {
   align-items: center;
 }
 
+.home-heading,
 .cuisine-heading,
 .offers-heading,
 .res-heading {
@@ -437,6 +450,17 @@ html {
 .reset-link {
   text-decoration: none;
   color: inherit;
+}
+
+.best-container {
+  padding-bottom: 50px;
+}
+
+.best-items {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .menu {

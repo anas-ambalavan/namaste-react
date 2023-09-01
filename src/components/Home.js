@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 
-import { API_URL } from "../utils/constants";
+import { API_URL, BestTypes } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeContext from "../utils/ThemeContext";
 import OffersHome from "./OffersHome";
 import CuisinesHome from "./CuisinesHome";
 import TopRestaurants from "./TopRestaurants";
 import RestaurantList from "./RestaurantList";
+import Best from "./Best";
 
 const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -14,6 +15,9 @@ const Home = () => {
   const [offers, setOffers] = useState([]);
   const [cuisines, setCuisines] = useState([]);
   const [topRestaurants, setTopRestaurants] = useState([]);
+  const [bestPlaces, setBestPlaces] = useState([]);
+  const [bestCuisines, setBestCuisines] = useState([]);
+  const [restaurantNearMe, setRestaurantNearMe] = useState([]);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -37,6 +41,9 @@ const Home = () => {
     setTopRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setBestPlaces(json?.data?.cards[7]?.card?.card);
+    setBestCuisines(json?.data?.cards[8]?.card?.card);
+    setRestaurantNearMe(json?.data?.cards[9]?.card?.card);
   };
 
   const onlineStatus = useOnlineStatus();
@@ -55,6 +62,9 @@ const Home = () => {
         filteredList={filteredList}
         setFilteredList={setFilteredList}
       />
+      <Best data={bestPlaces} type={BestTypes.places} />
+      <Best data={bestCuisines} type={BestTypes.cuisines} />
+      <Best data={restaurantNearMe} type={BestTypes.restaurants} />
     </div>
   );
 };

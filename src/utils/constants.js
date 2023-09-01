@@ -44,3 +44,9 @@ export const Directions = Object.freeze({
   left: "left",
   right: "right",
 });
+
+export const BestTypes = Object.freeze({
+  places: "places",
+  cuisines: "cuisines",
+  restaurants: "restaurants",
+});
