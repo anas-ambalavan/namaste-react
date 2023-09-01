@@ -15,7 +15,9 @@ const useScroll = () => {
         const maxScrollLeft = container.scrollWidth - containerWidth;
 
         setShowLeftArrow(scrollLeft > 0);
-        setShowRightArrow(scrollLeft < maxScrollLeft);
+        setShowRightArrow(
+          maxScrollLeft === 0 ? true : scrollLeft + 1 < maxScrollLeft
+        );
       }
     };
 

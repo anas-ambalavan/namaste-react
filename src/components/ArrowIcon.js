@@ -4,27 +4,29 @@ import {
 } from "@heroicons/react/24/solid";
 import { Directions } from "../utils/constants";
 
-const ArrowIcon = ({ direction, handleOnClick, disable }) => {
+const ArrowIcon = ({ direction, handleOnClick, isDisabled }) => {
   return (
     <div
       onClick={handleOnClick}
       style={{
-        background: disable ? "#eee" : "#ccc",
+        background: isDisabled ? "#eee" : "#ccc",
         height: "30px",
         width: "30px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        cursor: disable ? "" : "pointer",
+        cursor: isDisabled ? "" : "pointer",
         borderRadius: 100,
       }}
     >
       {direction === Directions.left ? (
         <ArrowSmallLeftIcon
-          style={{ height: "20px", color: disable ? "grey" : "black" }}
+          style={{ height: "20px", color: isDisabled ? "grey" : "black" }}
         />
       ) : (
-        <ArrowSmallRightIcon style={{ height: "20px", color: "black" }} />
+        <ArrowSmallRightIcon
+          style={{ height: "20px", color: isDisabled ? "grey" : "black" }}
+        />
       )}
     </div>
   );

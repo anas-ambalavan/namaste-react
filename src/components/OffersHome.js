@@ -1,0 +1,43 @@
+import useScroll from "../utils/useScroll";
+import ArrowIcon from "./ArrowIcon";
+import { CDN_OFFERS_MEDIA_URL, Directions } from "../utils/constants";
+
+const OffersHome = ({ offers }) => {
+  const {
+    containerRef,
+    showLeftArrow,
+    showRightArrow,
+    scrollLeft,
+    scrollRight,
+  } = useScroll();
+  console.log(showRightArrow);
+  return (
+    <div className="offers-home-container">
+      <div className="heading-setion">
+        <h1 className="offers-heading">Best offers for you</h1>
+        <div className="scroll-icons">
+          <ArrowIcon
+            direction={Directions.left}
+            handleOnClick={scrollLeft}
+            isDisabled={!showLeftArrow}
+          />
+
+          <ArrowIcon
+            direction={Directions.right}
+            handleOnClick={scrollRight}
+            isDisabled={!showRightArrow}
+          />
+        </div>
+      </div>
+      <div ref={containerRef} className="offers-home">
+        {offers?.map((offer) => (
+          <div key={offer.id}>
+            <img src={CDN_OFFERS_MEDIA_URL + offer.imageId} height="250px" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default OffersHome;
