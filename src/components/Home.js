@@ -8,6 +8,7 @@ import CuisinesHome from "./CuisinesHome";
 import TopRestaurants from "./TopRestaurants";
 import RestaurantList from "./RestaurantList";
 import Best from "./Best";
+import Download from "./Download";
 
 const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -18,6 +19,7 @@ const Home = () => {
   const [bestPlaces, setBestPlaces] = useState([]);
   const [bestCuisines, setBestCuisines] = useState([]);
   const [restaurantNearMe, setRestaurantNearMe] = useState([]);
+  const [downloadData, setDownloadData] = useState([]);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -44,6 +46,7 @@ const Home = () => {
     setBestPlaces(json?.data?.cards[7]?.card?.card);
     setBestCuisines(json?.data?.cards[8]?.card?.card);
     setRestaurantNearMe(json?.data?.cards[9]?.card?.card);
+    setDownloadData(json?.data?.cards[10]?.card?.card);
   };
 
   const onlineStatus = useOnlineStatus();
@@ -53,19 +56,22 @@ const Home = () => {
   }
 
   return (
-    <div className={`body-container ${darkMode && "dark"}`}>
-      <OffersHome offers={offers} />
-      <CuisinesHome cuisines={cuisines} />
-      <TopRestaurants topRestaurants={topRestaurants} />
-      <RestaurantList
-        listOfRestaurants={listOfRestaurants}
-        filteredList={filteredList}
-        setFilteredList={setFilteredList}
-      />
-      <Best data={bestPlaces} type={BestTypes.places} />
-      <Best data={bestCuisines} type={BestTypes.cuisines} />
-      <Best data={restaurantNearMe} type={BestTypes.restaurants} />
-    </div>
+    <>
+      <div className={`body-container ${darkMode && "dark"}`}>
+        <OffersHome offers={offers} />
+        <CuisinesHome cuisines={cuisines} />
+        <TopRestaurants topRestaurants={topRestaurants} />
+        <RestaurantList
+          listOfRestaurants={listOfRestaurants}
+          filteredList={filteredList}
+          setFilteredList={setFilteredList}
+        />
+        <Best data={bestPlaces} type={BestTypes.places} />
+        <Best data={bestCuisines} type={BestTypes.cuisines} />
+        <Best data={restaurantNearMe} type={BestTypes.restaurants} />
+      </div>
+      <Download data={downloadData} />
+    </>
   );
 };
 

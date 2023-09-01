@@ -463,6 +463,26 @@ html {
   gap: 10px;
 }
 
+.download-container {
+  padding: 20px 20% 20px 20%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F0F0F5;
+}
+
+.donwload-text-container {
+  max-width: 408px;
+}
+
+.donwload-text {
+  font-size: 24px;
+}
+
+.download-icons {
+  display: flex;
+  gap: 20px;
+}
+
 .menu {
   margin-left: 20%;
   margin-right: 20%;
