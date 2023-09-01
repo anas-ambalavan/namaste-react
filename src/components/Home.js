@@ -1,22 +1,25 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  AdjustmentsHorizontalIcon,
-  MagnifyingGlassIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
 
-import RestaurantCard from "./RestaurantCard";
-import { API_URL } from "../utils/constants";
-import RestaurantListShimmer from "./RestaurantListShimmer";
-import { Link } from "react-router-dom";
+import { API_URL, BestTypes } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeContext from "../utils/ThemeContext";
+import OffersHome from "./OffersHome";
+import CuisinesHome from "./CuisinesHome";
+import TopRestaurants from "./TopRestaurants";
+import RestaurantList from "./RestaurantList";
+import Best from "./Best";
+import Download from "./Download";
 
 const Home = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [currentFilters, setCurrentFilters] = useState([]);
-  const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
+  const [topRestaurants, setTopRestaurants] = useState([]);
+  const [bestPlaces, setBestPlaces] = useState([]);
+  const [bestCuisines, setBestCuisines] = useState([]);
+  const [restaurantNearMe, setRestaurantNearMe] = useState([]);
+  const [downloadData, setDownloadData] = useState([]);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -30,11 +33,20 @@ const Home = () => {
     const json = await data.json();
 
     setListOfRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredList(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setOffers(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
+    setCuisines(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
+    setTopRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setBestPlaces(json?.data?.cards[7]?.card?.card);
+    setBestCuisines(json?.data?.cards[8]?.card?.card);
+    setRestaurantNearMe(json?.data?.cards[9]?.card?.card);
+    setDownloadData(json?.data?.cards[10]?.card?.card);
   };
 
   const onlineStatus = useOnlineStatus();
@@ -44,86 +56,22 @@ const Home = () => {
   }
 
   return (
-    <div className="body-container">
-      <div className="restaurants">
-        <h1 className="res-heading">Restaurants</h1>
-        <div className="res-header-section">
-          <div className={`search-container ${darkMode && "dark"}`}>
-            <input
-              className={`search-input ${darkMode && "dark"}`}
-              type="text"
-              placeholder="Search"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            <div
-              data-testid="search-icon"
-              className={`search-icon ${darkMode && "dark"}`}
-              onClick={() => {
-                if (listOfRestaurants.length === 0) return;
-                const filteredData = listOfRestaurants.filter((restaurant) =>
-                  restaurant.info.name
-                    .toLowerCase()
-                    .includes(searchText.toLowerCase())
-                );
-                setFilteredList(filteredData);
-              }}
-            >
-              <MagnifyingGlassIcon width={20} />
-            </div>
-          </div>
-
-          <div className="filters-container">
-            <button className={`btn-filter ${darkMode && "dark"}`}>
-              <span className="filter-count">{currentFilters.length}</span>{" "}
-              Filters
-              <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
-            </button>
-            <button
-              className={`btn-filter ${darkMode && "dark"} ${
-                currentFilters.includes("top-rating") ? "active" : ""
-              }`}
-              onClick={() => {
-                if (listOfRestaurants.length === 0) return;
-                if (currentFilters.includes("top-rating")) {
-                  setFilteredList(listOfRestaurants);
-                  const filteredData = currentFilters.filter(
-                    (item) => item !== "top-rating"
-                  );
-                  setCurrentFilters(filteredData);
-                } else {
-                  const filteredData = listOfRestaurants.filter(
-                    (item) => item.info.avgRating > 4.1
-                  );
-                  setFilteredList(filteredData);
-                  setCurrentFilters((prev) => [...prev, "top-rating"]); // adding a new filter to the list of current Filters
-                }
-              }}
-            >
-              Ratings 4.1+
-              {currentFilters.includes("top-rating") && (
-                <XMarkIcon style={{ marginLeft: 5, color: "red" }} width={15} />
-              )}
-            </button>
-          </div>
-        </div>
-        {listOfRestaurants?.length === 0 ? (
-          <RestaurantListShimmer />
-        ) : (
-          <div className="restaurant-list">
-            {filteredList?.map((item) => (
-              <Link
-                to={"/restaurants/" + item.info.id}
-                key={item.info.id}
-                className="reset-link"
-              >
-                <RestaurantCard resData={item.info} />
-              </Link>
-            ))}
-          </div>
-        )}
+    <>
+      <div className={`body-container ${darkMode && "dark"}`}>
+        <OffersHome offers={offers} />
+        <CuisinesHome cuisines={cuisines} />
+        <TopRestaurants topRestaurants={topRestaurants} />
+        <RestaurantList
+          listOfRestaurants={listOfRestaurants}
+          filteredList={filteredList}
+          setFilteredList={setFilteredList}
+        />
+        <Best data={bestPlaces} type={BestTypes.places} />
+        <Best data={bestCuisines} type={BestTypes.cuisines} />
+        <Best data={restaurantNearMe} type={BestTypes.restaurants} />
       </div>
-    </div>
+      <Download data={downloadData} />
+    </>
   );
 };
 

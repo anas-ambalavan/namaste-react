@@ -120,6 +120,18 @@ html {
   letter-spacing: 0
 }
 
+.btn {
+  min-width: 25%;
+  padding: 15px 25px 15px 25px;
+  border: 1 solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -198,14 +210,64 @@ html {
   margin: 5rem 12% 3rem 12%;
 }
 
-.res-heading {
-  margin: 20px 0px 20px 0px;
+.heading-setion {
+  display: flex;
+  justify-content: space-between;
 }
 
-.restaurant-list {
+.scroll-icons {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  gap: 10px;
+  align-items: center;
+}
+
+.home-heading,
+.cuisine-heading,
+.offers-heading,
+.res-heading {
+  margin: 30px 0px 20px 0px;
+  font-size: 24px;
+  color: #000;
+}
+
+.top-restaurant-list,
+.cuisine-home-container {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.top-restaurant-list,
+.cuisine-home,
+.offers-home {
+  display: flex;
+  gap: 15;
+  overflow: scroll;
+  cursor: pointer;
+}
+
+.top-restaurant-list::-webkit-scrollbar,
+.cuisine-home::-webkit-scrollbar,
+.offers-home::-webkit-scrollbar {
+  display: none;
+}
+
+.top-restaurant-list,
+.cuisine-home,
+.offers-home {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.top-restaurants,
+.restaurants {
+  margin-top: 5rem;
+}
+
+
+.restaurant-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .res-card {
@@ -388,6 +450,37 @@ html {
 .reset-link {
   text-decoration: none;
   color: inherit;
+}
+
+.best-container {
+  padding-bottom: 50px;
+}
+
+.best-items {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.download-container {
+  padding: 20px 20% 20px 20%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F0F0F5;
+}
+
+.donwload-text-container {
+  max-width: 408px;
+}
+
+.donwload-text {
+  font-size: 24px;
+}
+
+.download-icons {
+  display: flex;
+  gap: 20px;
 }
 
 .menu {

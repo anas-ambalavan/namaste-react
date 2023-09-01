@@ -24,7 +24,7 @@ it("Should Search Res List for burger text input", async () => {
   });
 
   const cardsBeforeSearch = screen.getAllByTestId("resCard");
-  expect(cardsBeforeSearch.length).toBe(20);
+  expect(cardsBeforeSearch.length).toBe(29);
 
   const searchInput = screen.getByPlaceholderText("Search");
   const searchIcon = screen.getByTestId("search-icon");
@@ -33,7 +33,7 @@ it("Should Search Res List for burger text input", async () => {
   fireEvent.click(searchIcon);
 
   const cardsAfterSearch = screen.getAllByTestId("resCard");
-  expect(cardsAfterSearch.length).toBe(2);
+  expect(cardsAfterSearch.length).toBe(21);
 });
 
 it("Should filter the Top Rated Restaurants(ratings 4.1+)", async () => {
@@ -46,15 +46,15 @@ it("Should filter the Top Rated Restaurants(ratings 4.1+)", async () => {
   });
 
   const cardsBeforeFilter = screen.getAllByTestId("resCard");
-  expect(cardsBeforeFilter.length).toBe(20);
+  expect(cardsBeforeFilter.length).toBe(29);
 
   const topRatedBtn = screen.getByRole("button", { name: "Ratings 4.1+" });
   fireEvent.click(topRatedBtn);
 
   const cardsAfterFilter = screen.getAllByTestId("resCard");
-  expect(cardsAfterFilter.length).toBe(13);
+  expect(cardsAfterFilter.length).toBe(25);
 
   fireEvent.click(topRatedBtn);
   const cardsAfterCancelFilter = screen.getAllByTestId("resCard");
-  expect(cardsAfterCancelFilter.length).toBe(20);
+  expect(cardsAfterCancelFilter.length).toBe(29);
 });

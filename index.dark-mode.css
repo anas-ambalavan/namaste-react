@@ -8,6 +8,11 @@
     color: #dcdce6;
 }
 
+.btn.dark {
+    background-color: #1d1f2c;
+    color: #dcdce6;
+}
+
 .header.dark {
     background-color: #1d1f2c;
     -webkit-box-shadow: 0px 2px 35px 0px rgba(255, 255, 255, 0.1);
@@ -22,6 +27,10 @@
 .nav-items.dark>ul>li>a.active,
 .nav-items.dark>ul>li>a:hover {
     color: #E46D47;
+}
+
+.body-container.dark>div>div>h1 {
+    color: #dcdce6;
 }
 
 .res-card.dark {
@@ -127,6 +136,15 @@
 
 .search-icon.dark:hover {
     color: #FC8018;
+}
+
+.best-container.dark>.home-heading {
+    color: #dcdce6;
+}
+
+.download-container.dark {
+    background-color: #42464D;
+    color: #dcdce6;
 }
 
 .menu-header.dark {
