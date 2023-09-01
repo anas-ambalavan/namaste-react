@@ -1,5 +1,3 @@
-// import "../../tailwind.index.css";
-
 const Offers = () => {
   return (
     <div
