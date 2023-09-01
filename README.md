@@ -3,6 +3,11 @@
 - This repo is based on Namaste React Web Series Course by [Akshay Saini](https://www.linkedin.com/in/akshaymarch7/) founder of [NamasteDev](https://courses.namastedev.com/learn/Namaste-React).
 - In this repository, there are 13 lessons grouped into 13 branches. The lesson details and the corresponding code changes can be viewed by switching branches.
 - This main branch contains the complete Swiggy clone code with testing.
+- Follow [this blog](https://swiggy-clone.notion.site/swiggy-clone/2233869b7175410ca19053a32ff314e7?v=0e0ff63570db4f3ea222de22a5760b2b) to build the app step by step.
+
+## 🪧 Note
+
+- In this project, I am not using Tailwind CSS. Currently, I am only using basic CSS.
 
 ## Lesson Topics
 
