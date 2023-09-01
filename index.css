@@ -198,14 +198,52 @@ html {
   margin: 5rem 12% 3rem 12%;
 }
 
+.cuisine-heading,
+.offers-heading,
 .res-heading {
-  margin: 20px 0px 20px 0px;
+  margin: 30px 0px 20px 0px;
+  font-size: 24px;
+  color: #000;
 }
 
-.restaurant-list {
+.top-restaurant-list,
+.cuisine-home-container {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.top-restaurant-list,
+.cuisine-home,
+.offers-home {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  gap: 15;
+  overflow: scroll;
+  cursor: pointer;
+}
+
+.top-restaurant-list::-webkit-scrollbar,
+.cuisine-home::-webkit-scrollbar,
+.offers-home::-webkit-scrollbar {
+  display: none;
+}
+
+.top-restaurant-list,
+.cuisine-home,
+.offers-home {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.top-restaurants,
+.restaurants {
+  margin-top: 5rem;
+}
+
+
+.restaurant-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .res-card {

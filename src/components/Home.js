@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import RestaurantCard from "./RestaurantCard";
-import { API_URL } from "../utils/constants";
+import { API_URL, CDN_OFFERS_MEDIA_URL } from "../utils/constants";
 import RestaurantListShimmer from "./RestaurantListShimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -17,6 +17,9 @@ const Home = () => {
   const [currentFilters, setCurrentFilters] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
+  const [topRestaurants, setTopRestaurants] = useState([]);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -30,9 +33,14 @@ const Home = () => {
     const json = await data.json();
 
     setListOfRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredList(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setOffers(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
+    setCuisines(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
+    setTopRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -44,9 +52,53 @@ const Home = () => {
   }
 
   return (
-    <div className="body-container">
+    <div className={`body-container ${darkMode && "dark"}`}>
+      <div className="offers-home-container">
+        <h1 className="offers-heading">Best offers for you</h1>
+        <div className="offers-home">
+          {offers?.map((offer) => (
+            <div key={offer.id}>
+              <img src={CDN_OFFERS_MEDIA_URL + offer.imageId} height="250px" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="cuisine-home-container">
+        <h1 className="cuisine-heading">What's on your mind?</h1>
+        <div className="cuisine-home">
+          {cuisines?.map((cuisine) => (
+            <div key={cuisine.id}>
+              <img
+                src={CDN_OFFERS_MEDIA_URL + cuisine.imageId}
+                width="144px"
+                height="180px"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="top-restaurants">
+        <h1 className="res-heading">Top restaurant chains in Bangalore</h1>
+        {topRestaurants?.length === 0 ? (
+          <RestaurantListShimmer />
+        ) : (
+          <div className="top-restaurant-list">
+            {topRestaurants?.map((item) => (
+              <Link
+                to={"/restaurants/" + item.info.id}
+                key={item.info.id}
+                className="reset-link"
+              >
+                <RestaurantCard resData={item.info} />
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
       <div className="restaurants">
-        <h1 className="res-heading">Restaurants</h1>
+        <h1 className="res-heading">
+          Restaurants with online food delivery in Bangalore
+        </h1>
         <div className="res-header-section">
           <div className={`search-container ${darkMode && "dark"}`}>
             <input

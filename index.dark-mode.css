@@ -24,6 +24,10 @@
     color: #E46D47;
 }
 
+.body-container.dark>div>h1 {
+    color: #dcdce6;
+}
+
 .res-card.dark {
     background-color: #1d1f2c;
     padding-top: 0px;
