@@ -17,6 +17,7 @@ import Offers from "./components/Offers";
 import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
 import store from "./utils/store";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -29,6 +30,7 @@ const AppLayout = () => {
             <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
               <Header />
               <Outlet />
+              <Footer />
               <ScrollRestoration />
             </div>
           )}
