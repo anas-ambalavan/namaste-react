@@ -28,7 +28,7 @@ const FilterButton = ({ type }) => {
         currentFilterIds.includes(type?.id) ? "active" : ""
       }`}
       onClick={async () => {
-        if (listOfRestaurants.length === 0) return;
+        if (listOfRestaurants?.length === 0 || !listOfRestaurants) return;
         if (currentFilterIds.includes(type?.id)) {
           await dispatch(removeFilter({ id: type?.id }));
           await dispatch(setFilteredData());

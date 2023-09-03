@@ -393,9 +393,11 @@ html {
 }
 
 .shimmer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  gap: 10px;
+  margin-top: 30px;
 }
 
 .shimmer-card {
@@ -426,6 +428,21 @@ html {
 
 .shimmer-card>.shimmer-bottom-details>.shimmer-bottom-line.medium {
   width: 40%;
+}
+
+.home-shimmer {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  padding: 20px 0px 30px 0px;
+}
+
+.home-shimmer>p {
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .search-container {
@@ -829,6 +846,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 6rem;
 }
 
 .cart-empty-container>p,
@@ -1023,6 +1041,7 @@ html {
 
 .popular-cuisines-container {
   margin-top: 4rem;
+  padding-bottom: 10rem;
 }
 
 .popular-cuisines-container>h2 {
@@ -1460,4 +1479,11 @@ html {
 .btn-primary.clear-cart {
   padding: 10px;
   font-size: 12px;
+}
+
+.offers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
 }

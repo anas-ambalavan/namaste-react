@@ -88,7 +88,7 @@ export const FilterTypeFuntions = new Map([
     FilterTypes.lessPrice.id,
     function (item) {
       const cost = parseInt(item.info.costForTwo.match(/\d+/)?.[0]) || 0;
-      return cost <= 300;
+      return cost < 300;
     },
   ],
 ]);
