@@ -8,7 +8,6 @@ import {
 
 import ThemeContext from "../utils/ThemeContext";
 import RestaurantCard from "./RestaurantCard";
-import RestaurantListShimmer from "./RestaurantListShimmer";
 import { setfilteredResList } from "../utils/store/resSlice";
 import FilterButton from "./FilterButton";
 import { FilterTypes } from "../utils/constants";
@@ -26,7 +25,7 @@ const RestaurantList = () => {
   const currentFilters = useSelector((store) => store.res.filters);
 
   const search = () => {
-    if (listOfRestaurants?.length === 0) return;
+    if (listOfRestaurants?.length === 0 || !listOfRestaurants) return;
     const filteredData = listOfRestaurants?.filter((restaurant) =>
       restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -81,9 +80,7 @@ const RestaurantList = () => {
           <FilterButton type={FilterTypes.lessPrice} />
         </div>
       </div>
-      {listOfRestaurants?.length === 0 ? (
-        <RestaurantListShimmer />
-      ) : filteredList?.length === 0 ? (
+      {filteredList?.length === 0 ? (
         <div className="no-found-text">
           <p>No restaurants found!</p>
         </div>

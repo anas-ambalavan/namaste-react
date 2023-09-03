@@ -11,6 +11,8 @@ import RestaurantList from "./RestaurantList";
 import Best from "./Best";
 import Download from "./Download";
 import { loadData } from "../utils/store/resSlice";
+import HomeShimmer from "./HomeShimmer";
+import RestaurantListShimmer from "./RestaurantListShimmer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const Home = () => {
   const bestPlaces = useSelector((store) => store.res.bestResPlaces);
   const bestCuisines = useSelector((store) => store.res.bestResCuisines);
   const restaurantNearMe = useSelector((store) => store.res.restaurantNearMe);
+  const listOfRestaurants = useSelector((store) => store.res.resList);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -39,7 +42,12 @@ const Home = () => {
     return <h1>Looks like you're offline!</h1>;
   }
 
-  return (
+  return listOfRestaurants?.length === 0 ? (
+    <>
+      <HomeShimmer />
+      <RestaurantListShimmer />
+    </>
+  ) : (
     <>
       <div className={`body-container ${darkMode && "dark"}`}>
         <OffersHome />
