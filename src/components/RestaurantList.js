@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import {
   AdjustmentsHorizontalIcon,
   MagnifyingGlassIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/solid";
 
 import ThemeContext from "../utils/ThemeContext";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantListShimmer from "./RestaurantListShimmer";
 import { setfilteredResList } from "../utils/store/resSlice";
+import FilterButton from "./FilterButton";
+import { FilterTypes } from "../utils/constants";
 
 const RestaurantList = () => {
-  const [currentFilters, setCurrentFilters] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const RestaurantList = () => {
 
   const listOfRestaurants = useSelector((store) => store.res.resList);
   const filteredList = useSelector((store) => store.res.filteredResList);
+  const currentFilters = useSelector((store) => store.res.filters);
 
   return (
     <div className="restaurants">
@@ -65,32 +66,7 @@ const RestaurantList = () => {
             Filters
             <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
           </button>
-          <button
-            className={`btn-filter ${darkMode && "dark"} ${
-              currentFilters.includes("top-rating") ? "active" : ""
-            }`}
-            onClick={() => {
-              if (listOfRestaurants.length === 0) return;
-              if (currentFilters.includes("top-rating")) {
-                dispatch(setfilteredResList(listOfRestaurants));
-                const filteredData = currentFilters.filter(
-                  (item) => item !== "top-rating"
-                );
-                setCurrentFilters(filteredData);
-              } else {
-                const filteredData = listOfRestaurants.filter(
-                  (item) => item.info.avgRating > 4.1
-                );
-                dispatch(setfilteredResList(filteredData));
-                setCurrentFilters((prev) => [...prev, "top-rating"]); // adding a new filter to the list of current Filters
-              }
-            }}
-          >
-            Ratings 4.1+
-            {currentFilters.includes("top-rating") && (
-              <XMarkIcon style={{ marginLeft: 5, color: "red" }} width={15} />
-            )}
-          </button>
+          <FilterButton type={FilterTypes.topRated} />
         </div>
       </div>
       {listOfRestaurants?.length === 0 ? (

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { FilterTypes } from "../constants";
+
 const initialState = {
   resList: [],
   filteredResList: [],
@@ -39,8 +41,32 @@ const resSlice = createSlice({
     setfilteredResList: (state, action) => {
       state.filteredResList = action.payload;
     },
-    addFilter: (state, action) => {},
-    removeFilter: (state, action) => {},
+    addFilter: (state, action) => {
+      switch (action.payload.type) {
+        case FilterTypes.topRated.id: {
+          state.filteredResList = state.resList.filter(
+            (item) => item.info.avgRating >= 4.3
+          );
+          state.filters.push(action.payload.type);
+        }
+        default:
+          return state;
+      }
+    },
+    removeFilter: (state, action) => {
+      switch (action.payload.type) {
+        case FilterTypes.topRated.id: {
+          state.filteredResList = state.resList.filter(
+            (item) => item.info.avgRating >= 0
+          );
+          state.filters = state.filters.filter(
+            (item) => item !== FilterTypes.topRated.id
+          );
+        }
+        default:
+          return state;
+      }
+    },
   },
 });
 

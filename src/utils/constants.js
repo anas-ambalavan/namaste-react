@@ -50,3 +50,7 @@ export const BestTypes = Object.freeze({
   cuisines: "cuisines",
   restaurants: "restaurants",
 });
+
+export const FilterTypes = Object.freeze({
+  topRated: { id: "topRated", label: "Ratings 4.3+" },
+});
