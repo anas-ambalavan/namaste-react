@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -25,6 +25,23 @@ const RestaurantList = () => {
   const filteredList = useSelector((store) => store.res.filteredResList);
   const currentFilters = useSelector((store) => store.res.filters);
 
+  const search = () => {
+    if (listOfRestaurants.length === 0) return;
+    const filteredData = listOfRestaurants.filter((restaurant) =>
+      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    dispatch(setfilteredResList(filteredData));
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      search();
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchText.length]);
+
   return (
     <div className="restaurants">
       <div>
@@ -44,15 +61,7 @@ const RestaurantList = () => {
           <div
             data-testid="search-icon"
             className={`search-icon ${darkMode && "dark"}`}
-            onClick={() => {
-              if (listOfRestaurants.length === 0) return;
-              const filteredData = listOfRestaurants.filter((restaurant) =>
-                restaurant.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
-              );
-              dispatch(setfilteredResList(filteredData));
-            }}
+            onClick={search}
           >
             <MagnifyingGlassIcon width={20} />
           </div>
