@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import useScroll from "../utils/useScroll";
@@ -5,7 +6,7 @@ import RestaurantCard from "./RestaurantCard";
 import ArrowIcon from "./ArrowIcon";
 import { Directions } from "../utils/constants";
 
-const TopRestaurants = ({ topRestaurants }) => {
+const TopRestaurants = () => {
   const {
     containerRef,
     showLeftArrow,
@@ -13,6 +14,9 @@ const TopRestaurants = ({ topRestaurants }) => {
     scrollLeft,
     scrollRight,
   } = useScroll();
+
+  const topRestaurants = useSelector((store) => store.res.topResList);
+
   return (
     <div className="top-restaurants">
       <div className="heading-setion">

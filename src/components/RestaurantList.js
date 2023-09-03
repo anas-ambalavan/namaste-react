@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   AdjustmentsHorizontalIcon,
@@ -9,17 +10,20 @@ import {
 import ThemeContext from "../utils/ThemeContext";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantListShimmer from "./RestaurantListShimmer";
+import { setfilteredResList } from "../utils/store/resSlice";
 
-const RestaurantList = ({
-  listOfRestaurants,
-  filteredList,
-  setFilteredList,
-}) => {
+const RestaurantList = () => {
   const [currentFilters, setCurrentFilters] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const dispatch = useDispatch();
+
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
+
+  const listOfRestaurants = useSelector((store) => store.res.resList);
+  const filteredList = useSelector((store) => store.res.filteredResList);
+
   return (
     <div className="restaurants">
       <div>
@@ -46,7 +50,7 @@ const RestaurantList = ({
                   .toLowerCase()
                   .includes(searchText.toLowerCase())
               );
-              setFilteredList(filteredData);
+              dispatch(setfilteredResList(filteredData));
             }}
           >
             <MagnifyingGlassIcon width={20} />
@@ -68,7 +72,7 @@ const RestaurantList = ({
             onClick={() => {
               if (listOfRestaurants.length === 0) return;
               if (currentFilters.includes("top-rating")) {
-                setFilteredList(listOfRestaurants);
+                dispatch(setfilteredResList(listOfRestaurants));
                 const filteredData = currentFilters.filter(
                   (item) => item !== "top-rating"
                 );
@@ -77,7 +81,7 @@ const RestaurantList = ({
                 const filteredData = listOfRestaurants.filter(
                   (item) => item.info.avgRating > 4.1
                 );
-                setFilteredList(filteredData);
+                dispatch(setfilteredResList(filteredData));
                 setCurrentFilters((prev) => [...prev, "top-rating"]); // adding a new filter to the list of current Filters
               }
             }}

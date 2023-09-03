@@ -1,11 +1,15 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 
-const Download = ({ data }) => {
+const Download = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
+
+  const data = useSelector((store) => store.res.downloadData);
+
   return (
     <div className={`download-container ${darkMode && "dark"}`}>
       <div className="donwload-text-container">

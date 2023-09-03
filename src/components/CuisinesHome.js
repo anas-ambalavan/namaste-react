@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
+
 import useScroll from "../utils/useScroll";
 import ArrowIcon from "./ArrowIcon";
 import { CDN_OFFERS_MEDIA_URL, Directions } from "../utils/constants";
 
-const CuisinesHome = ({ cuisines }) => {
+const CuisinesHome = () => {
   const {
     containerRef,
     showLeftArrow,
@@ -10,6 +12,9 @@ const CuisinesHome = ({ cuisines }) => {
     scrollLeft,
     scrollRight,
   } = useScroll();
+
+  const cuisines = useSelector((store) => store.res.cuisines);
+
   return (
     <div className="cuisine-home-container">
       <div className="heading-setion">
