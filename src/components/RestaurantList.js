@@ -26,8 +26,8 @@ const RestaurantList = () => {
   const currentFilters = useSelector((store) => store.res.filters);
 
   const search = () => {
-    if (listOfRestaurants.length === 0) return;
-    const filteredData = listOfRestaurants.filter((restaurant) =>
+    if (listOfRestaurants?.length === 0) return;
+    const filteredData = listOfRestaurants?.filter((restaurant) =>
       restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
     dispatch(setfilteredResList(filteredData));
