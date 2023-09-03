@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { FilterTypes } from "../constants";
+import { FilterTypeFuntions } from "../constants";
 
 const initialState = {
   resList: [],
@@ -41,36 +41,32 @@ const resSlice = createSlice({
     setfilteredResList: (state, action) => {
       state.filteredResList = action.payload;
     },
+    setFilteredData: (state) => {
+      const resList = state.resList;
+      const filteredResList = state.filters.reduce((acc, curr) => {
+        const logic = FilterTypeFuntions.get(curr.id);
+        acc = acc.filter((item) => logic(item));
+        return acc;
+      }, resList);
+      state.filteredResList = filteredResList;
+    },
     addFilter: (state, action) => {
-      switch (action.payload.type) {
-        case FilterTypes.topRated.id: {
-          state.filteredResList = state.resList.filter(
-            (item) => item.info.avgRating >= 4.3
-          );
-          state.filters.push(action.payload.type);
-        }
-        default:
-          return state;
-      }
+      state.filters.push(action.payload.type);
     },
     removeFilter: (state, action) => {
-      switch (action.payload.type) {
-        case FilterTypes.topRated.id: {
-          state.filteredResList = state.resList.filter(
-            (item) => item.info.avgRating >= 0
-          );
-          state.filters = state.filters.filter(
-            (item) => item !== FilterTypes.topRated.id
-          );
-        }
-        default:
-          return state;
-      }
+      state.filters = state.filters.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
   },
 });
 
-export const { loadData, addFilter, removeFilter, setfilteredResList } =
-  resSlice.actions;
+export const {
+  loadData,
+  addFilter,
+  removeFilter,
+  setfilteredResList,
+  setFilteredData,
+} = resSlice.actions;
 
 export default resSlice.reducer;

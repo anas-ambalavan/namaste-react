@@ -67,10 +67,17 @@ const RestaurantList = () => {
             <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
           </button>
           <FilterButton type={FilterTypes.topRated} />
+          <FilterButton type={FilterTypes.fastDelivery} />
+          <FilterButton type={FilterTypes.priceBtw} />
+          <FilterButton type={FilterTypes.lessPrice} />
         </div>
       </div>
       {listOfRestaurants?.length === 0 ? (
         <RestaurantListShimmer />
+      ) : filteredList?.length === 0 ? (
+        <div className="no-found-text">
+          <p>No restaurants found!</p>
+        </div>
       ) : (
         <div className="restaurant-list">
           {filteredList?.map((item) => (

@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 import ThemeContext from "../utils/ThemeContext";
-import { addFilter, removeFilter } from "../utils/store/resSlice";
+import {
+  addFilter,
+  removeFilter,
+  setFilteredData,
+} from "../utils/store/resSlice";
 
 const FilterButton = ({ type }) => {
   const theme = useContext(ThemeContext);
@@ -13,23 +17,29 @@ const FilterButton = ({ type }) => {
 
   const listOfRestaurants = useSelector((store) => store.res.resList);
   const currentFilters = useSelector((store) => store.res.filters);
+  const currentFilterIds = currentFilters?.reduce((acc, curr) => {
+    acc.push(curr.id);
+    return acc;
+  }, []);
 
   return (
     <button
       className={`btn-filter ${darkMode && "dark"} ${
-        currentFilters.includes(type?.id) ? "active" : ""
+        currentFilterIds.includes(type?.id) ? "active" : ""
       }`}
-      onClick={() => {
+      onClick={async () => {
         if (listOfRestaurants.length === 0) return;
-        if (currentFilters.includes(type?.id)) {
-          dispatch(removeFilter({ type: type?.id }));
+        if (currentFilterIds.includes(type?.id)) {
+          await dispatch(removeFilter({ id: type?.id }));
+          await dispatch(setFilteredData());
         } else {
-          dispatch(addFilter({ type: type?.id }));
+          await dispatch(addFilter({ type: type }));
+          await dispatch(setFilteredData());
         }
       }}
     >
       {type?.label}
-      {currentFilters.includes(type?.id) && (
+      {currentFilterIds.includes(type?.id) && (
         <XMarkIcon style={{ marginLeft: 5, color: "red" }} width={15} />
       )}
     </button>

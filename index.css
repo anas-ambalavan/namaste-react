@@ -270,6 +270,18 @@ html {
   gap: 10px;
 }
 
+.no-found-text {
+  margin: 25px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.no-found-text>p {
+  font-size: large;
+  font-weight: 800;
+}
+
 .res-card {
   /* position: relative; */
   margin: 5px;
