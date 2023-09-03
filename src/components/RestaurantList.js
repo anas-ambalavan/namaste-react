@@ -61,7 +61,7 @@ const RestaurantList = () => {
           <div
             data-testid="search-icon"
             className={`search-icon ${darkMode && "dark"}`}
-            onClick={search}
+            // onClick={search}
           >
             <MagnifyingGlassIcon width={20} />
           </div>
