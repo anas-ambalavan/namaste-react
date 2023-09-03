@@ -1,25 +1,47 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   AdjustmentsHorizontalIcon,
   MagnifyingGlassIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/solid";
 
 import ThemeContext from "../utils/ThemeContext";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantListShimmer from "./RestaurantListShimmer";
+import { setfilteredResList } from "../utils/store/resSlice";
+import FilterButton from "./FilterButton";
+import { FilterTypes } from "../utils/constants";
 
-const RestaurantList = ({
-  listOfRestaurants,
-  filteredList,
-  setFilteredList,
-}) => {
-  const [currentFilters, setCurrentFilters] = useState([]);
+const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
+
+  const dispatch = useDispatch();
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
+
+  const listOfRestaurants = useSelector((store) => store.res.resList);
+  const filteredList = useSelector((store) => store.res.filteredResList);
+  const currentFilters = useSelector((store) => store.res.filters);
+
+  const search = () => {
+    if (listOfRestaurants.length === 0) return;
+    const filteredData = listOfRestaurants.filter((restaurant) =>
+      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    dispatch(setfilteredResList(filteredData));
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      search();
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchText.length]);
+
   return (
     <div className="restaurants">
       <div>
@@ -39,15 +61,7 @@ const RestaurantList = ({
           <div
             data-testid="search-icon"
             className={`search-icon ${darkMode && "dark"}`}
-            onClick={() => {
-              if (listOfRestaurants.length === 0) return;
-              const filteredData = listOfRestaurants.filter((restaurant) =>
-                restaurant.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
-              );
-              setFilteredList(filteredData);
-            }}
+            // onClick={search}
           >
             <MagnifyingGlassIcon width={20} />
           </div>
@@ -55,40 +69,24 @@ const RestaurantList = ({
 
         <div className="filters-container">
           <button className={`btn-filter ${darkMode && "dark"}`}>
-            <span className="filter-count">{currentFilters.length}</span>{" "}
+            {currentFilters.length !== 0 && (
+              <span className="filter-count">{currentFilters.length}</span>
+            )}
             Filters
             <AdjustmentsHorizontalIcon style={{ marginLeft: 5 }} width={15} />
           </button>
-          <button
-            className={`btn-filter ${darkMode && "dark"} ${
-              currentFilters.includes("top-rating") ? "active" : ""
-            }`}
-            onClick={() => {
-              if (listOfRestaurants.length === 0) return;
-              if (currentFilters.includes("top-rating")) {
-                setFilteredList(listOfRestaurants);
-                const filteredData = currentFilters.filter(
-                  (item) => item !== "top-rating"
-                );
-                setCurrentFilters(filteredData);
-              } else {
-                const filteredData = listOfRestaurants.filter(
-                  (item) => item.info.avgRating > 4.1
-                );
-                setFilteredList(filteredData);
-                setCurrentFilters((prev) => [...prev, "top-rating"]); // adding a new filter to the list of current Filters
-              }
-            }}
-          >
-            Ratings 4.1+
-            {currentFilters.includes("top-rating") && (
-              <XMarkIcon style={{ marginLeft: 5, color: "red" }} width={15} />
-            )}
-          </button>
+          <FilterButton type={FilterTypes.topRated} />
+          <FilterButton type={FilterTypes.fastDelivery} />
+          <FilterButton type={FilterTypes.priceBtw} />
+          <FilterButton type={FilterTypes.lessPrice} />
         </div>
       </div>
       {listOfRestaurants?.length === 0 ? (
         <RestaurantListShimmer />
+      ) : filteredList?.length === 0 ? (
+        <div className="no-found-text">
+          <p>No restaurants found!</p>
+        </div>
       ) : (
         <div className="restaurant-list">
           {filteredList?.map((item) => (

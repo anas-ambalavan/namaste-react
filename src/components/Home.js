@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { API_URL, BestTypes } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -9,17 +10,14 @@ import TopRestaurants from "./TopRestaurants";
 import RestaurantList from "./RestaurantList";
 import Best from "./Best";
 import Download from "./Download";
+import { loadData } from "../utils/store/resSlice";
 
 const Home = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
-  const [offers, setOffers] = useState([]);
-  const [cuisines, setCuisines] = useState([]);
-  const [topRestaurants, setTopRestaurants] = useState([]);
-  const [bestPlaces, setBestPlaces] = useState([]);
-  const [bestCuisines, setBestCuisines] = useState([]);
-  const [restaurantNearMe, setRestaurantNearMe] = useState([]);
-  const [downloadData, setDownloadData] = useState([]);
+  const dispatch = useDispatch();
+
+  const bestPlaces = useSelector((store) => store.res.bestResPlaces);
+  const bestCuisines = useSelector((store) => store.res.bestResCuisines);
+  const restaurantNearMe = useSelector((store) => store.res.restaurantNearMe);
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -32,21 +30,7 @@ const Home = () => {
     const data = await fetch(API_URL);
     const json = await data.json();
 
-    setListOfRestaurants(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredList(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setOffers(json?.data?.cards[0]?.card?.card?.imageGridCards?.info);
-    setCuisines(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
-    setTopRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setBestPlaces(json?.data?.cards[7]?.card?.card);
-    setBestCuisines(json?.data?.cards[8]?.card?.card);
-    setRestaurantNearMe(json?.data?.cards[9]?.card?.card);
-    setDownloadData(json?.data?.cards[10]?.card?.card);
+    dispatch(loadData(json?.data));
   };
 
   const onlineStatus = useOnlineStatus();
@@ -58,19 +42,15 @@ const Home = () => {
   return (
     <>
       <div className={`body-container ${darkMode && "dark"}`}>
-        <OffersHome offers={offers} />
-        <CuisinesHome cuisines={cuisines} />
-        <TopRestaurants topRestaurants={topRestaurants} />
-        <RestaurantList
-          listOfRestaurants={listOfRestaurants}
-          filteredList={filteredList}
-          setFilteredList={setFilteredList}
-        />
+        <OffersHome />
+        <CuisinesHome />
+        <TopRestaurants />
+        <RestaurantList />
         <Best data={bestPlaces} type={BestTypes.places} />
         <Best data={bestCuisines} type={BestTypes.cuisines} />
         <Best data={restaurantNearMe} type={BestTypes.restaurants} />
       </div>
-      <Download data={downloadData} />
+      <Download />
     </>
   );
 };
