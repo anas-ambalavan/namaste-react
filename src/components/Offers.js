@@ -3,9 +3,8 @@ const Offers = () => {
     <div
       className="body-container dark"
       style={{
-        marginTop: "5%",
-        marginLeft: "10%",
-        minHeight: "calc(100vh - 380px)",
+        marginBottom: "0px",
+        minHeight: "70vh",
       }}
     >
       <h1 style={{ fontSize: 20, fontWeight: 600 }}>

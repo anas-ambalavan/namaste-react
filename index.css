@@ -848,6 +848,8 @@ html {
   justify-content: center;
   align-items: center;
   padding-bottom: 6rem;
+  min-height: 70vh;
+  margin-bottom: 0px;
 }
 
 .cart-empty-container>p,
@@ -1018,10 +1020,12 @@ html {
 
 .search-wfull-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   margin-left: 20%;
   margin-right: 20%;
+  min-height: 70vh;
+  margin-bottom: 0px;
 }
 
 .search-input-wfull-container {
