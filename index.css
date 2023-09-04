@@ -1037,11 +1037,13 @@ html {
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
+  align-self: center;
 }
 
 .search-input-wfull-container>.search-input {
   font-size: 14px;
   font-weight: 600;
+  padding-right: 10px;
 }
 
 .popular-cuisines-container {
