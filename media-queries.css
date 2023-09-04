@@ -121,6 +121,14 @@
         justify-items: center;
     }
 
+    .res-card {
+        width: 220px;
+    }
+
+    .res-card-cuisine {
+        max-width: 180px;
+    }
+
     .best-items {
         margin-top: 25px;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -169,6 +177,9 @@
 
 /* Large Screens (Desktops - Small) */
 @media (min-width: 992px) and (max-width: 1199px) {
+    .header-container {
+        margin: 0;
+    }
 
     .restaurant-list {
         grid-template-columns: repeat(3, 1fr);
