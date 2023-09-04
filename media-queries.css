@@ -84,6 +84,27 @@
         text-align: center;
     }
 
+    .support-main {
+        padding: 20px 0px 0px 0px;
+    }
+
+    .support-header {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .support-body {
+        padding: 0px;
+    }
+
+    .support-sidenav {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .support-sidenav>ul>li>a {
+        padding: 10px 5px 10px 5px;
+    }
+
 }
 
 /* Small - Medium Screens (Tablets - Landscape) */
