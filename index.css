@@ -306,7 +306,7 @@ html {
 }
 
 .res-card-image-container {
-  width: 260px;
+  width: 100%;
   height: 170px;
   border-radius: 20px;
   overflow: hidden;
@@ -345,7 +345,7 @@ html {
   margin-top: 5px;
   font-size: medium;
   color: #686B78;
-  width: 240px;
+  max-width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -384,6 +384,7 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .btn-filter.active {

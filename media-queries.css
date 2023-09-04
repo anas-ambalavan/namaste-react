@@ -1,0 +1,241 @@
+/* Extra Small Screens (Phones) */
+@media (max-width: 575px) {
+
+    .header-container {
+        margin: 0;
+    }
+
+    .current-location {
+        display: none;
+    }
+
+    .nav-items {
+        display: none;
+    }
+
+    .scroll-icons {
+        margin-left: 10px;
+    }
+
+    .res-header-section {
+        flex-direction: column;
+    }
+
+    .search-container {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .filters-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .restaurant-list {
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+    }
+
+    .best-items {
+        margin-top: 25px;
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 10px;
+    }
+
+    .download-container {
+        padding: 10px 5px 20px 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .download-icons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .donwload-text-container {
+        max-width: 100%;
+        padding: 20px 0px 20px 0px;
+    }
+
+    .donwload-text {
+        text-align: center;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer-logo-container {
+        align-items: center;
+    }
+
+    .footer-item {
+        justify-self: center !important;
+    }
+
+    .shimmer-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .home-shimmer>p {
+        text-align: center;
+    }
+
+}
+
+/* Small - Medium Screens (Tablets - Landscape) */
+@media (min-width: 576px) and (max-width: 991px) {
+
+    .header-container {
+        margin: 0;
+    }
+
+    .current-location {
+        display: none;
+    }
+
+    .nav-items {
+        width: 80%;
+    }
+
+    .res-header-section {
+        flex-direction: column;
+    }
+
+    .search-container {
+        width: 80%;
+        margin: 0px;
+    }
+
+    .filters-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px
+    }
+
+    .restaurant-list {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+
+    .res-card {
+        width: 220px;
+    }
+
+    .res-card-cuisine {
+        max-width: 180px;
+    }
+
+    .best-items {
+        margin-top: 25px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
+    }
+
+    .download-container {
+        padding: 10px 5px 20px 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .download-icons {
+        justify-content: center;
+    }
+
+    .donwload-text-container {
+        max-width: 100%;
+        padding: 20px 0px 20px 0px;
+    }
+
+    .donwload-text {
+        text-align: center;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-logo-container {
+        align-items: center;
+    }
+
+    .footer-item {
+        justify-self: center !important;
+    }
+
+    .shimmer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-shimmer>p {
+        text-align: center;
+    }
+}
+
+/* Large Screens (Desktops - Small) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .header-container {
+        margin: 0;
+    }
+
+    .restaurant-list {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+    .res-card {
+        width: 220px;
+    }
+
+    .res-card-cuisine {
+        max-width: 180px;
+    }
+
+    .best-items {
+        margin-top: 25px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+    }
+
+    .download-container {
+        padding: 4rem;
+    }
+
+    .shimmer-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home-shimmer>p {
+        text-align: center;
+    }
+}
+
+/* Extra Large Screens (Desktops - Large) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+
+    .restaurant-list {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+
+    .best-items {
+        margin-top: 25px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+    }
+
+    .download-container {
+        padding: 4rem;
+    }
+
+    .shimmer-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home-shimmer>p {
+        text-align: center;
+    }
+}
