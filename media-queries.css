@@ -105,6 +105,40 @@
         padding: 10px 5px 10px 5px;
     }
 
+    .cart-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .cart-account-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-card-details {
+        margin-left: 10px;
+    }
+
+    .cart-account-actions {
+        justify-content: center;
+    }
+
+    .cart-left-container {
+        max-width: 320px;
+        margin-right: 0px;
+    }
+
+    .cart-info {
+        max-width: 320px;
+    }
+
+    .cart-account-actions>button {
+        font-size: 12px;
+        padding: 5px 10px 5px 10px;
+        margin-right: 10px;
+    }
+
 }
 
 /* Small - Medium Screens (Tablets - Landscape) */
@@ -194,6 +228,15 @@
     .home-shimmer>p {
         text-align: center;
     }
+
+    .cart-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .cart-left-container {
+        margin-right: 0px;
+    }
 }
 
 /* Large Screens (Desktops - Small) */
@@ -231,6 +274,15 @@
 
     .home-shimmer>p {
         text-align: center;
+    }
+
+    .cart-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .cart-left-container {
+        margin-right: 0px;
     }
 }
 
