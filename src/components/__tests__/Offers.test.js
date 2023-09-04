@@ -15,7 +15,7 @@ describe("Offer Component tests", () => {
   test("Should loads heading", () => {
     render(<Offers />);
 
-    const heading = screen.getByRole("heading");
+    const heading = screen.getByRole("heading", { name: "Coming Soon..." });
 
     expect(heading).toBeInTheDocument();
   });
