@@ -25,7 +25,7 @@ const AccordionItem = ({
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
       >
         <div>
-          {title}
+          {title?.toLowerCase()}
           {type === AccordionType.menu && ` - (${itemDescriptions.length})`}
         </div>
         <div>

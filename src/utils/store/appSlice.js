@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isMenuOpen: false,
+  showModal: false,
 };
 
 const appSlice = createSlice({
@@ -11,9 +12,12 @@ const appSlice = createSlice({
     toggleMenu: (state, action) => {
       state.isMenuOpen = !state.isMenuOpen;
     },
+    toggleModal: (state, action) => {
+      state.showModal = !state.showModal;
+    },
   },
 });
 
-export const { toggleMenu } = appSlice.actions;
+export const { toggleMenu, toggleModal } = appSlice.actions;
 
 export default appSlice.reducer;

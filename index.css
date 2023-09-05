@@ -748,6 +748,84 @@ html {
   display: none;
 }
 
+.btn-browse-menu-container {
+  position: fixed;
+  bottom: 50;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.btn-browse-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background: #5D8ED4;
+  color: #fff;
+  border: 0;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 50%;
+  max-height: 320px;
+  max-width: 500px;
+  overflow-y: auto;
+  position: relative;
+  margin-bottom: 50px;
+  border-radius: 10px;
+}
+
+.modal-scrollable {
+  padding: 10px 20px;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-content>ul>li {
+  list-style: none;
+}
+
+.modal-menu {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.modal-menu>p {
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+/* .modal-content::-webkit-scrollbar {
+  width: 0.4em;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+} */
+
 .popular-cuisines::-webkit-scrollbar {
   display: none;
 }
@@ -838,6 +916,7 @@ html {
 .accordion-title {
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 
 .accordion-content {
