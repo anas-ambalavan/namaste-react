@@ -329,6 +329,13 @@ html {
   scrollbar-width: none;
 }
 
+.cuisine-home-image {
+  background-size: cover;
+  background-position: center;
+  border-radius: 10%;
+}
+
+
 .top-restaurants,
 .restaurants {
   margin-top: 5rem;
