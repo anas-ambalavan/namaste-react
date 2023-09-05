@@ -72,6 +72,7 @@ const AccordionListItem = ({ data, resInfo }) => {
       </div>
       <div className="accordion-action">
         <img
+          loading="lazy"
           className="accordion-item-image"
           src={CDN_URL + imageId}
           alt="item image"

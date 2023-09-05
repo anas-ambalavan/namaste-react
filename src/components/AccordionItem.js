@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import { AccordionType } from "../utils/constants";
@@ -14,6 +14,7 @@ const AccordionItem = ({
   setShowIndex,
   resInfo,
 }) => {
+  const content = useRef(null);
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
@@ -40,8 +41,14 @@ const AccordionItem = ({
           <p className="accordion-desc">{itemDescriptions}</p>
         </div>
       )}
-      {showItems && type === AccordionType.menu && (
-        <div className="accordion-content">
+      {type === AccordionType.menu && (
+        <div
+          ref={content}
+          className="accordion-content"
+          style={{
+            maxHeight: showItems ? `${content.current.scrollHeight}px` : "0px",
+          }}
+        >
           {itemDescriptions.map((item) => {
             return (
               <AccordionListItem

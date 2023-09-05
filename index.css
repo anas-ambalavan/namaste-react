@@ -840,6 +840,11 @@ html {
   justify-content: space-between;
 }
 
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
 .accordion-item-card {
   display: flex;
   justify-content: space-between;
