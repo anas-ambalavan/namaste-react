@@ -55,6 +55,7 @@ const AccordionItem = ({
                 key={item?.card?.info?.id}
                 data={item?.card?.info}
                 resInfo={resInfo}
+                testId={showItems ? true : false}
               />
             );
           })}

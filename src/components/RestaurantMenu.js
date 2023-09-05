@@ -35,7 +35,8 @@ const RestaurantMenu = () => {
   const offerDetails =
     resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
-  const menuItems = resInfo?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
+  const menuItems =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   return (
     <div className="body-container menu">
