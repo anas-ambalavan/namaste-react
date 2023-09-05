@@ -18,6 +18,7 @@ import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
 import store from "./utils/store";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
+import SideMenu from "./components/SideMenu";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -29,6 +30,7 @@ const AppLayout = () => {
           {(data) => (
             <div className={`app-container ${data?.state?.darkMode && "dark"}`}>
               <Header />
+              <SideMenu />
               <Outlet />
               <Footer />
               <ScrollRestoration />

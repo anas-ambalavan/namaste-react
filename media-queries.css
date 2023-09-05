@@ -13,6 +13,10 @@
         display: none;
     }
 
+    .menu-icon {
+        display: block;
+    }
+
     .scroll-icons {
         margin-left: 10px;
     }
