@@ -80,6 +80,18 @@
         justify-self: center !important;
     }
 
+    .menu {
+        margin: 20px
+    }
+
+    .accordion-item-card .accordion-action {
+        align-self: center;
+    }
+
+    .accordion-desc {
+        text-align: justify;
+    }
+
     .shimmer-container {
         grid-template-columns: repeat(1, 1fr);
     }
