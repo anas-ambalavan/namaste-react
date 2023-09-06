@@ -69,8 +69,21 @@ const MenuModal = ({
           <ul className="modal-menu-items">
             {menuItems?.map((item, index) => (
               <li className="modal-menu" key={item?.card?.card?.title}>
-                <p onClick={() => onToggleMenuItem(item, index)}>
+                <p
+                  className="modal-menu-title"
+                  onClick={() => onToggleMenuItem(item, index)}
+                >
                   {item?.card?.card?.title?.toLowerCase()}
+                  {showIndex === itemIndex(item, index) && (
+                    <span
+                      style={{
+                        marginLeft: 5,
+                        fontSize: 8,
+                      }}
+                    >
+                      🔶
+                    </span>
+                  )}
                 </p>
                 <p>{itemsCount(item)}</p>
               </li>

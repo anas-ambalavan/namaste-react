@@ -84,6 +84,10 @@
         margin: 20px
     }
 
+    .modal-content {
+        width: 90%;
+    }
+
     .accordion-item-card .accordion-action {
         align-self: center;
     }
