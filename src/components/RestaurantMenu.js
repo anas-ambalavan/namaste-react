@@ -2,11 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ChevronDownIcon,
-  Squares2X2Icon,
-  StarIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
 import { AccordionType } from "../utils/constants";

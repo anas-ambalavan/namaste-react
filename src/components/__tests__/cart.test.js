@@ -27,7 +27,7 @@ it("Should show accordion items", async () => {
     );
   });
 
-  const accordionItem = screen.getByText("Kings Premium Burgers - (4)");
+  const accordionItem = screen.getByText("kings premium burgers - (4)");
   fireEvent.click(accordionItem);
 
   expect(screen.getAllByTestId("foodItem").length).toBe(4);
@@ -45,7 +45,7 @@ it("Should add items to cart", async () => {
     );
   });
 
-  const accordionItem = screen.getByText("Recommended - (21)");
+  const accordionItem = screen.getByText("recommended - (21)");
   fireEvent.click(accordionItem);
 
   const addBtn = screen.getAllByTestId("addBtn");
