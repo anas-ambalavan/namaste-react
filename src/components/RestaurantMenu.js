@@ -17,6 +17,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ThemeContext from "../utils/ThemeContext";
 import MenuModal from "./MenuModal";
 import { toggleModal } from "../utils/store/appSlice";
+import CulteryIcon from "../../assets/cutlery-icon.png";
 
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
@@ -201,7 +202,8 @@ const RestaurantMenu = () => {
             className="btn-browse-menu"
             onClick={() => dispatch(toggleModal())}
           >
-            <Squares2X2Icon width={20} style={{ marginRight: 5 }} /> BROWSE MENU
+            <img src={CulteryIcon} width={15} style={{ marginRight: 5 }} />
+            BROWSE MENU
           </button>
         </div>
       </div>
