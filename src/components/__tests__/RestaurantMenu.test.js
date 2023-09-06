@@ -14,6 +14,7 @@ global.fetch = jest.fn(() => {
     },
   });
 });
+window.scrollTo = jest.fn();
 
 it("Should show BROWSE MENU Button", async () => {
   await act(async () => {
@@ -67,7 +68,7 @@ it("Should open the recommended menu items while clicking on the recommended ite
   const btnBrowseMenu = screen.getByRole("button", { name: "BROWSE MENU" });
   expect(btnBrowseMenu).toBeInTheDocument();
 
-  await act(() => {
+  await act(async () => {
     fireEvent.click(btnBrowseMenu);
   });
   const modal = screen.getByTestId("modal");
@@ -78,7 +79,7 @@ it("Should open the recommended menu items while clicking on the recommended ite
 
   expect(menuItemsInModal.length).toBe(16);
 
-  await act(() => {
+  await act(async () => {
     fireEvent.click(menuItemsInModal[0]);
   });
 
