@@ -63,13 +63,18 @@ const MenuModal = ({
   };
 
   return (
-    <div className="modal" onClick={() => dispatch(toggleModal())}>
+    <div
+      data-testid="modal"
+      className="modal"
+      onClick={() => dispatch(toggleModal())}
+    >
       <div className="modal-content" onClick={stopPropagation}>
         <div className="modal-scrollable">
           <ul className="modal-menu-items">
             {menuItems?.map((item, index) => (
               <li className="modal-menu" key={item?.card?.card?.title}>
                 <p
+                  data-testid="modalMenuTitle"
                   className="modal-menu-title"
                   onClick={() => onToggleMenuItem(item, index)}
                 >
