@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import { AccordionType } from "../utils/constants";
@@ -13,13 +13,28 @@ const AccordionItem = ({
   showItems,
   setShowIndex,
   resInfo,
+  scrollIntoView,
 }) => {
   const content = useRef(null);
+  const accordionRef = useRef();
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
+  useEffect(() => {
+    if (scrollIntoView) {
+      const headerHeight = 160;
+      const elemRect = accordionRef.current.getBoundingClientRect();
+      const offset = elemRect.top - headerHeight;
+
+      window.scrollTo({
+        top: window.scrollY + offset,
+        behavior: "smooth",
+      });
+    }
+  }, [scrollIntoView]);
+
   return (
-    <div className={`accordion-item ${darkMode && "dark"}`}>
+    <div ref={accordionRef} className={`accordion-item ${darkMode && "dark"}`}>
       <div
         className="accordion-title"
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
@@ -46,7 +61,9 @@ const AccordionItem = ({
           ref={content}
           className="accordion-content"
           style={{
-            maxHeight: showItems ? `${content.current.scrollHeight}px` : "0px",
+            maxHeight: showItems
+              ? `${content?.current?.scrollHeight}px`
+              : "0px",
           }}
         >
           {itemDescriptions.map((item) => {

@@ -21,8 +21,9 @@ import { toggleModal } from "../utils/store/appSlice";
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
   const containerRef = useRef(null);
-  const fixedElementRef = useRef(null);
-  const [isBtnVisible, setIsBtnVisible] = useState(null);
+  const btnBrowseMenu = useRef(null);
+  const [isBtnBrowseMenuVisible, setIsBtnBrowseMenuVisible] = useState(true);
+  const [modalMenuClickedIndex, setModalMenuClickedIndex] = useState(null);
 
   const showModal = useSelector((store) => store.app.showModal);
 
@@ -35,20 +36,20 @@ const RestaurantMenu = () => {
 
   useEffect(() => {
     const calculateDistance = () => {
-      if (containerRef.current && fixedElementRef.current) {
+      if (containerRef.current && btnBrowseMenu.current) {
         const containerRect = containerRef.current?.getBoundingClientRect();
-        const fixedElementRect =
-          fixedElementRef.current?.getBoundingClientRect();
+        const btnBrowseMenuRect =
+          btnBrowseMenu.current?.getBoundingClientRect();
         const verticalDistance = Math.abs(
-          containerRect?.top - fixedElementRect?.top
+          containerRect?.top - btnBrowseMenuRect?.top
         );
 
         const threshold = containerRect.height;
 
         if (verticalDistance < threshold) {
-          setIsBtnVisible(true);
+          setIsBtnBrowseMenuVisible(true);
         } else {
-          setIsBtnVisible(false);
+          setIsBtnBrowseMenuVisible(false);
         }
       }
     };
@@ -144,6 +145,9 @@ const RestaurantMenu = () => {
                     itemDescriptions={itemCards}
                     type={AccordionType.menu}
                     showItems={key === showIndex ? true : false}
+                    scrollIntoView={
+                      key === modalMenuClickedIndex && key === showIndex
+                    }
                     setShowIndex={setShowIndex}
                     index={key}
                     resInfo={resInfo?.cards[0]?.card?.card?.info}
@@ -168,6 +172,9 @@ const RestaurantMenu = () => {
                           itemDescriptions={category.itemCards}
                           type={AccordionType.menu}
                           showItems={key === showIndex ? true : false}
+                          scrollIntoView={
+                            key === modalMenuClickedIndex && key === showIndex
+                          }
                           setShowIndex={setShowIndex}
                           index={key}
                           resInfo={resInfo?.cards[0]?.card?.card?.info}
@@ -183,10 +190,11 @@ const RestaurantMenu = () => {
           })}
         </div>
         <div
-          ref={fixedElementRef}
+          ref={btnBrowseMenu}
           className="btn-browse-menu-container"
           style={{
-            visibility: isBtnVisible && !showModal ? "visible" : "hidden",
+            visibility:
+              isBtnBrowseMenuVisible && !showModal ? "visible" : "hidden",
           }}
         >
           <button
@@ -197,7 +205,16 @@ const RestaurantMenu = () => {
           </button>
         </div>
       </div>
-      {showModal && createPortal(<MenuModal menu={menuItems} />, document.body)}
+      {showModal &&
+        createPortal(
+          <MenuModal
+            menu={menuItems}
+            showIndex={showIndex}
+            setShowIndex={setShowIndex}
+            setModalMenuClickedIndex={setModalMenuClickedIndex}
+          />,
+          document.body
+        )}
     </>
   );
 };
