@@ -36,7 +36,9 @@ const AccordionItem = ({
   return (
     <div ref={accordionRef} className={`accordion-item ${darkMode && "dark"}`}>
       <div
-        className="accordion-title"
+        className={`accordion-title ${
+          type === AccordionType.normal ? "normal" : ""
+        }`}
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
       >
         <h3>

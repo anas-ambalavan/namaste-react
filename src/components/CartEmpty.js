@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import ThemeContext from "../utils/ThemeContext";
 import { CDN_URL } from "../utils/constants";
@@ -19,9 +20,11 @@ const CartEmpty = () => {
       <p className="cart-empty-desc">
         You can go to home page to view more restaurants
       </p>
-      <button className={`btn-cart-empty ${darkMode && "dark"}`}>
-        See Restaurants Near you
-      </button>
+      <Link to={"/"} className="reset-link">
+        <button className={`btn-cart-empty ${darkMode && "dark"}`}>
+          See Restaurants Near you
+        </button>
+      </Link>
     </div>
   );
 };

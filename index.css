@@ -926,6 +926,11 @@ html {
   text-transform: capitalize;
 }
 
+.accordion-title.normal>h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .accordion-content {
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
@@ -973,10 +978,6 @@ html {
   font-size: 10px;
   color: grey;
   font-weight: 600;
-}
-
-.accordion-title {
-  font-weight: 500;
 }
 
 .accordion-desc {
