@@ -924,11 +924,17 @@ html {
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
+  font-size: 16px;
 }
 
 .accordion-title.normal>h3 {
   font-size: 14px;
   font-weight: 500;
+}
+
+.accordion-item-title {
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .accordion-content {

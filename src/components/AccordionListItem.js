@@ -66,7 +66,7 @@ const AccordionListItem = ({ data, resInfo, testId }) => {
             </div>
           ) : null}
         </div>
-        <h3 className="accordion-title">{name}</h3>
+        <h3 className="accordion-item-title">{name}</h3>
         <p>₹ {price / 100 || defaultPrice / 100}</p>
         <p className="accordion-desc">{description}</p>
       </div>

@@ -155,7 +155,9 @@ const RestaurantMenu = () => {
               const categories = menuItem.card.card.categories;
               return (
                 <div key={menuItem.card.card.title + index}>
-                  <h4>{menuItem.card.card.title}</h4>
+                  <h4 className="accordion-title">
+                    {menuItem.card.card.title}
+                  </h4>
                   <div className="accordion-container">
                     {categories.map((category, categoryIndex) => {
                       const key =
