@@ -19,6 +19,7 @@ import store from "./utils/store";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import SideMenu from "./components/SideMenu";
+import Disclaimer from "./components/Disclaimer";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -33,6 +34,7 @@ const AppLayout = () => {
               <SideMenu />
               <Outlet />
               <Footer />
+              <Disclaimer />
               <ScrollRestoration />
             </div>
           )}

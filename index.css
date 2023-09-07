@@ -1659,3 +1659,19 @@ html {
   align-items: center;
   padding: 10rem;
 }
+
+.disclaimer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #666C71;
+  z-index: 999;
+}
+
+.disclaimer>p {
+  color: #fff;
+  font-weight: 500;
+  padding: 10px;
+  text-align: center;
+}
