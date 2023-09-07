@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
@@ -19,7 +20,9 @@ const Error = () => {
       <p className="error-desc">
         Sorry! This should not have happened. Please retry
       </p>
-      <button className={`btn-error ${darkMode && "dark"}`}>Retry</button>
+      <Link to={"/"} className="reset-link">
+        <button className={`btn-error ${darkMode && "dark"}`}>Retry</button>
+      </Link>
     </div>
   );
 };

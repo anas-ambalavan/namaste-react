@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import { AccordionType } from "../utils/constants";
@@ -13,20 +13,38 @@ const AccordionItem = ({
   showItems,
   setShowIndex,
   resInfo,
+  scrollIntoView,
 }) => {
+  const content = useRef(null);
+  const accordionRef = useRef();
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
+  useEffect(() => {
+    if (scrollIntoView) {
+      const headerHeight = 160;
+      const elemRect = accordionRef.current.getBoundingClientRect();
+      const offset = elemRect.top - headerHeight;
+
+      window.scrollTo({
+        top: window.scrollY + offset,
+        behavior: "smooth",
+      });
+    }
+  }, [scrollIntoView]);
+
   return (
-    <div className={`accordion-item ${darkMode && "dark"}`}>
+    <div ref={accordionRef} className={`accordion-item ${darkMode && "dark"}`}>
       <div
-        className="accordion-title"
+        className={`accordion-title ${
+          type === AccordionType.normal ? "normal" : ""
+        }`}
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
       >
-        <div>
-          {title}
+        <h3>
+          {title?.toLowerCase()}
           {type === AccordionType.menu && ` - (${itemDescriptions.length})`}
-        </div>
+        </h3>
         <div>
           {showItems ? (
             <ChevronUpIcon width={20} />
@@ -40,14 +58,23 @@ const AccordionItem = ({
           <p className="accordion-desc">{itemDescriptions}</p>
         </div>
       )}
-      {showItems && type === AccordionType.menu && (
-        <div className="accordion-content">
+      {type === AccordionType.menu && (
+        <div
+          ref={content}
+          className="accordion-content"
+          style={{
+            maxHeight: showItems
+              ? `${content?.current?.scrollHeight}px`
+              : "0px",
+          }}
+        >
           {itemDescriptions.map((item) => {
             return (
               <AccordionListItem
                 key={item?.card?.info?.id}
                 data={item?.card?.info}
                 resInfo={resInfo}
+                testId={showItems ? true : false}
               />
             );
           })}

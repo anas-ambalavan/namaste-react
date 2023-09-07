@@ -8,7 +8,7 @@ import nonVegIcon from "../../assets/non-veg-icon.png";
 import { addItem, clearCart } from "../utils/store/cartSlice";
 import ThemeContext from "../utils/ThemeContext";
 
-const AccordionListItem = ({ data, resInfo }) => {
+const AccordionListItem = ({ data, resInfo, testId }) => {
   const { name, ribbon, price, defaultPrice, description, imageId, isVeg } =
     data;
 
@@ -40,7 +40,7 @@ const AccordionListItem = ({ data, resInfo }) => {
 
   return (
     <div
-      data-testid="foodItem"
+      data-testid={`${testId ? "foodItem" : ""}`}
       className={`accordion-item-card ${darkMode && "dark"}`}
     >
       <div className="accordion-card-details">
@@ -72,6 +72,7 @@ const AccordionListItem = ({ data, resInfo }) => {
       </div>
       <div className="accordion-action">
         <img
+          loading="lazy"
           className="accordion-item-image"
           src={CDN_URL + imageId}
           alt="item image"

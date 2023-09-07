@@ -37,6 +37,7 @@ const CuisinesHome = () => {
         {cuisines?.map((cuisine) => (
           <div key={cuisine.id}>
             <img
+              className={`cuisine-home-image`}
               src={CDN_OFFERS_MEDIA_URL + cuisine.imageId}
               width="144px"
               height="180px"

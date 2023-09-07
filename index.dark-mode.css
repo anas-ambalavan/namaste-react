@@ -29,6 +29,15 @@
     color: #E46D47;
 }
 
+.side-menu.dark {
+    background-color: #42464D;
+    color: #dcdce6;
+}
+
+.side-menu.dark button {
+    color: #dcdce6;
+}
+
 .body-container.dark>div>div>h1 {
     color: #dcdce6;
 }
