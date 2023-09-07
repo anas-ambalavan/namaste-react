@@ -7,13 +7,15 @@ import {
 } from "@heroicons/react/24/solid";
 
 import ThemeContext from "../utils/ThemeContext";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOfferLabel } from "./RestaurantCard";
 import { setfilteredResList } from "../utils/store/resSlice";
 import FilterButton from "./FilterButton";
 import { FilterTypes } from "../utils/constants";
 
 const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantOfferCard = withOfferLabel(RestaurantCard);
 
   const dispatch = useDispatch();
 
@@ -92,7 +94,14 @@ const RestaurantList = () => {
               key={item.info.id}
               className="reset-link"
             >
-              <RestaurantCard resData={item.info} />
+              {item.info.aggregatedDiscountInfoV3 ? (
+                <RestaurantOfferCard
+                  resData={item?.info}
+                  offers={item?.info?.aggregatedDiscountInfoV3}
+                />
+              ) : (
+                <RestaurantCard resData={item.info} />
+              )}
             </Link>
           ))}
         </div>
