@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import {
   InformationCircleIcon,
   MagnifyingGlassIcon,
-  MegaphoneIcon,
   MoonIcon,
   ShoppingBagIcon,
   SunIcon,
@@ -38,12 +37,6 @@ const NavItems = () => {
         <NavLink to={"/search"} className="reset-link">
           <MagnifyingGlassIcon width={20} />
           <p>Search</p>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={"/offers"} className="reset-link">
-          <MegaphoneIcon width={20} />
-          <p>Offers</p>
         </NavLink>
       </li>
       <li>

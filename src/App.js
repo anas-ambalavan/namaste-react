@@ -13,7 +13,6 @@ import Home from "./components/Home";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import Support from "./components/Support";
-import Offers from "./components/Offers";
 import ThemeContext, { ThemeProvider } from "./utils/ThemeContext";
 import store from "./utils/store";
 import Cart from "./components/Cart";
@@ -61,10 +60,6 @@ const appRoutes = createBrowserRouter([
             <Search />
           </Suspense>
         ),
-      },
-      {
-        path: "/offers",
-        element: <Offers />,
       },
       {
         path: "/support/issues",
