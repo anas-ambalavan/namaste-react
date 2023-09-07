@@ -41,10 +41,10 @@ const AccordionItem = ({
         }`}
         onClick={() => (showItems ? setShowIndex(null) : setShowIndex(index))}
       >
-        <h3>
+        <div>
           {title?.toLowerCase()}
           {type === AccordionType.menu && ` - (${itemDescriptions.length})`}
-        </h3>
+        </div>
         <div>
           {showItems ? (
             <ChevronUpIcon width={20} />

@@ -18,6 +18,7 @@ const RestaurantCard = ({ resData }) => {
           alt="restaurant logo"
           className="res-card-image"
         />
+        <div className={`image-shade ${darkMode && "dark"}`}></div>
       </div>
       <div className={`res-card-details ${darkMode && "dark"}`}>
         <h3>{name}</h3>
@@ -37,3 +38,17 @@ const RestaurantCard = ({ resData }) => {
 };
 
 export default RestaurantCard;
+
+export const withOfferLabel = (RestaurantCard) => {
+  return (props) => {
+    const offerLabel = `${props?.offers?.header ? props?.offers?.header : ""} ${
+      props?.offers?.subHeader ? props?.offers?.subHeader : ""
+    }`;
+    return (
+      <div className="res-card-with-offer">
+        <label className="res-card-offer-label">{offerLabel}</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};

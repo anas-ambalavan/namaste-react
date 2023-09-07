@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import useScroll from "../utils/useScroll";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOfferLabel } from "./RestaurantCard";
 import ArrowIcon from "./ArrowIcon";
 import { Directions } from "../utils/constants";
 
@@ -16,6 +16,8 @@ const TopRestaurants = () => {
   } = useScroll();
 
   const topRestaurants = useSelector((store) => store.res.topResList);
+
+  const RestaurantOfferCard = withOfferLabel(RestaurantCard);
 
   return (
     <div className="top-restaurants">
@@ -37,8 +39,19 @@ const TopRestaurants = () => {
       <div ref={containerRef} className="top-restaurant-list">
         {topRestaurants?.map((item) => (
           <div key={item.info.id}>
-            <Link to={"/restaurants/" + item.info.id} className="reset-link">
-              <RestaurantCard resData={item.info} />
+            <Link
+              to={"/restaurants/" + item.info.id}
+              key={item.info.id}
+              className="reset-link"
+            >
+              {item.info.aggregatedDiscountInfoV3 ? (
+                <RestaurantOfferCard
+                  resData={item.info}
+                  offers={item.info.aggregatedDiscountInfoV3}
+                />
+              ) : (
+                <RestaurantCard resData={item.info} />
+              )}
             </Link>
           </div>
         ))}
