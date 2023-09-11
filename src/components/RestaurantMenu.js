@@ -77,7 +77,8 @@ const RestaurantMenu = () => {
     resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
   const menuItems =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards ||
+    resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   return (
     <>

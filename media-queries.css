@@ -97,6 +97,10 @@
         text-align: justify;
     }
 
+    .shimmer-res-detail-container {
+        margin: 2rem;
+    }
+
     .shimmer-container {
         grid-template-columns: repeat(1, 1fr);
     }
