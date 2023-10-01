@@ -1,6 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
@@ -29,27 +35,29 @@ const RestaurantMenu = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
 
-  const { resId } = useParams();
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const resId = slug?.split("-").at(-1);
+
+  if (!parseInt(resId)) window.location.replace("/error");
+
+  const resInfo = useRestaurantMenu(resId) || {};
+
+  const calculateDistance = () => {
+    if (containerRef.current && btnBrowseMenu.current) {
+      const containerRect = containerRef.current?.getBoundingClientRect();
+      const btnBrowseMenuRect = btnBrowseMenu.current?.getBoundingClientRect();
+      const verticalDistance = Math.abs(
+        containerRect?.top - btnBrowseMenuRect?.top
+      );
+
+      const threshold = containerRect.height;
+
+      setIsBtnBrowseMenuVisible(verticalDistance < threshold);
+    }
+  };
 
   useEffect(() => {
-    const calculateDistance = () => {
-      if (containerRef.current && btnBrowseMenu.current) {
-        const containerRect = containerRef.current?.getBoundingClientRect();
-        const btnBrowseMenuRect =
-          btnBrowseMenu.current?.getBoundingClientRect();
-        const verticalDistance = Math.abs(
-          containerRect?.top - btnBrowseMenuRect?.top
-        );
-
-        const threshold = containerRect.height;
-
-        if (verticalDistance < threshold) {
-          setIsBtnBrowseMenuVisible(true);
-        } else {
-          setIsBtnBrowseMenuVisible(false);
-        }
-      }
-    };
     calculateDistance();
     window.addEventListener("scroll", calculateDistance);
     window.addEventListener("resize", calculateDistance);
@@ -59,9 +67,34 @@ const RestaurantMenu = () => {
     };
   }, []);
 
-  const resInfo = useRestaurantMenu(resId);
+  const generateSlug = (resInfo) => {
+    const properties = ["name", "locality", "areaName", "city", "id"];
 
-  if (resInfo.length === 0) return <RestaurantDetailShimmer />;
+    const slugParts = properties
+      .map((prop) => {
+        const value = resInfo?.cards[0]?.card?.card?.info[prop];
+        return value ? value.replace("'", "") : "";
+      })
+      .filter(Boolean);
+
+    const slug = slugParts
+      .join("-")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .toLowerCase()
+      .replace(/^-+|-+$/g, "");
+    return slug;
+  };
+
+  useLayoutEffect(() => {
+    if (Object.keys(resInfo).length > 0) {
+      const apiSlug = generateSlug(resInfo);
+      if (apiSlug !== slug) {
+        navigate(`/restaurants/${apiSlug}`, { replace: true });
+      }
+    }
+  }, [Object.keys(resInfo)?.length]);
+
+  if (Object.keys(resInfo)?.length === 0) return <RestaurantDetailShimmer />;
 
   const {
     name,
@@ -71,14 +104,18 @@ const RestaurantMenu = () => {
     totalRatingsString,
     sla,
     costForTwoMessage,
-  } = resInfo?.cards[0]?.card?.card?.info;
+  } = resInfo?.cards[0]?.card?.card?.info || {};
 
   const offerDetails =
-    resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+    resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers || [];
 
-  const menuItems =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards ||
-    resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  const menuItems = (() => {
+    const regularCards =
+      resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    const specialCards =
+      resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    return regularCards || specialCards || [];
+  })();
 
   return (
     <>
@@ -142,7 +179,7 @@ const RestaurantMenu = () => {
                     title={menuItem.card.card.title}
                     itemDescriptions={itemCards}
                     type={AccordionType.menu}
-                    showItems={key === showIndex ? true : false}
+                    showItems={key === showIndex}
                     scrollIntoView={
                       key === modalMenuClickedIndex && key === showIndex
                     }
@@ -171,7 +208,7 @@ const RestaurantMenu = () => {
                           title={category.title}
                           itemDescriptions={category.itemCards}
                           type={AccordionType.menu}
-                          showItems={key === showIndex ? true : false}
+                          showItems={key === showIndex}
                           scrollIntoView={
                             key === modalMenuClickedIndex && key === showIndex
                           }

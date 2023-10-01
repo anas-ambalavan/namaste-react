@@ -88,22 +88,25 @@ const RestaurantList = () => {
         </div>
       ) : (
         <div className="restaurant-list">
-          {filteredList?.map((item) => (
-            <Link
-              to={"/restaurants/" + item.info.id}
-              key={item.info.id}
-              className="reset-link"
-            >
-              {item.info.aggregatedDiscountInfoV3 ? (
-                <RestaurantOfferCard
-                  resData={item?.info}
-                  offers={item?.info?.aggregatedDiscountInfoV3}
-                />
-              ) : (
-                <RestaurantCard resData={item.info} />
-              )}
-            </Link>
-          ))}
+          {filteredList?.map((item) => {
+            const slug = item?.cta?.link?.split("/").at(-1);
+            return (
+              <Link
+                to={"/restaurants/" + slug}
+                key={item.info.id}
+                className="reset-link"
+              >
+                {item.info.aggregatedDiscountInfoV3 ? (
+                  <RestaurantOfferCard
+                    resData={item?.info}
+                    offers={item?.info?.aggregatedDiscountInfoV3}
+                  />
+                ) : (
+                  <RestaurantCard resData={item.info} />
+                )}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

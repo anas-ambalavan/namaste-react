@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
 import MOCK_DATA from "../__mocks__/mockResMenu.json";
@@ -14,14 +15,21 @@ global.fetch = jest.fn(() => {
     },
   });
 });
+
 window.scrollTo = jest.fn();
+
+const mockReplace = jest.fn();
+delete window.location;
+window.location = { replace: mockReplace };
 
 it("Should show BROWSE MENU Button", async () => {
   await act(async () => {
     render(
-      <Provider store={store}>
-        <RestaurantMenu />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <RestaurantMenu />
+        </Provider>
+      </BrowserRouter>
     );
   });
 
@@ -33,9 +41,11 @@ it("Should show BROWSE MENU Button", async () => {
 it("Should show list of menu items in modal", async () => {
   await act(async () => {
     render(
-      <Provider store={store}>
-        <RestaurantMenu />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <RestaurantMenu />
+        </Provider>
+      </BrowserRouter>
     );
   });
 
@@ -59,9 +69,11 @@ it("Should open the recommended menu items while clicking on the recommended ite
   jest.useFakeTimers();
   await act(async () => {
     render(
-      <Provider store={store}>
-        <RestaurantMenu />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <RestaurantMenu />
+        </Provider>
+      </BrowserRouter>
     );
   });
 
