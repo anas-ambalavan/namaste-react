@@ -18,130 +18,148 @@ global.fetch = jest.fn(() => {
   });
 });
 
-it("Should show accordion items", async () => {
-  await act(async () => {
-    render(
-      <Provider store={store}>
-        <RestaurantMenu />
-      </Provider>
-    );
+describe("Cart functionality Tests", () => {
+  let location;
+  const mockLocation = new URL("https://example.com");
+
+  beforeEach(() => {
+    location = window.location;
+    mockLocation.replace = jest.fn();
+    delete window.location;
+    window.location = mockLocation;
   });
 
-  const accordionItem = screen.getByText("kings premium burgers - (4)");
-  fireEvent.click(accordionItem);
-
-  expect(screen.getAllByTestId("foodItem").length).toBe(4);
-});
-
-it("Should add items to cart", async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Header />
-          <RestaurantMenu />
-        </Provider>
-      </BrowserRouter>
-    );
+  afterEach(() => {
+    window.location = location;
   });
 
-  const accordionItem = screen.getByText("recommended - (21)");
-  fireEvent.click(accordionItem);
+  it("Should show accordion items", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RestaurantMenu />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
 
-  const addBtn = screen.getAllByTestId("addBtn");
-  fireEvent.click(addBtn[0]);
-  fireEvent.click(addBtn[0]);
+    const accordionItem = screen.getByText("kings premium burgers - (4)");
+    fireEvent.click(accordionItem);
 
-  const cartItemLength = screen.getByTestId("cartItemLength");
-
-  expect(cartItemLength.innerHTML).toBe("2");
-
-  fireEvent.click(addBtn[1]);
-  expect(cartItemLength.innerHTML).toBe("3");
-});
-
-it("Should render items in cart component", async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Cart />
-        </Provider>
-      </BrowserRouter>
-    );
+    expect(screen.getAllByTestId("foodItem").length).toBe(4);
   });
 
-  const resName = screen.getByText("Burger King");
-  expect(resName).toBeInTheDocument();
+  it("Should add items to cart", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Header />
+            <RestaurantMenu />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
 
-  expect(screen.getByText("Veg Whopper")).toBeInTheDocument();
-  expect(screen.getByText("Chicken Whopper")).toBeInTheDocument();
+    const accordionItem = screen.getByText("recommended - (21)");
+    fireEvent.click(accordionItem);
 
-  const quantityItem = screen.getAllByTestId("cartItemQuantity");
+    const addBtn = screen.getAllByTestId("addBtn");
+    fireEvent.click(addBtn[0]);
+    fireEvent.click(addBtn[0]);
 
-  expect(quantityItem[0].innerHTML).toBe("2");
-  expect(quantityItem[1].innerHTML).toBe("1");
-});
+    const cartItemLength = screen.getByTestId("cartItemLength");
 
-it("Should increment cart item quantity in cart component", async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Cart />
-        </Provider>
-      </BrowserRouter>
-    );
+    expect(cartItemLength.innerHTML).toBe("2");
+
+    fireEvent.click(addBtn[1]);
+    expect(cartItemLength.innerHTML).toBe("3");
   });
 
-  const incrementBtn = screen.getAllByTestId("cartItemQuantityIncrement");
+  it("Should render items in cart component", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Cart />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
 
-  fireEvent.click(incrementBtn[0]);
-  fireEvent.click(incrementBtn[1]);
+    const resName = screen.getByText("Burger King");
+    expect(resName).toBeInTheDocument();
 
-  const quantityItem = screen.getAllByTestId("cartItemQuantity");
+    expect(screen.getByText("Veg Whopper")).toBeInTheDocument();
+    expect(screen.getByText("Chicken Whopper")).toBeInTheDocument();
 
-  expect(quantityItem[0].innerHTML).toBe("3");
-  expect(quantityItem[1].innerHTML).toBe("2");
-});
+    const quantityItem = screen.getAllByTestId("cartItemQuantity");
 
-it("Should decrement cart item quantity in cart component", async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Cart />
-        </Provider>
-      </BrowserRouter>
-    );
+    expect(quantityItem[0].innerHTML).toBe("2");
+    expect(quantityItem[1].innerHTML).toBe("1");
   });
 
-  const decrementBtn = screen.getAllByTestId("cartItemQuantityDecrement");
+  it("Should increment cart item quantity in cart component", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Cart />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
 
-  fireEvent.click(decrementBtn[0]);
-  fireEvent.click(decrementBtn[1]);
+    const incrementBtn = screen.getAllByTestId("cartItemQuantityIncrement");
 
-  const quantityItem = screen.getAllByTestId("cartItemQuantity");
+    fireEvent.click(incrementBtn[0]);
+    fireEvent.click(incrementBtn[1]);
 
-  expect(quantityItem[0].innerHTML).toBe("2");
-  expect(quantityItem[1].innerHTML).toBe("1");
-});
+    const quantityItem = screen.getAllByTestId("cartItemQuantity");
 
-it("Should clear cart items", async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Header />
-          <Cart />
-        </Provider>
-      </BrowserRouter>
-    );
+    expect(quantityItem[0].innerHTML).toBe("3");
+    expect(quantityItem[1].innerHTML).toBe("2");
   });
 
-  const clearCartBtn = screen.getByRole("button", { name: "Clear Cart" });
-  fireEvent.click(clearCartBtn);
+  it("Should decrement cart item quantity in cart component", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Cart />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
 
-  expect(screen.getByText("Your cart is empty")).toBeInTheDocument();
-  expect(screen.getByTestId("cartItemLength").innerHTML).toBe("0");
+    const decrementBtn = screen.getAllByTestId("cartItemQuantityDecrement");
+
+    fireEvent.click(decrementBtn[0]);
+    fireEvent.click(decrementBtn[1]);
+
+    const quantityItem = screen.getAllByTestId("cartItemQuantity");
+
+    expect(quantityItem[0].innerHTML).toBe("2");
+    expect(quantityItem[1].innerHTML).toBe("1");
+  });
+
+  it("Should clear cart items", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Header />
+            <Cart />
+          </Provider>
+        </BrowserRouter>
+      );
+    });
+
+    const clearCartBtn = screen.getByRole("button", { name: "Clear Cart" });
+    fireEvent.click(clearCartBtn);
+
+    expect(screen.getByText("Your cart is empty")).toBeInTheDocument();
+    expect(screen.getByTestId("cartItemLength").innerHTML).toBe("0");
+  });
 });
