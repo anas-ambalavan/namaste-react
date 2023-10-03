@@ -39,6 +39,7 @@ it("Should show BROWSE MENU Button", async () => {
 });
 
 it("Should show list of menu items in modal", async () => {
+  jest.useFakeTimers();
   await act(async () => {
     render(
       <BrowserRouter>
@@ -62,11 +63,17 @@ it("Should show list of menu items in modal", async () => {
   await act(() => {
     fireEvent.click(modal);
   });
+
+  await act(() => {
+    jest.advanceTimersByTime(500);
+  });
+
   expect(modal).not.toBeInTheDocument();
+
+  jest.useRealTimers();
 });
 
 it("Should open the recommended menu items while clicking on the recommended item in the modal", async () => {
-  jest.useFakeTimers();
   await act(async () => {
     render(
       <BrowserRouter>
@@ -97,12 +104,6 @@ it("Should open the recommended menu items while clicking on the recommended ite
 
   expect(modal).not.toBeInTheDocument();
 
-  await act(() => {
-    jest.advanceTimersByTime(500);
-  });
-
   const foodItems = screen.getAllByTestId("foodItem");
   expect(foodItems.length).toBe(21);
-
-  jest.useRealTimers();
 });

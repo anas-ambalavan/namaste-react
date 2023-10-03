@@ -1,8 +1,14 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { useLocation } from "react-router-dom";
 
 import Logo from "../../assets/logo-white.png";
+import { RoutesWithFooter } from "../utils/constants";
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
+  if (!RoutesWithFooter.includes(pathname)) return null;
+
   return (
     <div className="footer-container">
       <div className="footer-logo-container">

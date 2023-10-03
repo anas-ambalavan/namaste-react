@@ -808,6 +808,40 @@ html {
   cursor: pointer;
 }
 
+.res-menu-footer {
+  background-color: #F1F1F6;
+  color: #92959F;
+  padding: 20px;
+}
+
+.res-menu-footer-license {
+  display: flex;
+  align-items: center;
+  gap: 15;
+  border-bottom: 1px solid grey;
+  padding: 10px 0px;
+}
+
+.res-menu-footer-img {
+  width: 70px;
+}
+
+.res-menu-footer-details {
+  padding-bottom: 120px;
+  margin: 10px 0px;
+}
+
+.res-menu-footer-address {
+  display: flex;
+  align-items: start;
+  margin: 10px 0px;
+}
+
+.res-menu-footer-address>p {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -819,7 +853,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
+  transition: none;
 }
 
 .modal-content {
@@ -861,6 +895,47 @@ html {
 .modal-menu>p {
   text-transform: capitalize;
   cursor: pointer;
+}
+
+.modal-hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease;
+}
+
+.blow-up {
+  animation: blowUp 0.3s ease;
+  transform-origin: bottom center;
+}
+
+.blow-down {
+  animation: blowDown 0.3s ease;
+  transform-origin: bottom center;
+}
+
+@keyframes blowUp {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes blowDown {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
 }
 
 /* .modal-content::-webkit-scrollbar {
@@ -942,6 +1017,10 @@ html {
 .accordion-container {
   margin: 20px 0px 20px 0px;
   border-bottom: 20px solid #F1F1F6;
+}
+
+.accordion-container:last-child {
+  border-bottom: none;
 }
 
 .accordion-item {

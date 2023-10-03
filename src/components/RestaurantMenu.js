@@ -1,10 +1,4 @@
-import {
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useContext, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,12 +14,12 @@ import ThemeContext from "../utils/ThemeContext";
 import MenuModal from "./MenuModal";
 import { toggleModal } from "../utils/store/appSlice";
 import CulteryIcon from "../../assets/cutlery-icon.png";
+import RestaurantMenuFooter from "./RestaurantMenuFooter";
 
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
   const containerRef = useRef(null);
   const btnBrowseMenu = useRef(null);
-  const [isBtnBrowseMenuVisible, setIsBtnBrowseMenuVisible] = useState(true);
   const [modalMenuClickedIndex, setModalMenuClickedIndex] = useState(null);
 
   const showModal = useSelector((store) => store.app.showModal);
@@ -42,30 +36,6 @@ const RestaurantMenu = () => {
   if (!parseInt(resId)) window.location.replace("/error");
 
   const resInfo = useRestaurantMenu(resId) || {};
-
-  const calculateDistance = () => {
-    if (containerRef.current && btnBrowseMenu.current) {
-      const containerRect = containerRef.current?.getBoundingClientRect();
-      const btnBrowseMenuRect = btnBrowseMenu.current?.getBoundingClientRect();
-      const verticalDistance = Math.abs(
-        containerRect?.top - btnBrowseMenuRect?.top
-      );
-
-      const threshold = containerRect.height;
-
-      setIsBtnBrowseMenuVisible(verticalDistance < threshold);
-    }
-  };
-
-  useEffect(() => {
-    calculateDistance();
-    window.addEventListener("scroll", calculateDistance);
-    window.addEventListener("resize", calculateDistance);
-    return () => {
-      window.removeEventListener("scroll", calculateDistance);
-      window.removeEventListener("resize", calculateDistance);
-    };
-  }, []);
 
   const generateSlug = (resInfo) => {
     const properties = ["name", "locality", "areaName", "city", "id"];
@@ -116,6 +86,9 @@ const RestaurantMenu = () => {
       resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     return regularCards || specialCards || [];
   })();
+
+  const restaurantDetails = menuItems.at(-1).card?.card;
+  const restaurantLicenseInfo = menuItems.at(-2).card?.card;
 
   return (
     <>
@@ -192,11 +165,14 @@ const RestaurantMenu = () => {
             } else if (menuItem?.card?.card?.categories) {
               const categories = menuItem.card.card.categories;
               return (
-                <div key={menuItem.card.card.title + index}>
+                <div
+                  key={menuItem.card.card.title + index}
+                  className="accordion-container"
+                >
                   <h4 className="accordion-title">
                     {menuItem.card.card.title}
                   </h4>
-                  <div className="accordion-container">
+                  <div>
                     {categories.map((category, categoryIndex) => {
                       const key =
                         menuItem.card.card.title +
@@ -226,12 +202,15 @@ const RestaurantMenu = () => {
             }
           })}
         </div>
+        <RestaurantMenuFooter
+          resLicenseInfo={restaurantLicenseInfo}
+          resDetails={restaurantDetails}
+        />
         <div
           ref={btnBrowseMenu}
           className="btn-browse-menu-container"
           style={{
-            visibility:
-              isBtnBrowseMenuVisible && !showModal ? "visible" : "hidden",
+            visibility: showModal ? "hidden" : "visible",
           }}
         >
           <button

@@ -194,6 +194,15 @@
     color: #dcdce6;
 }
 
+.res-menu-footer.dark {
+    background-color: grey;
+    color: #dcdce6;
+}
+
+.res-menu-footer.dark>.res-menu-footer-license {
+    border-bottom: 1px solid #42464D;
+}
+
 .menu-offers-list.dark,
 .popular-cuisines.dark {
     border-color: #dcdce6;
@@ -221,6 +230,14 @@
 
 .menu-list.dark>.accordion-container>.accordion-item>.accordion-title {
     color: #dcdce6;
+}
+
+.menu-list.dark>.accordion-container {
+    border-bottom: 20px solid #1d1f2c;
+}
+
+.menu-list.dark>.accordion-container:last-child {
+    border-bottom: none
 }
 
 .accordion-item-card.dark {

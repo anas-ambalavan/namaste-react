@@ -94,3 +94,5 @@ export const FilterTypeFuntions = new Map([
     },
   ],
 ]);
+
+export const RoutesWithFooter = ["/"];
