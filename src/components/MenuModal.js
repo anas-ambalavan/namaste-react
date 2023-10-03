@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { toggleModal } from "../utils/store/appSlice";
@@ -9,6 +9,8 @@ const MenuModal = ({
   setShowIndex,
   setModalMenuClickedIndex,
 }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [blowDown, setBlowDown] = useState(false);
   const dispatch = useDispatch();
 
   const stopPropagation = (e) => {
@@ -17,6 +19,7 @@ const MenuModal = ({
 
   useEffect(() => {
     document.body.classList.add("modal-open");
+    setModalVisible(true);
     return () => {
       document.body.classList.remove("modal-open");
     };
@@ -49,6 +52,7 @@ const MenuModal = ({
   };
 
   const onToggleMenuItem = async (item, index) => {
+    setModalVisible(!modalVisible);
     await dispatch(toggleModal());
     if (showIndex) {
       await setShowIndex(null);
@@ -65,10 +69,21 @@ const MenuModal = ({
   return (
     <div
       data-testid="modal"
-      className="modal"
-      onClick={() => dispatch(toggleModal())}
+      className={`modal ${modalVisible ? "modal-visible" : "modal-hidden"}`}
+      onClick={() => {
+        setModalVisible(false);
+        setTimeout(() => {
+          dispatch(toggleModal());
+        }, 500);
+        setBlowDown(true);
+      }}
     >
-      <div className="modal-content" onClick={stopPropagation}>
+      <div
+        className={`modal-content ${
+          modalVisible ? "blow-up" : blowDown ? "blow-down" : ""
+        }`}
+        onClick={stopPropagation}
+      >
         <div className="modal-scrollable">
           <ul className="modal-menu-items">
             {menuItems?.map((item, index) => (
