@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   InformationCircleIcon,
   MagnifyingGlassIcon,
@@ -15,6 +15,8 @@ import ThemeContext from "../utils/ThemeContext";
 
 const NavItems = () => {
   const [isActive, setIsActive] = useState(false);
+
+  const location = useLocation();
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
