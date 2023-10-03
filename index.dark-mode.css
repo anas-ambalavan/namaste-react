@@ -236,6 +236,10 @@
     border-bottom: 20px solid #1d1f2c;
 }
 
+.menu-list.dark>.accordion-container:last-child {
+    border-bottom: none
+}
+
 .accordion-item-card.dark {
     border-bottom-color: #dcdce6;
 }
