@@ -67,13 +67,27 @@ describe("Cart functionality Tests", () => {
 
     const addBtn = screen.getAllByTestId("addBtn");
     fireEvent.click(addBtn[0]);
-    fireEvent.click(addBtn[0]);
+    fireEvent.click(addBtn[1]);
 
     const cartItemLength = screen.getByTestId("cartItemLength");
-
     expect(cartItemLength.innerHTML).toBe("2");
 
-    fireEvent.click(addBtn[1]);
+    const accordionItemAction = screen.getAllByTestId("accordionItemAction")[0];
+    const accordionItemQuantityDecrement = screen.getAllByTestId(
+      "accordionItemQuantityDecrement"
+    )[0];
+    const accordionItemQuantityIncrement = screen.getAllByTestId(
+      "accordionItemQuantityIncrement"
+    )[0];
+    expect(accordionItemAction).toBeInTheDocument();
+    expect(accordionItemQuantityDecrement).toBeInTheDocument();
+    expect(accordionItemQuantityIncrement).toBeInTheDocument();
+
+    fireEvent.click(accordionItemQuantityIncrement);
+    fireEvent.click(accordionItemQuantityIncrement);
+    expect(cartItemLength.innerHTML).toBe("4");
+
+    fireEvent.click(accordionItemQuantityDecrement);
     expect(cartItemLength.innerHTML).toBe("3");
   });
 

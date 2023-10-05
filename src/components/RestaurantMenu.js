@@ -1,11 +1,15 @@
 import { useContext, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ChevronDownIcon, StarIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  StarIcon,
+} from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
-import { AccordionType } from "../utils/constants";
+import { AccordionType, CDN_URL } from "../utils/constants";
 import Offer from "./Offer";
 import AccordionItem from "./AccordionItem";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
@@ -15,10 +19,10 @@ import MenuModal from "./MenuModal";
 import { toggleModal } from "../utils/store/appSlice";
 import CulteryIcon from "../../assets/cutlery-icon.png";
 import RestaurantMenuFooter from "./RestaurantMenuFooter";
+import RestaurantMenuBreadcrumb from "./RestaurantMenuBreadcrumb";
 
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
-  const containerRef = useRef(null);
   const btnBrowseMenu = useRef(null);
   const [modalMenuClickedIndex, setModalMenuClickedIndex] = useState(null);
 
@@ -68,12 +72,14 @@ const RestaurantMenu = () => {
 
   const {
     name,
+    city,
     cuisines,
     areaName,
     avgRatingString,
     totalRatingsString,
     sla,
     costForTwoMessage,
+    feeDetails,
   } = resInfo?.cards[0]?.card?.card?.info || {};
 
   const offerDetails =
@@ -90,39 +96,67 @@ const RestaurantMenu = () => {
   const restaurantDetails = menuItems.at(-1).card?.card;
   const restaurantLicenseInfo = menuItems.at(-2).card?.card;
 
+  const routes = [
+    { path: "/", text: "Home" },
+    { path: "/", text: city },
+    { path: "", text: name },
+  ];
+
   return (
     <>
-      <div ref={containerRef} className="body-container menu">
+      <div className="body-container menu">
+        <div className="menu-breadcrumb">
+          <RestaurantMenuBreadcrumb items={routes} />
+          <Link
+            to="search"
+            state={{ resSlug: slug, menuItems: menuItems, resInfo: resInfo }}
+            className="reset-link"
+          >
+            <MagnifyingGlassIcon width={20} />
+          </Link>
+        </div>
         <div className="menu-header">
-          <div className={`menu-res-details ${darkMode && "dark"}`}>
-            <h2>{name}</h2>
-            <div>
-              <p>{cuisines.join(", ")}</p>
+          <div className="menu-header-top">
+            <div className={`menu-res-details ${darkMode && "dark"}`}>
+              <h2>{name}</h2>
               <div>
-                <p>
-                  {areaName}, {sla?.lastMileTravel} km
-                </p>
-                <ChevronDownIcon
-                  width={14}
-                  color={"#FC8018"}
-                  style={{ marginLeft: 5 }}
+                <p>{cuisines.join(", ")}</p>
+                <div>
+                  <p>
+                    {areaName}, {sla?.lastMileTravel} km
+                  </p>
+                  <ChevronDownIcon
+                    width={14}
+                    color={"#FC8018"}
+                    style={{ marginLeft: 5 }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={`menu-rating-container ${darkMode && "dark"}`}>
+              <div className="menu-rating">
+                <StarIcon
+                  width={16}
+                  color={"#1A8D3E"}
+                  style={{ marginRight: 2 }}
                 />
+                <h4>{avgRatingString}</h4>
+              </div>
+              <div className="menu-total-rating">
+                <p>{totalRatingsString}</p>
               </div>
             </div>
           </div>
-          <div className={`menu-rating-container ${darkMode && "dark"}`}>
-            <div className="menu-rating">
-              <StarIcon
-                width={16}
-                color={"#1A8D3E"}
-                style={{ marginRight: 2 }}
+          {feeDetails && (
+            <div className="menu-fee-details">
+              <img
+                src={CDN_URL + feeDetails?.icon}
+                alt={`delivery fee icon`}
+                width={20}
               />
-              <h4>{avgRatingString}</h4>
+              <p>{feeDetails?.message}</p>
             </div>
-            <div className="menu-total-rating">
-              <p>{totalRatingsString}</p>
-            </div>
-          </div>
+          )}
         </div>
         <div className={`menu-offers ${darkMode && "dark"}`}>
           <div className="menu-offers-header">
