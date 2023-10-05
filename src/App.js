@@ -19,6 +19,7 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import SideMenu from "./components/SideMenu";
 import Disclaimer from "./components/Disclaimer";
+import RestaurantMenuSearch from "./components/RestaurantMenuSearch";
 
 const Search = lazy(() => import("./components/Search"));
 
@@ -76,8 +77,17 @@ const appRoutes = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/restaurants/:slug",
-        element: <RestaurantMenu />,
+        path: "/restaurants",
+        children: [
+          {
+            path: ":slug",
+            element: <RestaurantMenu />,
+          },
+          {
+            path: ":slug/search",
+            element: <RestaurantMenuSearch />,
+          },
+        ],
       },
       {
         path: "*",

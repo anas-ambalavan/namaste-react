@@ -1,15 +1,20 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PlusIcon, StarIcon } from "@heroicons/react/24/solid";
+import { MinusIcon, PlusIcon, StarIcon } from "@heroicons/react/24/solid";
 
 import { CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
-import { addItem, clearCart } from "../utils/store/cartSlice";
+import {
+  addItem,
+  clearCart,
+  decrementCartItemQuantity,
+  incrementCartItemQuantity,
+} from "../utils/store/cartSlice";
 import ThemeContext from "../utils/ThemeContext";
 
 const AccordionListItem = ({ data, resInfo, testId }) => {
-  const { name, ribbon, price, defaultPrice, description, imageId, isVeg } =
+  const { id, name, ribbon, price, defaultPrice, description, imageId, isVeg } =
     data;
 
   const theme = useContext(ThemeContext);
@@ -20,6 +25,9 @@ const AccordionListItem = ({ data, resInfo, testId }) => {
   const cartResDetailsID = useSelector(
     (store) => store.cart.cartDetails.resInfo.id
   );
+
+  const cartItems = useSelector((store) => store.cart.cartDetails.items);
+  const currentItem = cartItems?.find((item) => item.id === id);
 
   const addToCart = () => {
     if (cartResDetailsID && cartResDetailsID !== resInfo.id) {
@@ -34,7 +42,7 @@ const AccordionListItem = ({ data, resInfo, testId }) => {
     }
     const cartData = {};
     cartData.item = data;
-    if (cartResDetailsID.length === 0) cartData.resInfo = resInfo;
+    if (cartResDetailsID?.length === 0) cartData.resInfo = resInfo;
     dispatch(addItem(cartData));
   };
 
@@ -77,20 +85,51 @@ const AccordionListItem = ({ data, resInfo, testId }) => {
           src={CDN_URL + imageId}
           alt="item image"
         />
-        <button
-          data-testid="addBtn"
-          className={`btn-accordion ${darkMode && "dark"}`}
-          onClick={addToCart}
-        >
-          Add
-          <PlusIcon
-            width={10}
-            style={{ position: "absolute", top: 1, right: 1 }}
-          />
-        </button>
-        <p className={`accordion-customisable ${darkMode && "dark"}`}>
-          Customisable
-        </p>
+        {currentItem ? (
+          <div
+            data-testid="accordionItemAction"
+            className={`btn-accordion ${darkMode && "dark"}`}
+          >
+            <div className="accordion-item-action-container">
+              <div
+                data-testid="accordionItemQuantityDecrement"
+                className="accordion-item-action"
+                onClick={() => dispatch(decrementCartItemQuantity(id))}
+              >
+                <MinusIcon width={15} />
+              </div>
+              <div className="accordion-item-action">
+                <p data-testid="accordionItemQuantity">
+                  {currentItem.quantity}
+                </p>
+              </div>
+              <div
+                data-testid="accordionItemQuantityIncrement"
+                className="accordion-item-action"
+                onClick={() => dispatch(incrementCartItemQuantity(id))}
+              >
+                <PlusIcon width={15} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div
+            data-testid="addBtn"
+            className={`btn-accordion ${darkMode && "dark"}`}
+            onClick={addToCart}
+          >
+            Add
+            <PlusIcon
+              width={10}
+              style={{ position: "absolute", top: 1, right: 1 }}
+            />
+          </div>
+        )}
+        {(data?.addons || Object.keys(data?.variantsV2).length > 0) && (
+          <p className={`accordion-customisable ${darkMode && "dark"}`}>
+            Customisable
+          </p>
+        )}
       </div>
     </div>
   );

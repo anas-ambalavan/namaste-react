@@ -706,11 +706,53 @@ html {
   margin-right: 20%;
 }
 
-.menu-header {
+.menu-breadcrumb {
   display: flex;
   justify-content: space-between;
+  margin: 15px 0px;
+}
+
+.menu-breadcrumb-items {
+  list-style: none;
+  display: flex;
+  gap: 5;
+  font-size: 12px;
+  color: grey;
+}
+
+.menu-breadcrumb-item.active {
+  color: #000;
+}
+
+.menu-search-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid grey;
+  padding: 0px 10px;
+}
+
+.menu-search-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.menu-search-input {
+  width: 100%;
   padding: 10px;
-  border-bottom: 0.5px solid #ccc;
+  border: none;
+  margin-left: 10px;
+  outline: none;
+}
+
+.menu-header {
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.menu-header-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu-res-details>div {
@@ -719,7 +761,7 @@ html {
 
 .menu-res-details>div>p,
 .menu-res-details>div>div>p {
-  font-size: 12px;
+  font-size: 13px;
   color: grey;
   margin-top: 5px;
 }
@@ -755,6 +797,15 @@ html {
   font-size: 10px;
   color: grey;
   padding: 10px 0px 10px 0px;
+}
+
+.menu-fee-details {
+  display: flex;
+  align-items: center;
+  gap: 5;
+  margin-top: 20px;
+  font-size: 13px;
+  color: grey;
 }
 
 .menu-offers {
@@ -1041,17 +1092,17 @@ html {
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
-  font-size: 16px;
+  font-size: 16.5px;
 }
 
-.accordion-title.normal>h3 {
+.accordion-title.normal>div {
   font-size: 14px;
   font-weight: 500;
 }
 
 .accordion-item-title {
+  font-size: 16px;
   font-weight: 500;
-  font-size: 14px;
 }
 
 .accordion-content {
@@ -1082,19 +1133,39 @@ html {
   border-radius: 10px;
 }
 
+.accordion-item-action-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.accordion-item-action>svg {
+  color: #1fbb50;
+  cursor: pointer;
+}
+
+.accordion-item-action>svg:hover {
+  transform: scale(1.2);
+}
+
+.accordion-item-action>p {
+  font-weight: bold;
+}
+
 .btn-accordion {
   position: relative;
   cursor: pointer;
-  padding: 6px;
-  width: 100px;
+  padding: 10px 6px;
+  width: 80px;
   border: 0.5px solid #ccc;
   border-radius: 5px;
   color: green;
+  text-align: center;
   background: #fff;
   -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.09);
   -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.09);
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.09);
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 .accordion-customisable {
