@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
@@ -8,7 +9,7 @@ import ThemeContext from "../utils/ThemeContext";
 import CartItem from "./CartItem";
 
 const CartInfo = ({ cart }) => {
-  const { name, imageId, areaName } = cart.resInfo;
+  const { name, imageId, areaName, customSlug } = cart.resInfo;
 
   const theme = useContext(ThemeContext);
   const darkMode = theme?.state?.darkMode;
@@ -24,7 +25,10 @@ const CartInfo = ({ cart }) => {
     <div className="cart-info-container">
       <div className={`cart-info ${darkMode && "dark"}`}>
         <div className={`cart-header ${darkMode && "dark"}`}>
-          <div className={`cart-res-info ${darkMode && "dark"}`}>
+          <Link
+            to={`/restaurants/${customSlug}`}
+            className={`reset-link cart-res-info ${darkMode && "dark"}`}
+          >
             <div>
               <img
                 className={`cart-res-image`}
@@ -36,7 +40,7 @@ const CartInfo = ({ cart }) => {
               <h3>{name}</h3>
               <p>{areaName}</p>
             </div>
-          </div>
+          </Link>
           <div>
             <button
               className={`btn-primary clear-cart ${darkMode && "dark"}`}

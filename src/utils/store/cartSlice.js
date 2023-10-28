@@ -25,27 +25,40 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.item.id
       );
       if (existingCartItem) {
-        existingCartItem.quantity += 1;
-        existingCartItem.totalItemCost +=
-          action.payload.item.defaultPrice || action.payload.item.price;
-        state.cartDetails.itemsLength += 1;
-        state.cartDetails.totalCost +=
-          action.payload.item.defaultPrice || action.payload.item.price;
+        state.cartDetails.items = state.cartDetails.items.map((item) => {
+          if (item.id === existingCartItem.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+              totalItemCost:
+                item.totalItemCost +
+                (action.payload.item.defaultPrice || action.payload.item.price),
+            };
+          }
+          return item;
+        });
       } else {
-        cartItem.quantity = 1;
-        cartItem.totalItemCost =
-          action.payload.item.defaultPrice || action.payload.item.price;
-        state.cartDetails.itemsLength += 1;
-        state.cartDetails.totalCost +=
-          action.payload.item.defaultPrice || action.payload.item.price;
-        state.cartDetails.items.push(cartItem);
+        const newCartItem = {
+          ...cartItem,
+          quantity: 1,
+          totalItemCost:
+            action.payload.item.defaultPrice || action.payload.item.price,
+        };
+        state.cartDetails.items.push(newCartItem);
       }
+
+      state.cartDetails.itemsLength += 1;
+      state.cartDetails.totalCost +=
+        action.payload.item.defaultPrice || action.payload.item.price;
+
       if (action?.payload?.resInfo) {
-        state.cartDetails.resInfo.id = action.payload.resInfo.id;
-        state.cartDetails.resInfo.name = action.payload.resInfo.name;
-        state.cartDetails.resInfo.areaName = action.payload.resInfo.areaName;
-        state.cartDetails.resInfo.imageId =
-          action.payload.resInfo.cloudinaryImageId;
+        state.cartDetails.resInfo = {
+          id: action.payload.resInfo.id,
+          name: action.payload.resInfo.name,
+          areaName: action.payload.resInfo.areaName,
+          imageId: action.payload.resInfo.cloudinaryImageId,
+          customSlug: action.payload.resInfo.customSlug,
+        };
       }
     },
     removeItem: (state, action) => {},
