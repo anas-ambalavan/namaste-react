@@ -70,6 +70,9 @@ const RestaurantMenu = () => {
 
   if (Object.keys(resInfo)?.length === 0) return <RestaurantDetailShimmer />;
 
+  const resData = resInfo?.cards[0]?.card?.card?.info;
+  resData.customSlug = slug;
+
   const {
     name,
     city,
@@ -80,7 +83,7 @@ const RestaurantMenu = () => {
     sla,
     costForTwoMessage,
     feeDetails,
-  } = resInfo?.cards[0]?.card?.card?.info || {};
+  } = resData || {};
 
   const offerDetails =
     resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers || [];
@@ -192,7 +195,7 @@ const RestaurantMenu = () => {
                     }
                     setShowIndex={setShowIndex}
                     index={key}
-                    resInfo={resInfo?.cards[0]?.card?.card?.info}
+                    resInfo={resData}
                   />
                 </div>
               );
@@ -224,7 +227,7 @@ const RestaurantMenu = () => {
                           }
                           setShowIndex={setShowIndex}
                           index={key}
-                          resInfo={resInfo?.cards[0]?.card?.card?.info}
+                          resInfo={resData}
                         />
                       );
                     })}
