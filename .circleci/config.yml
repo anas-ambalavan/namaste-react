@@ -1,12 +1,16 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.1.1
+
 jobs:
   deploy:
-    docker:
-      - image: cimg/base:stable
-
+    executor: node/default
     steps:
       - checkout
+
+      - node/install-packages:
+          pkg-manager: npm
 
       - run:
           name: Install Netlify CLI
