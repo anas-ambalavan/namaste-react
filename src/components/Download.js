@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 
-import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 
 const Download = () => {
@@ -17,13 +16,13 @@ const Download = () => {
       </div>
       <div className="download-icons">
         <img
-          src={CDN_URL + data?.androidAppImage}
+          src={process.env.REACT_APP_CDN_URL + data?.androidAppImage}
           alt="play store"
           width={180}
           height={60}
         />
         <img
-          src={CDN_URL + data?.iosAppImage}
+          src={process.env.REACT_APP_CDN_URL + data?.iosAppImage}
           alt="app store"
           width={180}
           height={60}

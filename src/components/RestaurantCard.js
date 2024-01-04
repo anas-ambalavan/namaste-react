@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 
-import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 
 const RestaurantCard = ({ resData }) => {
@@ -14,7 +13,7 @@ const RestaurantCard = ({ resData }) => {
     <div data-testid="resCard" className={`res-card ${darkMode && "dark"}`}>
       <div className="res-card-image-container">
         <img
-          src={CDN_URL + cloudinaryImageId}
+          src={process.env.REACT_APP_CDN_URL + cloudinaryImageId}
           alt="restaurant logo"
           className="res-card-image"
         />

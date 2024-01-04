@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import ThemeContext from "../utils/ThemeContext";
-import { CDN_URL } from "../utils/constants";
 
 const Offer = ({ offer }) => {
   const { offerTag, offerLogo, header, couponCode, description } = offer;
@@ -21,7 +20,7 @@ const Offer = ({ offer }) => {
           <div className={`offer-header ${darkMode && "dark"}`}>
             <img
               className="offer-logo"
-              src={CDN_URL + offerLogo}
+              src={process.env.REACT_APP_CDN_URL + offerLogo}
               alt="offer logo"
             />
             <p>{header}</p>

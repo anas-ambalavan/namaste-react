@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
-import { CDN_URL } from "../utils/constants";
 import { clearCart } from "../utils/store/cartSlice";
 import ThemeContext from "../utils/ThemeContext";
 import CartItem from "./CartItem";
@@ -32,7 +31,7 @@ const CartInfo = ({ cart }) => {
             <div>
               <img
                 className={`cart-res-image`}
-                src={CDN_URL + imageId}
+                src={process.env.REACT_APP_CDN_URL + imageId}
                 alt="res image"
               />
             </div>

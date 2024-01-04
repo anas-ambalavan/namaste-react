@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import ThemeContext from "../utils/ThemeContext";
-import { CDN_URL } from "../utils/constants";
 
 const CartEmpty = () => {
   const theme = useContext(ThemeContext);
@@ -12,7 +11,7 @@ const CartEmpty = () => {
       <div className="cart-empty-img-container">
         <img
           className="cart-empty-img"
-          src={CDN_URL + "2xempty_cart_yfxml0"}
+          src={process.env.REACT_APP_CDN_URL + "2xempty_cart_yfxml0"}
           alt="cart empty image"
         />
       </div>

@@ -8,7 +8,7 @@ import {
 
 import CartEmpty from "./CartEmpty";
 import CartInfo from "./CartInfo";
-import { CDN_URL } from "../utils/constants";
+
 import ThemeContext from "../utils/ThemeContext";
 
 const Cart = () => {
@@ -65,7 +65,7 @@ const Cart = () => {
                 <div className={"cart-account-details-img-container"}>
                   <img
                     className="cart-account-details-img"
-                    src={CDN_URL + "Image-login_btpq7r"}
+                    src={process.env.REACT_APP_CDN_URL + "Image-login_btpq7r"}
                     alt=""
                   />
                 </div>

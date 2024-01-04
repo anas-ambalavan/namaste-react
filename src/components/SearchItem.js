@@ -1,6 +1,5 @@
 import { useContext } from "react";
 
-import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 
 const SearchItem = ({ suggestion }) => {
@@ -14,7 +13,7 @@ const SearchItem = ({ suggestion }) => {
       <div className="search-item-image-container">
         <img
           className="search-item-image"
-          src={CDN_URL + cloudinaryId}
+          src={process.env.REACT_APP_CDN_URL + cloudinaryId}
           alt=""
         />
       </div>
