@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 
-import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 import FSSAIImg from "../../assets/fssai.svg";
 
@@ -14,7 +13,11 @@ const RestaurantMenuFooter = ({ resLicenseInfo, resDetails }) => {
       <div className="res-menu-footer-license">
         <img
           className="res-menu-footer-img"
-          src={darkMode ? FSSAIImg : CDN_URL + resLicenseInfo?.imageId}
+          src={
+            darkMode
+              ? FSSAIImg
+              : process.env.REACT_APP_CDN_URL + resLicenseInfo?.imageId
+          }
           alt={resLicenseInfo?.type + "image"}
         />
         <p>{resLicenseInfo?.text[0]}</p>

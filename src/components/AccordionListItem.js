@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MinusIcon, PlusIcon, StarIcon } from "@heroicons/react/24/solid";
 
-import { CDN_URL } from "../utils/constants";
 import vegIcon from "../../assets/veg-icon.png";
 import nonVegIcon from "../../assets/non-veg-icon.png";
 import {
@@ -82,7 +81,7 @@ const AccordionListItem = ({ data, resInfo, testId }) => {
         <img
           loading="lazy"
           className="accordion-item-image"
-          src={CDN_URL + imageId}
+          src={process.env.REACT_APP_CDN_URL + imageId}
           alt="item image"
         />
         {currentItem ? (

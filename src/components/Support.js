@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import {
-  AccordionType,
-  SUPPORT_FAQ_API,
-  SUPPORT_LEGAL_API,
-  SUPPORT_PARTNER_API,
-  SupportURLType,
-} from "../utils/constants";
+import { AccordionType, SupportURLType } from "../utils/constants";
 import AccordionItem from "./AccordionItem";
 import ThemeContext from "../utils/ThemeContext";
 
@@ -39,10 +33,11 @@ class Support extends Component {
   async fetchDetails() {
     let URL;
     if (this.state.currentId === SupportURLType.partner)
-      URL = SUPPORT_PARTNER_API;
+      URL = process.env.REACT_APP_SUPPORT_PARTNER_API;
     else if (this.state.currentId === SupportURLType.legal)
-      URL = SUPPORT_LEGAL_API;
-    else if (this.state.currentId === SupportURLType.faq) URL = SUPPORT_FAQ_API;
+      URL = process.env.REACT_APP_SUPPORT_LEGAL_API;
+    else if (this.state.currentId === SupportURLType.faq)
+      URL = process.env.REACT_APP_SUPPORT_FAQ_API;
 
     const data = await fetch(URL);
     const json = await data.json();

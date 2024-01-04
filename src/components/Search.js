@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
-import { CDN_URL, PRE_SEARCH_API, SEARCH_API } from "../utils/constants";
 import SearchItem from "./SearchItem";
 import ThemeContext from "../utils/ThemeContext";
 
@@ -14,14 +13,14 @@ const Search = () => {
   const darkMode = theme?.state?.darkMode;
 
   const fetchCuisines = async () => {
-    const data = await fetch(PRE_SEARCH_API);
+    const data = await fetch(process.env.REACT_APP_PRE_SEARCH_API);
     const json = await data.json();
 
     setCuisines(json?.data?.cards[1]?.card?.card?.imageGridCards?.info);
   };
 
   const searchItems = async () => {
-    const data = await fetch(SEARCH_API + searchText);
+    const data = await fetch(process.env.REACT_APP_SEARCH_API + searchText);
     const json = await data.json();
 
     setSuggestions(json?.data?.suggestions);
@@ -77,7 +76,7 @@ const Search = () => {
                 <div key={cuisine.id} className="cuisine-container">
                   <img
                     className={`cuisine-image ${darkMode && "dark"}`}
-                    src={CDN_URL + cuisine.imageId}
+                    src={process.env.REACT_APP_CDN_URL + cuisine.imageId}
                     alt="cuisine image"
                   />
                 </div>

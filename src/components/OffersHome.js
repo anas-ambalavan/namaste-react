@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useScroll from "../utils/useScroll";
 import ArrowIcon from "./ArrowIcon";
-import { CDN_OFFERS_MEDIA_URL, Directions } from "../utils/constants";
+import { Directions } from "../utils/constants";
 
 const OffersHome = () => {
   const {
@@ -36,7 +36,10 @@ const OffersHome = () => {
       <div ref={containerRef} className="offers-home">
         {offers?.map((offer) => (
           <div key={offer.id}>
-            <img src={CDN_OFFERS_MEDIA_URL + offer.imageId} height="250px" />
+            <img
+              src={process.env.REACT_APP_CDN_OFFERS_MEDIA_URL + offer.imageId}
+              height="250px"
+            />
           </div>
         ))}
       </div>

@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { ClockIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
-import { AccordionType, CDN_URL } from "../utils/constants";
+import { AccordionType } from "../utils/constants";
 import Offer from "./Offer";
 import AccordionItem from "./AccordionItem";
 import RestaurantDetailShimmer from "./RestaurantDetailShimmer";
@@ -153,7 +153,7 @@ const RestaurantMenu = () => {
           {feeDetails && (
             <div className="menu-fee-details">
               <img
-                src={CDN_URL + feeDetails?.icon}
+                src={process.env.REACT_APP_CDN_URL + feeDetails?.icon || ""}
                 alt={`delivery fee icon`}
                 width={20}
               />

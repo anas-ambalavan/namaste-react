@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { API_URL, BestTypes } from "../utils/constants";
+import { BestTypes } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import ThemeContext from "../utils/ThemeContext";
 import OffersHome from "./OffersHome";
@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(API_URL);
+    const data = await fetch(process.env.REACT_APP_API_URL);
     const json = await data.json();
 
     dispatch(loadData(json?.data));

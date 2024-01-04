@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import useScroll from "../utils/useScroll";
 import ArrowIcon from "./ArrowIcon";
-import { CDN_OFFERS_MEDIA_URL, Directions } from "../utils/constants";
+import { Directions } from "../utils/constants";
 
 const CuisinesHome = () => {
   const {
@@ -38,7 +38,7 @@ const CuisinesHome = () => {
           <div key={cuisine.id}>
             <img
               className={`cuisine-home-image`}
-              src={CDN_OFFERS_MEDIA_URL + cuisine.imageId}
+              src={process.env.REACT_APP_CDN_OFFERS_MEDIA_URL + cuisine.imageId}
               width="144px"
               height="180px"
             />

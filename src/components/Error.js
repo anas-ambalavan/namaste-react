@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { CDN_URL } from "../utils/constants";
 import ThemeContext from "../utils/ThemeContext";
 
 const Error = () => {
@@ -12,7 +11,7 @@ const Error = () => {
       <div className="error-img-container">
         <img
           className="error-img"
-          src={CDN_URL + "connection_error_bsppck"}
+          src={process.env.REACT_APP_CDN_URL + "connection_error_bsppck"}
           alt="error image"
         />
       </div>
