@@ -25,9 +25,13 @@ jobs:
           command: npm run test
 
       - run:
+          name: Build Application
+          command: npm run build
+
+      - run:
           name: Deploy to Netlify
           command: |
-            netlify deploy --prod --dir=. --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+            netlify deploy --prod --dir=dist --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
 
 workflows:
   version: 2
