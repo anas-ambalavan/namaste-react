@@ -4,6 +4,18 @@ orbs:
   node: circleci/node@5.1.1
 
 jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+
+      - node/install-packages:
+          pkg-manager: npm
+
+      - run:
+          name: Run Tests
+          command: npm run test
+          
   deploy:
     executor: node/default
     steps:
@@ -21,20 +33,26 @@ jobs:
           command: netlify link --id 77983437-c7af-42da-9609-93308643b6bb
 
       - run:
-          name: Run tests
-          command: npm run test
+          name: Build Application
+          command: npm run build
 
       - run:
           name: Deploy to Netlify
           command: |
-            netlify deploy --prod --dir=. --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
+            netlify deploy --prod --dir=dist --site=$NETLIFY_SITE_ID --auth=$NETLIFY_AUTH_TOKEN
 
 workflows:
   version: 2
-  deploy:
+  test_and_deploy:
     jobs:
+      - test:
+          filters:
+            branches:
+              ignore: main
       - deploy:
           filters:
             branches:
               only:
                 - main
+          requires:
+            - test
